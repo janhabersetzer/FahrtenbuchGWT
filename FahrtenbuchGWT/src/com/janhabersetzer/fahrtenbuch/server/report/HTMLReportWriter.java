@@ -85,7 +85,7 @@ public class HTMLReportWriter extends ReportWriter{
 	   * @param r der zu prozessierende Report
 	   */
 	  @Override
-	public void process(AlleFahrtenVonFahrerReport r) {
+	public void process(SimpleReport r) {
 	    // Zunächst löschen wir das Ergebnis vorhergehender Prozessierungen.
 	    this.resetReportText();
 
@@ -141,5 +141,7 @@ public class HTMLReportWriter extends ReportWriter{
 	     */
 	    this.reportText = result.toString();
 	  }
+	  
+	  
 
 }

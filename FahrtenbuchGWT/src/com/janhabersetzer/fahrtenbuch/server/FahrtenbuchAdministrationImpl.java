@@ -51,14 +51,14 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	 */
 
 	@Override
-	public Fahrer createFahrer(String first, String last, String taxNo) throws IllegalArgumentException {
+	public Fahrer createFahrer(String first, String last, String eMail) throws IllegalArgumentException {
 		
 		//FahrerObjekt anlegen
 		Fahrer d = new Fahrer();
 		d.setId(1);
 		d.setVorname(first);
 		d.setNachname(last);
-		d.setSteuerNr(taxNo);
+		d.setEMail(eMail);
 		
 		return this.dMapper.insert(d);
 	}
@@ -250,8 +250,8 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		    header.addSubParagraph(new SimpleParagraph(d.getNachname() + ", "
 		        + d.getVorname()));
 
-		    // Steuernummer aufnehmen
-		    header.addSubParagraph(new SimpleParagraph("Steuernummer: " + d.getSteuerNr()));
+		    // EMail aufnehmen
+		    header.addSubParagraph(new SimpleParagraph("EMail: " + d.getEMail()));
 
 		    // Hinzufügen der zusammengestellten Kopfdaten zu dem Report
 		    result.setHeaderData(header);
@@ -270,8 +270,8 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		     * In der Kopfzeile legen wir also entsprechende
 		     * Überschriften ab.
 		     */
-		    headline.addColumn(new Column("Fahrtdatum"));
 		    headline.addColumn(new Column("Fahrt-Nr."));
+		    headline.addColumn(new Column("Fahrtdatum"));
 		    headline.addColumn(new Column("Zielbeschreibung"));
 		    headline.addColumn(new Column("Km (Start)"));
 		    headline.addColumn(new Column("Km (Endstand)"));
@@ -281,7 +281,7 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		    headline.addColumn(new Column("Kommentar"));
 		    headline.addColumn(new Column("Bearbeitungsdatum"));
 		    headline.addColumn(new Column("Fahrzeug (Kennzeichen)"));
-		    headline.addColumn(new Column("Steuernummer(Fahrer)"));
+		    headline.addColumn(new Column("EMail(Fahrer)"));
 		    
 
 		    // Hinzufügen der Kopfzeile
@@ -338,8 +338,8 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		      // Elfte Spalte: Kennzeichen des Autos dieser Fahrt hinzufügen
 		      fahrtRow.addColumn(new Column(String.valueOf(vFahrzeug.getKennzeichen())));
 		      
-		      // Zwölfte Spalte: Steuernummer des Fahrers dieser Fahrt hinzufügen
-		      fahrtRow.addColumn(new Column(String.valueOf(dFahrer.getSteuerNr())));
+		      // Zwölfte Spalte: EMail des Fahrers dieser Fahrt hinzufügen
+		      fahrtRow.addColumn(new Column(String.valueOf(dFahrer.getEMail())));
 
 		      // und schließlich die Zeile dem Report hinzufügen.
 		      result.addRow(fahrtRow);
@@ -381,7 +381,7 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		    // Name und Vorname des Fahrers aufnehmen
 		    header.addSubParagraph(new SimpleParagraph("Mit dem Kennzeichen"+ v.getKennzeichen()));
 
-		    // Steuernummer aufnehmen
+		    // Modellbeschreibung aufnehmen
 		    header.addSubParagraph(new SimpleParagraph("Modell: " + v.getModellBeschreibung()));
 
 		    // Hinzufügen der zusammengestellten Kopfdaten zu dem Report
@@ -412,7 +412,7 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		    headline.addColumn(new Column("Kommentar"));
 		    headline.addColumn(new Column("Bearbeitungsdatum"));
 		    headline.addColumn(new Column("Fahrzeug (Kennzeichen)"));
-		    headline.addColumn(new Column("Steuernummer(Fahrer)"));
+		    headline.addColumn(new Column("EMail(Fahrer)"));
 		    
 
 		    // Hinzufügen der Kopfzeile
@@ -428,7 +428,7 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		    Fahrer dFahrer = new Fahrer();
 
 		    for (Fahrt t : fahrten) {
-		    	// Fahrzeug- und Fahrer-Objekt zu dieser Fahrt finden um Später das Kennzeichen bzw die Steuernummer auszulesen
+		    	// Fahrzeug- und Fahrer-Objekt zu dieser Fahrt finden um Später das Kennzeichen bzw die eMail auszulesen
 		    	vFahrzeug = this.getFahrzeug(t);
 		    	dFahrer = this.getFahrer(t);
 		    	
@@ -469,8 +469,8 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		      // Elfte Spalte: Kennzeichen des Autos dieser Fahrt hinzufügen
 		      fahrtRow.addColumn(new Column(String.valueOf(vFahrzeug.getKennzeichen())));
 		      
-		      // Zwölfte Spalte: Steuernummer des Fahrers dieser Fahrt hinzufügen
-		      fahrtRow.addColumn(new Column(String.valueOf(dFahrer.getSteuerNr())));
+		      // Zwölfte Spalte: EMail des Fahrers dieser Fahrt hinzufügen
+		      fahrtRow.addColumn(new Column(String.valueOf(dFahrer.getEMail())));
 
 		      // und schließlich die Zeile dem Report hinzufügen.
 		      result.addRow(fahrtRow);

@@ -16,24 +16,19 @@ package com.janhabersetzer.fahrtenbuch.server.report;
  * @author Thies
  * 
  * HINWEIS: Da für das Fahrtenbuch jeweils ein AlleFahrtenVonFahrerReport und ein AlleFahrtenVonFahrzeugReport benötigt werden 
- * und der AlleFahrtenReport nicht neötigt wir, wurde dies entsprechend angepasst. 
+ * und der AlleFahrtenReport nicht neötigt wir, wurde dies entsprechend angepasst.Diese abstrakte Kalsse definiert somit nur 
+ * die Prozessierung eines Simple Report. 
  */
 
 public abstract class ReportWriter {
 	/**
-	   * Übersetzen eines <code>AlleFahrtenVonFahrerReport</code> in das
+	   * Übersetzen eines <code>SimpleReport</code> in das
 	   * Zielformat.
 	   * 
 	   * @param r der zu übersetzende Report
 	   */
-	  public abstract void process(AlleFahrtenVonFahrerReport r);
+	  public abstract void process(SimpleReport r);
 
-	  /**
-	   * Übersetzen eines <code>AlleFahrtenVonFahrzeugReport</code> in das
-	   * Zielformat.
-	   * 
-	   * @param r der zu übersetzende Report
-	   */
-	  public abstract void process(AlleFahrtenVonFahrzeugReport r);
+	  
 
 }

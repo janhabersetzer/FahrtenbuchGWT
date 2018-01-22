@@ -63,7 +63,7 @@ public class FahrerMapper {
 		       d.setId(rs.getInt("idFahrer"));
 		       d.setVorname(rs.getString("Vorname"));
 		       d.setNachname(rs.getString("Nachname"));
-		       d.setSteuerNr(rs.getString("Steuernummer"));
+		       d.setEMail(rs.getString("EMail"));
 		       return d;
 		      }
 		    }
@@ -99,7 +99,7 @@ public class FahrerMapper {
 				d.setId(rs.getInt("idFahrer"));
 				d.setVorname(rs.getString("Vorname"));
 				d.setNachname(rs.getString("Nachname"));
-				d.setSteuerNr(rs.getString("Steuernummer"));
+				d.setEMail(rs.getString("EMail"));
 				
 				//Anstatt ein Ergebnis über return auszugeben muss hier zuerst der Vektor um d erweitert werden
 				result.addElement(d);
@@ -125,7 +125,7 @@ public class FahrerMapper {
 		String maxIdSQL = "SELECT MAX(idFahrer) AS maxId FROM Fahrer";
 		
 		//Query fuer eigentlichen Insert
-		String insertSQL = "INSERT INTO Fahrer(idFahrer,Vorname,Nachname,Steuernummer) VALUES (?,?,?,?)";
+		String insertSQL = "INSERT INTO Fahrer(idFahrer,Vorname,Nachname,EMail) VALUES (?,?,?,?)";
 		
 		try{
 			con = DBConnection.connection();
@@ -147,7 +147,7 @@ public class FahrerMapper {
 			stmt.setInt(1, d.getId());
 			stmt.setString(2, d.getVorname());
 			stmt.setString(3, d.getNachname());
-			stmt.setString(4, d.getSteuerNr());
+			stmt.setString(4, d.getEMail());
 			
 			
 			//INSERT-Query ausführen
@@ -169,14 +169,14 @@ public class FahrerMapper {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		
-		String updateSQL = "UPDATE Fahrer SET Vorname= ?,Nachname=?,Steuernummer=? WHERE idFahrer=?";
+		String updateSQL = "UPDATE Fahrer SET Vorname= ?,Nachname=?,EMail=? WHERE idFahrer=?";
 		
 		try{
 			con=DBConnection.connection();
 			stmt = con.prepareStatement(updateSQL);
 			stmt.setString(1, d.getVorname());
 			stmt.setString(2, d.getNachname());
-			stmt.setString(3, d.getSteuerNr());
+			stmt.setString(3, d.getEMail());
 			stmt.setInt(4, d.getId());
 			stmt.executeUpdate();
 			

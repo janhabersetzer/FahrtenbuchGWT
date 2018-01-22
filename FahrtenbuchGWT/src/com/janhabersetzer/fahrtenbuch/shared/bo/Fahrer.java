@@ -8,7 +8,7 @@ public class Fahrer extends BusinessObject {
 	
 	private String vorname;
 	private String nachname;
-	private String steuerNr;
+	private String eMail;
 	
 	
 	//Getter und Setter
@@ -29,15 +29,15 @@ public class Fahrer extends BusinessObject {
 		this.nachname = nachname;
 	}
 
-	public String getSteuerNr(){
-		return this.steuerNr;
+	public String getEMail(){
+		return this.eMail;
 	}
 	
-	public void setSteuerNr(String steuerNr){
-		this.steuerNr = steuerNr;
+	public void setEMail(String eMail){
+		this.eMail = eMail;
 	}
 	
 	public String toString() {
-	    return super.toString() + " " + this.vorname + " " + this.nachname+ " " + this.steuerNr;
+	    return super.toString() + " " + this.vorname + " " + this.nachname+ " " + this.eMail;
 	  }
 }

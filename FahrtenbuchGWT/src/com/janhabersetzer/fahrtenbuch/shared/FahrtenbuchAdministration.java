@@ -20,11 +20,11 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	   * 
 	   * @param first Vorname
 	   * @param last Nachname
-	   * @param taxNo Steuernummer
+	   * @param eMail 
 	   * @return Ein fertiges Fahrer-Objekt.
 	   * @throws IllegalArgumentException
 	   */
-	public Fahrer createFahrer(String first, String last, String taxNo) throws IllegalArgumentException;
+	public Fahrer createFahrer(String first, String last, String eMail) throws IllegalArgumentException;
 	
 	/**
 	 * Ein Fahrzeug anlegen

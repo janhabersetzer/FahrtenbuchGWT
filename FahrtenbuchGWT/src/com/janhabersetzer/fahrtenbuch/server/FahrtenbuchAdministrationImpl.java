@@ -23,6 +23,8 @@ import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 
 public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implements FahrtenbuchAdministration {
 	
+	private static final long serialVersionUID = 1L;
+
 	private FahrerMapper dMapper = null;
 	
 	private FahrzeugMapper vMapper = null;
@@ -351,6 +353,8 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		    return result;
 		  }
 	
+	
+	
 	public AlleFahrtenVonFahrzeugReport createAlleFahrtenVonFahrzeugReport(Fahrzeug v) 
 			throws IllegalArgumentException {
 
@@ -379,7 +383,7 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		    CompositeParagraph header = new CompositeParagraph();
 
 		    // Name und Vorname des Fahrers aufnehmen
-		    header.addSubParagraph(new SimpleParagraph("Mit dem Kennzeichen"+ v.getKennzeichen()));
+		    header.addSubParagraph(new SimpleParagraph("Mit dem Kennzeichen: "+ v.getKennzeichen()));
 
 		    // Modellbeschreibung aufnehmen
 		    header.addSubParagraph(new SimpleParagraph("Modell: " + v.getModellBeschreibung()));

@@ -4,11 +4,14 @@ import java.time.LocalDate;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.janhabersetzer.fahrtenbuch.server.report.AlleFahrtenVonFahrerReport;
+import com.janhabersetzer.fahrtenbuch.server.report.AlleFahrtenVonFahrzeugReport;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 
-
+@RemoteServiceRelativePath("fahrtenbuchgwt")
 public interface FahrtenbuchAdministration extends RemoteService {
 	
 	
@@ -50,7 +53,8 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	 * @return Ein fertiges Fahrt-Objekt.
 	 * @throws IllegalArgumentException
 	 */
-	public Fahrt createFahrt(LocalDate tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist, int workingDist, int companyDist,String comment,int vehicleId, int driverId) 
+	public Fahrt createFahrt(LocalDate tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist,
+			int workingDist, int companyDist,String comment,int vehicleId, int driverId) 
 			throws IllegalArgumentException;	
 	
 	/**
@@ -157,6 +161,21 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	 * @throws IllegalArgumentException
 	 */
 	public void deleteAlleFahrtenVonFahrzeug(Fahrzeug v) throws IllegalArgumentException;
+	
+	/**
+	 * Einen AlleFahrtenVonFahrerReport anlegen
+	 * @param d Fahrer-Objekt zu dem der Report angelegt wird
+	 * @return AlleFahrtenVonFahrerReport-Objekt (String), dass mittels HTMLWriter in HTML übertragbar ist.
+	 */
+	public AlleFahrtenVonFahrerReport createAlleFahrtenVonFahrerReport(Fahrer d);
+	
+	/**
+	 * Einen AlleFahrtenVonFahrzeugReport anlegen
+	 * @param v Fahrzeug-Objekt zu dem der Report angelegt wird
+	 * @return AlleFahrtenVonFahrzeugReport-Objekt (String), dass mittels HTMLWriter in HTML übertragbar ist.
+	 */
+	
+	public AlleFahrtenVonFahrzeugReport createAlleFahrtenVonFahrzeugReport(Fahrzeug v);
 	
 }
 

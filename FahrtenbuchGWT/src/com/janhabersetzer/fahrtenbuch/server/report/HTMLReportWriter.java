@@ -103,8 +103,6 @@ public class HTMLReportWriter extends ReportWriter{
 	    result.append("<table style=\"width:400px;border:1px solid silver\"><tr>");
 	    result.append("<td valign=\"top\"><b>" + paragraph2HTML(r.getHeaderData())
 	        + "</b></td>");
-	    result.append("<td valign=\"top\">" + paragraph2HTML(r.getImprint())
-	        + "</td>");
 	    result.append("</tr><tr><td></td><td>" + r.getCreated().toString()
 	        + "</td></tr></table>");
 
@@ -142,6 +140,8 @@ public class HTMLReportWriter extends ReportWriter{
 	    this.reportText = result.toString();
 	  }
 	  
-	  
+	  public String getReportText() {
+		    return this.getHeader() + this.reportText + this.getTrailer();
+		  }  
 
 }

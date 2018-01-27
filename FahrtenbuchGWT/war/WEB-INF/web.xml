@@ -7,14 +7,25 @@
 
   <!-- Servlets -->
    <servlet>
-    <servlet-name>FahrtenbuchAdministrationImpl</servlet-name>
+    <servlet-name>adminServlet</servlet-name>
     <servlet-class>com.janhabersetzer.fahrtenbuch.server.FahrtenbuchAdministrationImpl</servlet-class>
   </servlet>
+  
+  <servlet>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>com.janhabersetzer.fahrtenbuch.server.LoginServiceImpl</servlet-class>
+	</servlet>
 
  <servlet-mapping>
-    <servlet-name>FahrtenbuchAdministrationImpl</servlet-name>
+    <servlet-name>adminServlet</servlet-name>
     <url-pattern>/fahrtenbuchgwt/fahrtenbuchgwt</url-pattern>
   </servlet-mapping>
+  
+ <servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/fahrtenbuchgwt/login</url-pattern>
+		<url-pattern>/fahrtenbuchgwt/login</url-pattern>
+	</servlet-mapping>
   
   
   <!-- Default page to serve -->

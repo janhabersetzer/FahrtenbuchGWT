@@ -66,6 +66,24 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	public Fahrer getFahrer(Fahrt t) throws IllegalArgumentException;
 	
 	/**
+	 * Einen Fahrer zu einer bestimmten Fahrt finden.
+	 * @param email Sting, zu dem ein Fahrer gefunden werden soll
+	 * @return zugehöriges Fahrer-Object
+	 * @throws IllegalArgumentException
+	 */
+	public Fahrer getFahrerByEmail(String email) throws IllegalArgumentException;
+	
+	
+	/**
+	 * Prüft anhand der email ob ein Nutzer in der Datenbank vorhanden ist.
+	 * @param email
+	 * @return
+	 * @throws IllegalArgumentException
+	 */
+	
+	public boolean pruefeObFahrerNeu(String email) throws IllegalArgumentException;
+	
+	/**
 	 * Alle Fahrer, die im System hinterlegt sind finden
 	 * @return Vector<Fahrer> mit allen Fahrern
 	 * @throws IllegalArgumentException

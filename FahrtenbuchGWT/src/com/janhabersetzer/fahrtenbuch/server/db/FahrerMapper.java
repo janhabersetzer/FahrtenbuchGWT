@@ -74,6 +74,41 @@ public class FahrerMapper {
 
 		    return null;
 	}
+
+	public Fahrer findByEmail(String email){
+		Connection con = null;
+		PreparedStatement stmt = null;
+		
+		String selectByKey = "SELECT * FROM Fahrer WHERE EMail= ? ORDER BY idFahrer";
+		
+		try {
+		     con= DBConnection.connection();
+		     stmt = con.prepareStatement(selectByKey);
+		     stmt.setString(1, email);
+		     
+		     // execute SQL Statement
+		     ResultSet rs = stmt.executeQuery();	 
+		    		 
+		     if (rs.next()) {
+		       // Ergebnis-Tupel in Objekt umwandeln
+		       Fahrer d = new Fahrer();
+		       // Setzen der Attribute entspechenden des DB-Datensatzes
+		       d.setId(rs.getInt("idFahrer"));
+		       d.setVorname(rs.getString("Vorname"));
+		       d.setNachname(rs.getString("Nachname"));
+		       d.setEMail(rs.getString("EMail"));
+		       return d;
+		      }
+		    }
+		    catch (SQLException e2) {
+		      e2.printStackTrace();
+		      return null;
+		    }
+
+		    return null;
+	}
+
+	
 	
 	public Vector<Fahrer> findAll(){
 		Connection con = null;

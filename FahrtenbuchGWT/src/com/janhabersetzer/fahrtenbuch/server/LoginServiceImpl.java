@@ -2,6 +2,7 @@ package com.janhabersetzer.fahrtenbuch.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.janhabersetzer.fahrtenbuch.client.gui.LoginInfo;
+import com.janhabersetzer.fahrtenbuch.shared.LoginService;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -24,7 +25,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 	 * @return loginInfos
 	 */
 	@Override
-	public LoginInfo login(String requestUri) {
+	public LoginInfo login (String requestUri) throws IllegalArgumentException{
 		System.out.print(requestUri);
 		System.out.print("1");
 		UserService userService = UserServiceFactory.getUserService();

@@ -23,6 +23,10 @@ public interface FahrtenbuchAdministrationAsync {
 	
 	void getFahrer(Fahrt t, AsyncCallback<Fahrer> callback);
 	
+	void getFahrerByEmail(String email, AsyncCallback<Fahrer> callback);
+	
+	void pruefeObFahrerNeu(String email, AsyncCallback<Boolean> callback);
+	
 	void getAlleFahrer(AsyncCallback<Vector<Fahrer>> callback);
 	
 	void saveFahrer(Fahrer d, AsyncCallback<Void> callback);

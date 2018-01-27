@@ -137,7 +137,23 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		
 		return dMapper.findByKey(t.getSourceFahrerId());
 	}
+	
+	@Override
+	public Fahrer getFahrerByEmail(String email) throws IllegalArgumentException{
+		return dMapper.findByEmail(email);
+	}
+	
+	@Override
+	public boolean pruefeObFahrerNeu(String email) throws IllegalArgumentException {
 
+		if (dMapper.findByEmail(email) == null) {
+			return true;
+		}
+		return false;
+		
+	}
+
+	
 	@Override
 	public Vector<Fahrer> getAlleFahrer() throws IllegalArgumentException {
 		return this.dMapper.findAll();

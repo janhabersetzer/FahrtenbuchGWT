@@ -7,6 +7,7 @@ import java.util.Vector;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 
 public class FahrzeugMapper {
@@ -119,6 +120,7 @@ public class FahrzeugMapper {
 		}
 		return result;
 	}
+	
 	
 	public Fahrzeug insert(Fahrzeug v){
 		

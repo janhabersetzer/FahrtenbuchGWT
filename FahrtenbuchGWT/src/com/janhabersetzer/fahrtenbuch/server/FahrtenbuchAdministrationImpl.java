@@ -190,6 +190,7 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		return vMapper.findAll();
 	}
 
+
 	@Override
 	public void saveFahrzeug(Fahrzeug v) throws IllegalArgumentException {
 		vMapper.insert(v);

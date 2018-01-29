@@ -1,4 +1,4 @@
-package com.janhabersetzer.fahrtenbuch.server.report;
+package com.janhabersetzer.fahrtenbuch.shared.report;
 
 import com.janhabersetzer.fahrtenbuch.server.FahrtenbuchAdministrationImpl;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;

@@ -1,11 +1,12 @@
 package com.janhabersetzer.fahrtenbuch.shared;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.janhabersetzer.fahrtenbuch.server.report.AlleFahrtenVonFahrerReport;
-import com.janhabersetzer.fahrtenbuch.server.report.AlleFahrtenVonFahrzeugReport;
+import com.janhabersetzer.fahrtenbuch.shared.report.AlleFahrtenVonFahrerReport;
+import com.janhabersetzer.fahrtenbuch.shared.report.AlleFahrtenVonFahrzeugReport;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
@@ -18,7 +19,7 @@ public interface FahrtenbuchAdministrationAsync {
 	
 	void createFahrzeug(String regNo, int milage, String description, String color, AsyncCallback<Fahrzeug> callback);
 	
-	void createFahrt(LocalDate tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist,
+	void createFahrt(Date tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist,
 			int workingDist,int companyDist,String comment,int vehicleId, int driverId, AsyncCallback<Fahrt> callback);
 	
 	void getFahrer(Fahrt t, AsyncCallback<Fahrer> callback);

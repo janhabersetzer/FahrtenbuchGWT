@@ -39,7 +39,6 @@ public class EditFahrer extends VerticalPanel {
 	private Button editFahrerButton = new Button("Profil speichern");
 	private Button abbrechenButton = new Button("Abbrechen");
 	private Label reqLabel1 = new Label("* Pflichtfeld");
-	private Label reqLabel2 = new Label("* Pflichtfeld");
 
 	private Label infoLabel = new Label();
 	private Label warnungLabel = new Label();
@@ -65,7 +64,6 @@ public class EditFahrer extends VerticalPanel {
 		 */
 		ueberschriftLabel.addStyleName("partnerboerse-label");
 		reqLabel1.setStyleName("red_label");
-		reqLabel2.setStyleName("red_label");
 		warnungLabel.setStyleName("red_label");
 		editFahrerFlexTable.addStyleName("FlexTable");
 		editFahrerFlexTable.setCellPadding(6);

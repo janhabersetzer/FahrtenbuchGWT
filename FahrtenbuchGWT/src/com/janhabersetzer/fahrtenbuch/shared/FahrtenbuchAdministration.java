@@ -1,17 +1,18 @@
 package com.janhabersetzer.fahrtenbuch.shared;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.janhabersetzer.fahrtenbuch.server.report.AlleFahrtenVonFahrerReport;
-import com.janhabersetzer.fahrtenbuch.server.report.AlleFahrtenVonFahrzeugReport;
+import com.janhabersetzer.fahrtenbuch.shared.report.AlleFahrtenVonFahrerReport;
+import com.janhabersetzer.fahrtenbuch.shared.report.AlleFahrtenVonFahrzeugReport;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 
-@RemoteServiceRelativePath("fahrtenbuchgwt")
+@RemoteServiceRelativePath("fahrtenbuch")
 public interface FahrtenbuchAdministration extends RemoteService {
 	
 	
@@ -53,7 +54,7 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	 * @return Ein fertiges Fahrt-Objekt.
 	 * @throws IllegalArgumentException
 	 */
-	public Fahrt createFahrt(LocalDate tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist,
+	public Fahrt createFahrt(Date tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist,
 			int workingDist, int companyDist,String comment,int vehicleId, int driverId) 
 			throws IllegalArgumentException;	
 	

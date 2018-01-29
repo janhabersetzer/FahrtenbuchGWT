@@ -1,8 +1,7 @@
 package com.janhabersetzer.fahrtenbuch.server;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -10,12 +9,12 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.janhabersetzer.fahrtenbuch.server.db.FahrerMapper;
 import com.janhabersetzer.fahrtenbuch.server.db.FahrtMapper;
 import com.janhabersetzer.fahrtenbuch.server.db.FahrzeugMapper;
-import com.janhabersetzer.fahrtenbuch.server.report.AlleFahrtenVonFahrerReport;
-import com.janhabersetzer.fahrtenbuch.server.report.AlleFahrtenVonFahrzeugReport;
-import com.janhabersetzer.fahrtenbuch.server.report.Column;
-import com.janhabersetzer.fahrtenbuch.server.report.CompositeParagraph;
-import com.janhabersetzer.fahrtenbuch.server.report.Row;
-import com.janhabersetzer.fahrtenbuch.server.report.SimpleParagraph;
+import com.janhabersetzer.fahrtenbuch.shared.report.AlleFahrtenVonFahrerReport;
+import com.janhabersetzer.fahrtenbuch.shared.report.AlleFahrtenVonFahrzeugReport;
+import com.janhabersetzer.fahrtenbuch.shared.report.Column;
+import com.janhabersetzer.fahrtenbuch.shared.report.CompositeParagraph;
+import com.janhabersetzer.fahrtenbuch.shared.report.Row;
+import com.janhabersetzer.fahrtenbuch.shared.report.SimpleParagraph;
 import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministration;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
@@ -78,12 +77,12 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	}
 
 	@Override
-	public Fahrt createFahrt(LocalDate tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist,
+	public Fahrt createFahrt(Date tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist,
 			int workingDist, int companyDist, String comment, int vehicleId, int driverId) throws IllegalArgumentException {
 		
 		
 		//Bearbeitungsdatum mit aktuellem Datum setzen
-		LocalDate bdate = LocalDate.now( ZoneId.of( "Europe/Berlin") );
+		Date bdate = new Date();
 		
 		
 		Fahrt t= new Fahrt();
@@ -256,7 +255,7 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		     * Datum der Erstellung hinzufügen. new Date() erzeugt autom. einen
 		     * "Timestamp" des Zeitpunkts der Instantiierung des Date-Objekts.
 		     */
-		    result.setCreated(LocalDateTime.now());
+		    result.setCreated(new Date());
 
 		    /*
 		     * Ab hier erfolgt die Zusammenstellung der Kopfdaten (die Dinge, die oben
@@ -390,7 +389,7 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		     * Datum der Erstellung hinzufügen. new Date() erzeugt autom. einen
 		     * "Timestamp" des Zeitpunkts der Instantiierung des Date-Objekts.
 		     */
-		    result.setCreated(LocalDateTime.now());
+		    result.setCreated(new Date());
 
 		    /*
 		     * Ab hier erfolgt die Zusammenstellung der Kopfdaten (die Dinge, die oben

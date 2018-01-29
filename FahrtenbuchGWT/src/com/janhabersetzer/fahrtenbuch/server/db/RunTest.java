@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Vector;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
@@ -21,7 +22,7 @@ public class RunTest {
 		// TODO Auto-generated method stub
 		
 		
-		testDeleteAlleFahrtenOfFahrzeug();
+		testFindByKey();
 		
 	}
 	
@@ -124,9 +125,9 @@ public static  void testFindAll() throws Exception{
 		
 		//Objekt anlegen
 				
-				LocalDate fdate = LocalDate.now( ZoneId.of( "America/Montreal") );
+				Date fdate =new Date();
 				
-				LocalDate bdate = LocalDate.now( ZoneId.of( "Europe/Berlin") );
+				Date bdate = new Date();
 				
 				
 				Fahrt t= new Fahrt();
@@ -181,12 +182,13 @@ public static  void testUpdateFahrzeug() throws Exception{
 	public static  void testUpdateFahrt() throws Exception{
 	
 		//Objekt anlegen
-		LocalDate fdate = LocalDate.now( ZoneId.of( "America/Montreal") );
+		Date fdate = new Date();
 		
-		LocalDate bdate = LocalDate.now( ZoneId.of( "Asia/Moskau") );
+		Date bdate = new Date();
 		
 		
 		Fahrt t= new Fahrt();
+		t.setId(6);
 		t.setFahrtDatum(fdate);
 		t.setKmStart(30000);
 		t.setKmEnd(30100);

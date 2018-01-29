@@ -1,7 +1,8 @@
-package com.janhabersetzer.fahrtenbuch.server.report;
+package com.janhabersetzer.fahrtenbuch.shared.report;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 
@@ -35,7 +36,7 @@ public abstract class Report implements Serializable{
 	  /**
 	   * Datum der Erstellung des Berichts.
 	   */
-	  private LocalDateTime created =  LocalDateTime.now();
+	  private Date created = new Date();
 
 	  /**
 	   * Auslesen des Impressums.
@@ -96,7 +97,7 @@ public abstract class Report implements Serializable{
 	   * 
 	   * @return Datum der Erstellung des Berichts
 	   */
-	  public LocalDateTime getCreated() {
+	  public Date getCreated() {
 	    return this.created;
 	  }
 
@@ -105,10 +106,10 @@ public abstract class Report implements Serializable{
 	   * ist nicht unbedingt erforderlich, da jeder Report bei seiner Erstellung
 	   * automatisch den aktuellen Zeitpunkt festhält.
 	   * 
-	   * @param created Zeitpunkt der Erstellung
+	   * @param date Zeitpunkt der Erstellung
 	   */
-	  public void setCreated(LocalDateTime created) {
-	    this.created = created;
+	  public void setCreated(Date date) {
+	    this.created = date;
 	  }
 
 }

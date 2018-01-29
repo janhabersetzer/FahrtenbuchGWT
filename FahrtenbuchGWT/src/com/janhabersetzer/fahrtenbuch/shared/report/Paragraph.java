@@ -1,4 +1,4 @@
-package com.janhabersetzer.fahrtenbuch.server.report;
+package com.janhabersetzer.fahrtenbuch.shared.report;
 
 import java.io.Serializable;
 

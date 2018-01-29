@@ -1,6 +1,6 @@
 package com.janhabersetzer.fahrtenbuch.shared.bo;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Fahrt extends BusinessObject{
 	
@@ -20,11 +20,11 @@ public class Fahrt extends BusinessObject{
 	
 	private int betriebsfahrtKm;
 	
-	private LocalDate fahrtDatum;
+	private Date fahrtDatum;
 	
 	private String kommentar;
 	
-	private LocalDate bearbeitungsDatum;
+	private Date bearbeitungsDatum;
 	
 	private int sourceFahrzeugId;
 	
@@ -82,11 +82,11 @@ public class Fahrt extends BusinessObject{
 		this.betriebsfahrtKm = betriebsfahrtKm;
 	}
 
-	public LocalDate getFahrtDatum() {
+	public Date getFahrtDatum() {
 		return this.fahrtDatum;
 	}
 
-	public void setFahrtDatum(LocalDate fahrtdatum) {
+	public void setFahrtDatum(Date fahrtdatum) {
 		this.fahrtDatum = fahrtdatum;
 	}
 
@@ -98,11 +98,11 @@ public class Fahrt extends BusinessObject{
 		this.kommentar = kommentar;
 	}
 
-	public LocalDate getBearbeitungsdatum() {
+	public Date getBearbeitungsdatum() {
 		return this.bearbeitungsDatum;
 	}
 
-	public void setBearbeitungsdatum(LocalDate bearbeitungsDatum) {
+	public void setBearbeitungsdatum(Date bearbeitungsDatum) {
 		this.bearbeitungsDatum = bearbeitungsDatum;
 	}
 

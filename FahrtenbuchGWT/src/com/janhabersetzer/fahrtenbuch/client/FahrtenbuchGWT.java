@@ -1,23 +1,17 @@
 package com.janhabersetzer.fahrtenbuch.client;
 
-import javax.swing.text.AbstractDocument.ElementEdit;
+
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.janhabersetzer.fahrtenbuch.client.gui.CreateFahrerProfil;
 import com.janhabersetzer.fahrtenbuch.client.gui.LoginInfo;
-import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministration;
+import com.janhabersetzer.fahrtenbuch.client.gui.Navigator;
 import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
 import com.janhabersetzer.fahrtenbuch.shared.LoginServiceAsync;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
@@ -29,9 +23,7 @@ import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
  */
 public class FahrtenbuchGWT implements EntryPoint {
 	
-	Fahrer fahrer = new Fahrer();
-
-	
+	Fahrer fahrerProfil = new Fahrer();
 	/**
 	 * Deklaraion der Labels fuer die Startseite(n)
 	 */
@@ -119,12 +111,10 @@ public class FahrtenbuchGWT implements EntryPoint {
 					RootPanel.get("Details").add(begruessenN);
 					RootPanel.get("Details").add(begruessenN2);
 
-				} else {
-					
-					CreateNutzerprofil createNutzerprofil = new CreateNutzerprofil("Np");
+				} else {	
+					CreateFahrerProfil createFahrerProfil = new CreateFahrerProfil();
 					RootPanel.get("Details").clear();
-					RootPanel.get("Details").add(createNutzerprofil);
-					
+					RootPanel.get("Details").add(createFahrerProfil);	
 				}
 
 			}
@@ -165,7 +155,7 @@ public class FahrtenbuchGWT implements EntryPoint {
 	 * Methode erzeugt ruft das Panel auf, durch welches die Menubar sichtbar wird.
 	 */
 	public static void getMenu() {
-		RootPanel.get("Navigator").add(new Navigator(np));
+		RootPanel.get("Navigator").add(new Navigator());
 	}
 	
 	

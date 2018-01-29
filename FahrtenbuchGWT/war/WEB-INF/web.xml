@@ -18,13 +18,12 @@
 
  <servlet-mapping>
     <servlet-name>adminServlet</servlet-name>
-    <url-pattern>/fahrtenbuchgwt/fahrtenbuchgwt</url-pattern>
+    <url-pattern>/FahrtenbuchGWT/fahrtenbuch</url-pattern>
   </servlet-mapping>
   
  <servlet-mapping>
 		<servlet-name>loginServlet</servlet-name>
-		<url-pattern>/fahrtenbuchgwt/login</url-pattern>
-		<url-pattern>/fahrtenbuchgwt/login</url-pattern>
+		<url-pattern>/FahrtenbuchGWT/login</url-pattern>
 	</servlet-mapping>
   
   

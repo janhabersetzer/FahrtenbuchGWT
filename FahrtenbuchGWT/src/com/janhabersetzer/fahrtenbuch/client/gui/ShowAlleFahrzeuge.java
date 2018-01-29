@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.ClientSideSettings;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
@@ -84,17 +85,39 @@ public class ShowAlleFahrzeuge extends VerticalPanel {
 			public void onSuccess(Vector<Fahrzeug> result) {
 				for (int i = 0; i < result.size(); i++){
 					
-					int fahrzeugId = result.get(i).getId();
+					Fahrzeug fahrzeugProfil = result.get(i);
 					
 					showFhrzFlexTable.setText(0, (i+1), result.get(i).getKennzeichen());
 					showFhrzFlexTable.setText(1, (i+1), Integer.toString(result.get(i).getKm()));
 					showFhrzFlexTable.setText(2, (i+1), result.get(i).getModellBeschreibung());
 					showFhrzFlexTable.setText(3, (i+1), result.get(i).getFarbe());
+					
+					
+					//anzeigenButton erzeugen, zur Tabelle hinzufügen und Clickhandler zuweisen
 					anzeigenButton = new Button("Fahrzeug anzeigen");
 					showFhrzFlexTable.setWidget(4, (i+1), anzeigenButton);
+					anzeigenButton.addClickHandler(new ClickHandler() {
+						
+						@Override
+						public void onClick(ClickEvent event) {
+							ShowFahrzeug showFahrzeug = new ShowFahrzeug();
+							RootPanel.get("Details").clear();
+							RootPanel.get("Details").add(showFahrzeug);	
+						}
+					});
 					
+					//LoeschenButton erzeugen, zur Tabelle hinzufügen und Clickhandler zuweisen
 					loeschenButton = new Button("Fahrzeug löschen");
 					showFhrzFlexTable.setWidget(5, (i+1), loeschenButton);
+					loeschenButton.addClickHandler(new ClickHandler() {
+						
+						@Override
+						public void onClick(ClickEvent event) {
+							loescheFahrzeug(fahrzeugProfil);
+							
+						}
+					});
+					
 				}
 			}
 			
@@ -106,22 +129,18 @@ public class ShowAlleFahrzeuge extends VerticalPanel {
 		});
 	}
 	
-	private class AnzeigenClickHandler implements ClickHandler{
-		@Override
-		public void onClick(ClickEvent event) {
-			
-			
-		}
-	}
+	/**
+	 * Methode zum Löschen eines Fahrzeugs für den Clickhandler
+	 * @param fahrzeugId
+	 */
 	
-	
-	public void loescheFahrzeug(){
+	public void loescheFahrzeug(Fahrzeug fahrzeugProfil){
 		if (Window.confirm("Möchten Sie dieses Fahrzeug wirklich löschen?")){
 			
-			ClientSideSettings.getFahrtenbuchVerwaltung().deleteFahrzeug(, new AsyncCallback<Void>() {
+			ClientSideSettings.getFahrtenbuchVerwaltung().deleteFahrzeug(fahrzeugProfil, new AsyncCallback<Void>() {
 				@Override
-				public void onSuccess() {
-					
+				public void onSuccess(Void result) {
+				Window.alert("Fahrzeug wurde gelöscht");	
 				}
 				
 				@Override

@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 
 
@@ -234,15 +235,25 @@ public class FahrtMapper {
 			
 			// Insert durchführen 
 			//1.Fahrtdatum konvertieren
-			java.sql.Date fahrtDatumSQL = java.sql.Date.valueOf(t.getFahrtDatum());
+			Date fahrtDatumUntil = t.getFahrtDatum();
+			
+			SimpleDateFormat formatterSDF = new SimpleDateFormat("yyyy-MM-dd");
+			
+			String mysqlFDatumString = formatterSDF.format(fahrtDatumUntil);
 			
 			//2.Bearbeitungsdatum von konvertieren
-			java.sql.Date bearbeitungsDatumSQL = java.sql.Date.valueOf(t.getBearbeitungsdatum());
+			
+			Date bearbeitungsDatumUntil = t.getFahrtDatum();
+			
+			SimpleDateFormat formatterSDF2 = new SimpleDateFormat("yyyy-MM-dd");
+			
+			String mysqlBDatumString = formatterSDF2.format(bearbeitungsDatumUntil);
+			
 			
 			//Query vorbereiten
 			stmt = con.prepareStatement(insertSQL);
 			stmt.setInt(1, t.getId());
-			stmt.setDate(2, fahrtDatumSQL);
+			stmt.setString(2, mysqlFDatumString);
 			stmt.setInt(3, t.getKmStart());
 			stmt.setInt(4, t.getKmEnd());
 			stmt.setInt(5, t.getPrivatKm());
@@ -250,7 +261,7 @@ public class FahrtMapper {
 			stmt.setInt(7, t.getBetriebsfahrtKm());
 			stmt.setString(8, t.getZielBeschreibung());
 			stmt.setString(9, t.getKommentar());
-			stmt.setDate(10, bearbeitungsDatumSQL);
+			stmt.setString(10, mysqlBDatumString);
 			stmt.setInt(11, t.getSourceFahrzeugId());
 			stmt.setInt(12, t.getSourceFahrerId());
 			
@@ -283,27 +294,36 @@ public class FahrtMapper {
 			stmt = con.prepareStatement(updateSQL);
 			
 			//1.Fahrtdatum konvertieren
-			java.sql.Date fahrtDatumSQL = java.sql.Date.valueOf(t.getFahrtDatum());
+			Date fahrtDatumUntil = t.getFahrtDatum();
 			
+			SimpleDateFormat formatterSDF = new SimpleDateFormat("yyyy-MM-dd");
+			
+			String mysqlFDatumString = formatterSDF.format(fahrtDatumUntil);
 			
 			//2.Bearbeitungsdatum von konvertieren
-			java.sql.Date bearbeitungsDatumSQL = java.sql.Date.valueOf(t.getBearbeitungsdatum());
+			
+			Date bearbeitungsDatumUntil = t.getFahrtDatum();
+			
+			SimpleDateFormat formatterSDF2 = new SimpleDateFormat("yyyy-MM-dd");
+			
+			String mysqlBDatumString = formatterSDF2.format(bearbeitungsDatumUntil);
 			
 
 			//Query vorbereiten
 			stmt = con.prepareStatement(updateSQL);
-			stmt.setInt(1, t.getId());
-			stmt.setDate(2, fahrtDatumSQL);
-			stmt.setInt(3, t.getKmStart());
-			stmt.setInt(4, t.getKmEnd());
-			stmt.setInt(5, t.getPrivatKm());
-			stmt.setInt(6, t.getArbeitswegKm());
-			stmt.setInt(7, t.getBetriebsfahrtKm());
-			stmt.setString(8, t.getZielBeschreibung());
-			stmt.setString(9, t.getKommentar());
-			stmt.setDate(10, bearbeitungsDatumSQL);
-			stmt.setInt(11, t.getSourceFahrzeugId());
-			stmt.setInt(12, t.getSourceFahrerId());
+
+			stmt.setString(1, mysqlFDatumString);
+			stmt.setInt(2, t.getKmStart());
+			stmt.setInt(3, t.getKmEnd());
+			stmt.setInt(4, t.getPrivatKm());
+			stmt.setInt(5, t.getArbeitswegKm());
+			stmt.setInt(6, t.getBetriebsfahrtKm());
+			stmt.setString(7, t.getZielBeschreibung());
+			stmt.setString(8, t.getKommentar());
+			stmt.setString(9, mysqlBDatumString);
+			stmt.setInt(10, t.getSourceFahrzeugId());
+			stmt.setInt(11, t.getSourceFahrerId());
+			stmt.setInt(12, t.getId());
 			
 			stmt.executeUpdate();
 			
@@ -381,8 +401,8 @@ public class FahrtMapper {
 			Fahrt t = new Fahrt();
 			t.setId(rs.getInt("idFahrt"));
 			//Hier die Umwandlung des Datentyps
-			LocalDate fahrtDatumLocal = rs.getDate("Fahrtdatum").toLocalDate();
-			t.setFahrtDatum(fahrtDatumLocal);
+			Date fahrtDatum = new Date(rs.getDate("Fahrtdatum").getTime());
+			t.setFahrtDatum(fahrtDatum);
 			t.setKmStart(rs.getInt("KmStart"));
 			t.setKmEnd(rs.getInt("KmEnd"));
 			t.setPrivatKm(rs.getInt("PrivateKm"));
@@ -391,8 +411,8 @@ public class FahrtMapper {
 			t.setZielBeschreibung(rs.getString("Zielbeschreibung"));
 			t.setKommentar(rs.getString("Kommentar"));
 			//Hier die Umwandlung des Datentyps 
-			LocalDate bearbeitungsDatumLocal = rs.getDate("Bearbeitungsdatum").toLocalDate();
-			t.setBearbeitungsdatum(bearbeitungsDatumLocal);
+			Date bearbeitungsDatum = new Date(rs.getDate("Bearbeitungsdatum").getTime());
+			t.setBearbeitungsdatum(bearbeitungsDatum);
 			t.setSourceFahrzeugId(rs.getInt("Fahrzeug_idFahrzeug"));
 			t.setSourceFahrerId(rs.getInt("Fahrer_idFahrer"));
 			return t;

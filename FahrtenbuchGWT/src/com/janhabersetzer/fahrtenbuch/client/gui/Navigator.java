@@ -101,16 +101,6 @@ public class Navigator extends HorizontalPanel {
 		fahrerMenu.addSeparator();
 		
 		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
 		/**
 		 * Menu zum ausloggen
 		 */

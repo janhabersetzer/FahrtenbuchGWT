@@ -15,12 +15,8 @@ import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 
 public class Navigator extends HorizontalPanel {
 	
-	//Eingelogten Fahrer holen
+	
 	private Fahrer fahrerProfil;
-	
-	
-	//LogOut - Url holen
-	private String logOutUrl = FahrtenbuchGWT.getLoginInfo().getLogoutUrl();
 	
 	//
 	VerticalPanel verPanel1 = new VerticalPanel();
@@ -100,20 +96,6 @@ public class Navigator extends HorizontalPanel {
 		
 		fahrerMenu.addSeparator();
 		
-		
-		/**
-		 * Menu zum ausloggen
-		 */
-		MenuBar statusMenu = new MenuBar(true);
-		statusMenu.setAnimationEnabled(true);
-
-		statusMenu.addItem("Ausloggen", new Command() {
-			@Override
-			public void execute() {
-				Window.Location.replace(logOutUrl);
-
-			}
-		});
 		
 	}
 }

@@ -11,21 +11,13 @@
     <servlet-class>com.janhabersetzer.fahrtenbuch.server.FahrtenbuchAdministrationImpl</servlet-class>
   </servlet>
   
-  <servlet>
-		<servlet-name>loginServlet</servlet-name>
-		<servlet-class>com.janhabersetzer.fahrtenbuch.server.LoginServiceImpl</servlet-class>
-	</servlet>
 
  <servlet-mapping>
     <servlet-name>adminServlet</servlet-name>
     <url-pattern>/FahrtenbuchGWT/fahrtenbuch</url-pattern>
   </servlet-mapping>
   
- <servlet-mapping>
-		<servlet-name>loginServlet</servlet-name>
-		<url-pattern>/FahrtenbuchGWT/login</url-pattern>
-	</servlet-mapping>
-  
+
   
   <!-- Default page to serve -->
   <welcome-file-list>

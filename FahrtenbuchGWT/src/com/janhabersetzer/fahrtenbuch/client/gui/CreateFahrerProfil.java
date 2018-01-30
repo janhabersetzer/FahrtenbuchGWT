@@ -18,7 +18,7 @@ import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 
 public class CreateFahrerProfil extends VerticalPanel {
 	
-	private String email = FahrtenbuchGWT.getLoginInfo().getEmailAddress();
+	private String email = FahrtenbuchGWT.getfhr().getEMail();
 	
 	/**
 	 * Panels erzeugen.
@@ -93,7 +93,9 @@ public class CreateFahrerProfil extends VerticalPanel {
 		 */
 		abbrechenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {			
-				Window.Location.replace(FahrtenbuchGWT.getLoginInfo().getLogoutUrl());
+				Window.alert("Fahrer gelöscht");
+				RootPanel.get("Details").clear();
+				RootPanel.get("Navigator").add(new Navigator());
 			}
 		});
 		

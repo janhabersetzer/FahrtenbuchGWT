@@ -3,18 +3,16 @@ package com.janhabersetzer.fahrtenbuch.client;
 
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import com.janhabersetzer.fahrtenbuch.client.gui.CreateFahrerProfil;
-import com.janhabersetzer.fahrtenbuch.client.gui.LoginInfo;
+
 import com.janhabersetzer.fahrtenbuch.client.gui.Navigator;
 import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
-import com.janhabersetzer.fahrtenbuch.shared.LoginServiceAsync;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
+
 
 
 
@@ -35,59 +33,35 @@ public class FahrtenbuchGWT implements EntryPoint {
 	/**
 	 * Deklaration fuer den Login und den Logout
 	 */
-	private static Fahrer fhr = null;
+	private static Fahrer fhr=  new Fahrer();
 	
-	private static LoginInfo loginInfo = null;
-	
-	private static String editorHtmlName = "FahrtenbuchGWT.html";
+	//private static String editorHtmlName = "FahrtenbuchGWT.html";
 
-	private FahrtenbuchAdministrationAsync admin = ClientSideSettings.getFahrtenbuchVerwaltung();
+	private FahrtenbuchAdministrationAsync fahrtenbuchVerwaltung;
 	
-	private LoginServiceAsync loginService = ClientSideSettings.getLoginService();
 	
 	
 	public void onModuleLoad() {
 		setStyles();
-
-		/**
-		 * Login-Methode aufrufen und anschließend auf die Hostpage leiten.
-		 */
-		loginService.login(GWT.getHostPageBaseURL() + editorHtmlName,
-				loginExecute());
 		
+		// Zunächst wird admin eine Fahrtenbuch-Instanz zugewiesen
+
+		if (fahrtenbuchVerwaltung == null) {
+			fahrtenbuchVerwaltung = ClientSideSettings.getFahrtenbuchVerwaltung();
+			}
+		
+		/*
+		 * 
+		 * Vorerst: Da der Login wegfällt und ich die Wahl eines Fahrer einbauen muss,
+		 *  wird hier zum Testen ein Fahrer mit  gesetzter Email intanziert. Später als kein Fahrer angemeldet
+		 */
+		String emailAdress = "jh200@hdm.stuttgar.de";
+		getFahrerByEmailExecute(emailAdress);
+		getMenu();
+	
 	}
 	
-	/**
-	 * AsyncCallback für die Login-Mathode. Bei erhalt der LoginInfos wir die Methode
-	 * pruefeObFahrerNeu() aufgerufen.
-	 * 
-	 * @return
-	 */
-	private AsyncCallback<LoginInfo> loginExecute() {
-		AsyncCallback<LoginInfo> asynCallback = new AsyncCallback<LoginInfo>() {
-			@Override
-			public void onFailure(Throwable caught) {
-			}
 
-			@Override
-			public void onSuccess(LoginInfo result) {
-
-				if (result.isLoggedIn()) {
-					loginInfo = result;
-					admin.pruefeObFahrerNeu(result.getEmailAddress(),
-							pruefeObFahrerNeuExecute(result
-									.getEmailAddress()));
-
-
-				} else {
-					
-					Window.Location.replace(result.getLoginUrl());
-				}
-			}
-		};
-
-		return asynCallback;
-	}
 	
 	/**
 	 * AsyncCallback für die Methode pruefeObFahrerNeu(). Falls der Wert false ist wird die Methode
@@ -95,53 +69,23 @@ public class FahrtenbuchGWT implements EntryPoint {
 	 * 
 	 * @return
 	 */
-	private AsyncCallback<Boolean> pruefeObFahrerNeuExecute(String email) {
-		AsyncCallback<Boolean> asynCallback = new AsyncCallback<Boolean>() {
-			@Override
+
+
+
+	private void getFahrerByEmailExecute(String emailAddress) {
+			fahrtenbuchVerwaltung.getFahrerByEmail(emailAddress, new AsyncCallback<Fahrer>() {
+			   @Override
 			public void onFailure(Throwable caught) {
-			}
-
-			@Override
-			public void onSuccess(Boolean result) {
-
-				if (!result) {
-			
-					admin.getFahrerByEmail(loginInfo.getEmailAddress(),
-							getFahrerByEmailExecute(loginInfo.getEmailAddress()));
-					
-					RootPanel.get("Details").add(begruessenN);
-					RootPanel.get("Details").add(begruessenN2);
-
-				} else {	
-					CreateFahrerProfil createFahrerProfil = new CreateFahrerProfil();
-					RootPanel.get("Details").clear();
-					RootPanel.get("Details").add(createFahrerProfil);	
-				}
-
-			}
-		};
-
-		return asynCallback;
-	}
-
-	private AsyncCallback<Fahrer> getFahrerByEmailExecute(String emailAddress) {
-		AsyncCallback<Fahrer> asynCallback = new AsyncCallback<Fahrer>() {
-			@Override
-			public void onFailure(Throwable caught) {
-
-			}
-
-			@Override
-			public void onSuccess(Fahrer result) {
+				Window.alert("Fahrer nicht aus der Datenbank abgerufen");
 				
-				fhr = result;
-			getMenu();
-
+			}@Override
+			public void onSuccess(Fahrer result) {
+				// nichts
+				
 			}
-		};
-		return asynCallback;
-
+		});    
 	}
+
 
 	/**
 	 * Methode legt die CSS-Styles für verschiedene Labels fest.
@@ -166,10 +110,7 @@ public class FahrtenbuchGWT implements EntryPoint {
 		return fhr;
 	}
 
-	
-	public static LoginInfo getLoginInfo() {
-		return loginInfo;
-	}
+
 
 }
 

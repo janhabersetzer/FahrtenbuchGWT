@@ -131,7 +131,7 @@ public class CreateFahrt extends VerticalPanel {
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				ueberpruefeFahrt();
+				//ueberpruefeFahrt();
 				
 			}
 		});

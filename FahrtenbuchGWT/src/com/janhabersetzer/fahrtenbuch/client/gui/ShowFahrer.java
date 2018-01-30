@@ -143,7 +143,9 @@ public class ShowFahrer extends VerticalPanel {
 			ClientSideSettings.getFahrtenbuchVerwaltung().deleteFahrer(fahrerProfil, new AsyncCallback<Void>() {
 				@Override
 				public void onSuccess(Void result) {
-					Window.Location.replace(FahrtenbuchGWT.getLoginInfo().getLogoutUrl());
+					Window.alert("Fahrer gelöscht");
+					RootPanel.get("Details").clear();
+					RootPanel.get("Navigator").add(new Navigator());
 					
 				}@Override
 				public void onFailure(Throwable caught) {

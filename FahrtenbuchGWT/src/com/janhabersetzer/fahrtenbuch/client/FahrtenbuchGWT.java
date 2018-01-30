@@ -53,7 +53,8 @@ public class FahrtenbuchGWT implements EntryPoint {
 		 * Login-Methode aufrufen und anschließend auf die Hostpage leiten.
 		 */
 		loginService.login(GWT.getHostPageBaseURL() + editorHtmlName,
-				loginExecute());	
+				loginExecute());
+		
 	}
 	
 	/**

@@ -4,10 +4,11 @@ import java.util.Date;
 
 public class Fahrt extends BusinessObject{
 	
+
+	private static final long serialVersionUID = 1L;
+
 	//Attribute
 
-	private static final long SerialVersionUID = 1L;
-	
 	private String zielBeschreibung;
 	
 	private int kmStart;

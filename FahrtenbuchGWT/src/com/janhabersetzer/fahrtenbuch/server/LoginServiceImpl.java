@@ -24,6 +24,13 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 	 * @param requestUri 
 	 * @return loginInfos
 	 */
+	
+	/**
+	 * No-Argument-Constructor fuer GWT-RPC vorhanden sein
+	 */
+	public LoginServiceImpl() {
+	}
+	
 	@Override
 	public LoginInfo login (String requestUri) throws IllegalArgumentException{
 		System.out.print(requestUri);

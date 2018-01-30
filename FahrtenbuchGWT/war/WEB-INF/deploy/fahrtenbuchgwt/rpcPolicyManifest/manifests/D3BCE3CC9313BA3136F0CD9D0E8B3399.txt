@@ -1,0 +1,2 @@
+serviceClass: com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministration
+path: 58338314618EA825C136640356FF0FE1.gwt.rpc

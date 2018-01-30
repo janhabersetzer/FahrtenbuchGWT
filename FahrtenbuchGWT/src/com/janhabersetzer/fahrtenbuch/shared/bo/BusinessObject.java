@@ -1,7 +1,8 @@
 package com.janhabersetzer.fahrtenbuch.shared.bo;
 
+import java.io.Serializable;
 
-public abstract class BusinessObject {
+public abstract class BusinessObject implements Serializable{
 private static final long serialVersionUID = 1L;
 	
 	private int id = 0;

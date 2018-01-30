@@ -1,21 +1,290 @@
-/** Add css rules here for your application. */
 
-
-/** Example rules used by the template application (remove for your app) */
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
+body {
+    align: center;  /* Zentrierung im Internet Explorer */
+    /* margin-bottom: 120px; */ 
+     width: 100%;
+     height: 100%;
+     /* overflow: auto; */
+     position: absolute;
+     background-attachment: fixed;
+     background-repeat: repeat-x;
+  }
+  
+div#TopLevelFrame{
+	background-color: #dfdfff;
+	border: 2px solid #0000ff;
+	position: relative;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 5px;
+	
+}
+div#Header { 	    
+	 /* padding: auto; */
+	 text-align: middle;
+	 position: relative;
+}
+  
+div#Logo {
+  margin-top: 35px;
+  margin-bottom: 0px;
+  position: relative;
 }
 
-.sendButton {
+
+h3{
+	font-size: 120%;
+	font-weight: bold;
+	font-family: Arial Unicode MS, Arial, sans-serif;
+	color: #4430fe;
+	padding-bottom: 0.5em;
+	margin-top: 0px;
+	
+}
+
+ div#Navigator {
+
+	 max-height: 300px; 
+	/*  overflow:scroll; 
+	border: 0px solid silver; 
+
+	padding: 3em 4em;
+	width: 0px; 
+	height: 870px;
+	position: relative;
+	
+	background: #800080;  */
+}  
+
+
+/* div#Navigator2{
+	width: 120px;
+	right: 30px;
+	left: 420px;
+	top:306px;
+	position: absolute;
+	align: middle;
+	background: #800040;
+
+} */
+
+div#Space{
+	width: 0px; 
+	height: 210px;
+	
+	/* background: #800080; */
+}
+
+div#Details {
+	top: 50px;
+	width: 1000px; 
+	height: 900px;
+	position: relative;
+	overflow: auto;
+}
+
+div#Trailer {
+	clear: both;
+	padding: 3px 0;
+	/* standardkonforme horizontale Zentrierung */
+	margin-top: 30px;
+	border-top: 1px dashed silver;
+	font-size: 80%;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 9px;
+	overflow: auto;
+	background: #8080ff;
+}
+
+.fahrtenbuch-zurueckbutton {
+	font-size: 100%;
+	font-weight: bold; 
+	color: #1524db;
+}
+
+.fahrtenbuch-menubutton {
+	font-size: 100%;
+	font-weight: bold;
+	width: 15em;
+	margin-bottom: 6em;
+	background: #b4dbfc;
+}
+
+
+.navigatorbutton {
+	font-size: 100%;
+	font-weight: bold; 
+	width: 10em;
+	height: 2em; 
+	border: 1px solid silver;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	color: #1524db;
+	overflow: visible;
+}
+
+.welcome-label {
+	font-size: 200%;
+	font-weight: bold;
+  	font-family: Arial Unicode MS, Arial, sans-serif;
+	color:  #db0104;
+ 	text-align: center;
+}
+
+.welcome-label2 {
+	font-size: 150%;
+	font-weight: bold;
+  	font-family: Arial Unicode MS, Arial, sans-serif;
+ 	text-align: center;
+}
+
+.fahrtenbuch-label {
+	font-size: 120%;
+	font-weight: bold;
+	font-family: Arial Unicode MS, Arial, sans-serif;
+	/* font-style: italic; */
+	color: #4430fe;
+	padding-bottom: 0.5em;
+	margin-top: 30px;
+}
+
+.fahrtenbuch-infolabel {
+	font-size: 100%;
+	/*font-weight: bold;/*
+	/* font-style: italic; */
+	color: red;
+	padding-bottom: 0.5em;
+}
+
+.MenuBar {
+   /* cursor: default;  */ 
+   background: linear-gradient(to right top, #7c9ef8, #cccfff);
+   font-family: Arial Unicode MS, Arial, sans-serif;
+   font-size: 13px;
+   font-weight: bold;
+   top:0px;
+   left:0px;
+   right:0px;
+   position: absolute;
+   overflow: hidden;
+}
+.MenuItem {
+   cursor: default;
+   font-family: Arial Unicode MS, Arial, sans-serif;
+   font-size: 13px;
+}
+ .MenuItem-selected {
+   background: #E3E8F3;
+}
+
+.MenuBarRep {
+   /* cursor: default;  */ 
+   background: linear-gradient(to right top, #7c9ef8, #ccccff);
+   font-family: Arial Unicode MS, Arial, sans-serif;
+   font-size: 13px;
+   font-weight: bold;
+   padding-top: 3px; 
+   padding-bottom: 3px;
+   top:0px;
+   left: 0px;
+   right: 0px;
+   position: absolute;
+}
+.MenuItemRep {
+   cursor: default;
+   font-family: Arial Unicode MS, Arial, sans-serif;
+   font-size: 13px;
+}
+ .MenuItemRep-selected {
+   background: #E3E8F3;
+}
+
+ /* .gwt-MenuBar-horizontal {
+   background: #cda9eburl(images/hborder.png) repeat-x 0px -2003px;
+   border: 1px solid #e0e0e0;
+}
+.gwt-MenuBar-horizontal .gwt-MenuItem {
+   padding: 5px 10px;
+   vertical-align: bottom;
+   color: #000;
+   font-weight: bold;  
+} */
+.MenuItemSeparator {
+   width: 1px;
+   padding: 0px;
+   margin: 0px;
+   border: 0px;
+   border-left: 1px solid #ccc;
+   background: white;
+}
+.gwt-MenuBar-horizontal .gwt-MenuItemSeparator .menuSeparatorInner {
+   width: 1px;
+   height: 1px;
+   background: #8080ff; 
+} 
+/* .menubar {
+
+	background: #8b9df3;
+	background: linear-gradient(to right, #8b9df3, #e2e7fc);
+	border: 2px ridge #d7d1fa;
+	border-radius: 2px;
+	font-family: Arial Unicode MS, Arial, sans-serif;
+	box-shadow: 3px 3px 5px silver;
+	height: 870px;
+	top:36px;
+	left: 30px;
+	right: 600px;
+	position: absolute;
+	width: 720px;
+	margin-bottom: 60px;
+	
+}
+
+.menuItem{
+   cursor: default;
+   font-family: Arial Unicode MS, Arial, sans-serif;
+   font-size: 12px;
+   background: #b8c5f8;
+   border: 1px ridge #d7d1fa;
+   border-radius: 2px;
+   box-shadow: 1px 1px 5px silver;
+} */
+
+/* MERKLISTE BEGINN */ 
+
+.TableHeader {
+  background-color: #7c9ef8;
+  color: black;
+}
+ 
+.FlexTable {
+  border: 3px solid #0b0259;
+  padding: 2px;
+  margin-right: 150px; 
+  margin-bottom: 5px;
+  overflow: scroll;
+}
+
+.red_label {
+    color: red;
+    font-size: 8pt;
+    overflow: hidden;
+}
+
+/* MERKLISTE ENDE */
+
+
+
+/* /* .sendButton {
   display: block;
   font-size: 16pt;
 }
 
-/** Most GWT widgets already have a style name defined */
+* Most GWT widgets already have a style name defined
 .gwt-DialogBox {
   width: 400px;
 }
@@ -28,7 +297,8 @@ h1 {
   color: red;
 }
 
-/** Set ids using widget.getElement().setId("idOfElement") */
+* Set ids using widget.getElement().setId("idOfElement")
 #closeButton {
   margin: 15px 6px 6px;
 }
+ */ 

@@ -100,7 +100,8 @@ public class ShowAlleFahrzeuge extends VerticalPanel {
 						
 						@Override
 						public void onClick(ClickEvent event) {
-							ShowFahrzeug showFahrzeug = new ShowFahrzeug();
+							
+							ShowFahrzeug showFahrzeug = new ShowFahrzeug(fahrzeugProfil);
 							RootPanel.get("Details").clear();
 							RootPanel.get("Details").add(showFahrzeug);	
 						}

@@ -16,5 +16,9 @@ public class ShowFahrzeug extends VerticalPanel {
 	private HorizontalPanel horPanel = new HorizontalPanel();
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
 
+	
+	public ShowFahrzeug(Fahrzeug fahrzeugProfil) {
+		this.fahrzeugProfil = fahrzeugProfil;
+	}
 
 }

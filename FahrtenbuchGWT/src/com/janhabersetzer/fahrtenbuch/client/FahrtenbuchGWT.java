@@ -55,7 +55,7 @@ public class FahrtenbuchGWT implements EntryPoint {
 		 *  wird hier zum Testen ein Fahrer mit  gesetzter Email intanziert. Später als kein Fahrer angemeldet
 		 */
 		String emailAdress = "jh200@hdm-stuttgart.de";
-		fhr= getFahrerByEmailExecute(emailAdress);
+		getFahrerByEmailExecute(emailAdress);
 		
 	}
 	

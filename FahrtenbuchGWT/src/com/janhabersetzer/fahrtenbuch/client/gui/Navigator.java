@@ -96,6 +96,23 @@ public class Navigator extends HorizontalPanel {
 		
 		fahrerMenu.addSeparator();
 		
+		/**
+		 * Hinzufuegen der vertikalen Menueleisten nutzerProfilMenu,
+		 * suchprofilMenu und partnervorschlaegeMenu zur horizontalen
+		 * Hauptleiste "menu" und Benennung der Menueleisten in der Menuebar per
+		 * String-Uebergabe.
+		 */
+
+		menu.addItem(new MenuItem("Fahrzeug Profile", fahrzeugMenu));
+		menu.addSeparator();
+		menu.addItem(new MenuItem("Mein Fahrer Profil", fahrerMenu));
+		menu.addSeparator();
+
+		/**
+		 * Hinzufügen der Menübar zum RootPanel
+		 */
+		RootPanel.get("Header").add(menu);
+		
 		
 	}
 }

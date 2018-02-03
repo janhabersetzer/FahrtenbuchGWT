@@ -21,7 +21,6 @@ import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
  */
 public class FahrtenbuchGWT implements EntryPoint {
 	
-	Fahrer fahrerProfil = new Fahrer();
 	/**
 	 * Deklaraion der Labels fuer die Startseite(n)
 	 */
@@ -55,21 +54,13 @@ public class FahrtenbuchGWT implements EntryPoint {
 		 * Vorerst: Da der Login wegfällt und ich die Wahl eines Fahrer einbauen muss,
 		 *  wird hier zum Testen ein Fahrer mit  gesetzter Email intanziert. Später als kein Fahrer angemeldet
 		 */
-		String emailAdress = "jh200@hdm.stuttgar.de";
-		getFahrerByEmailExecute(emailAdress);
-		getMenu();
-	
+		String emailAdress = "jh200@hdm-stuttgart.de";
+		fhr= getFahrerByEmailExecute(emailAdress);
+		
 	}
 	
 
 	
-	/**
-	 * AsyncCallback für die Methode pruefeObFahrerNeu(). Falls der Wert false ist wird die Methode
-	 * getNutzerByEmail() aufgerufen, sonst wird der Nutzer auf CreateNutzerprofil() weitergeleitet.
-	 * 
-	 * @return
-	 */
-
 
 
 	private void getFahrerByEmailExecute(String emailAddress) {
@@ -80,7 +71,10 @@ public class FahrtenbuchGWT implements EntryPoint {
 				
 			}@Override
 			public void onSuccess(Fahrer result) {
-				// nichts
+				if(Window.confirm
+						("Da keine LogIn-Funktion vorhanden ist, werden sie mit der Email jh200@hdm-stuttgart.de angemelet")){
+				getMenu();
+				}
 				
 			}
 		});    

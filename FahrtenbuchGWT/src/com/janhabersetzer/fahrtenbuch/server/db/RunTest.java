@@ -22,7 +22,7 @@ public class RunTest {
 		// TODO Auto-generated method stub
 		
 		
-		testFindByKey();
+		testFindFahrerByEmail();
 		
 	}
 	
@@ -39,6 +39,14 @@ public class RunTest {
 		
 		System.out.println(t);
 
+	}
+	
+	public static void testFindFahrerByEmail(){
+		FahrerMapper dMapper = FahrerMapper.fahrerMapper();
+		String emailAdress = "jh200@hdm-stuttgart.de";
+		
+		Fahrer dFahrer = dMapper.findByEmail(emailAdress);
+		System.out.println(dFahrer);
 	}
 	
 public static  void testFindByFahrer() throws Exception{

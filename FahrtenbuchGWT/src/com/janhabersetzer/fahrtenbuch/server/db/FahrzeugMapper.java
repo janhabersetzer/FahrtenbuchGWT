@@ -6,8 +6,6 @@ import java.util.Vector;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 
 public class FahrzeugMapper {

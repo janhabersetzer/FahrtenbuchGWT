@@ -1,4 +1,4 @@
-package com.janhabersetzer.fahrtenbuch.client.gui;
+package com.janhabersetzer.fahrtenbuch.client.gui2;
 
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
@@ -7,26 +7,26 @@ import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchGWT;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
+import com.mysql.jdbc.authentication.Sha256PasswordPlugin;
 
 
 
 
 public class Navigator extends HorizontalPanel {
 	
+	private FahrtenbuchClientImpl serviceClientImpl;
 	
-	private Fahrer fahrerProfil;
-	
-	//
 	VerticalPanel verPanel1 = new VerticalPanel();
 	
 	
 	/**
 	 * Konstruktor der auch die onload()-Methode aufruft und so die Seite aufbaut.
 	 */
-	public Navigator(){
-		this.fahrerProfil = FahrtenbuchGWT.getfhr();
+	public Navigator(FahrtenbuchClientImpl serviceClientImpl){
+		this.serviceClientImpl = serviceClientImpl;
 		this.build();
 	}
 	
@@ -36,8 +36,6 @@ public class Navigator extends HorizontalPanel {
 	 */
 	public void build(){
 		this.add(verPanel1);
-		
-		
 		/*
 		 * Ab hier wird die Menuebar erstellt. Dabei werden abhaengig von der
 		 * Thematik einzelne vertikale aufklappbare Menues zur horizontalen
@@ -79,6 +77,9 @@ public class Navigator extends HorizontalPanel {
 		 * Menu um den aktuell angemeldeten Fahrer anzuzeigen
 		 */
 		
+		
+		// Überarbeiten
+		
 		MenuBar fahrerMenu = new MenuBar(true);
 		fahrerMenu.setAnimationEnabled(true);
 		
@@ -86,9 +87,9 @@ public class Navigator extends HorizontalPanel {
 			
 			@Override
 			public void execute() {
-				ShowFahrer showFahrer = new ShowFahrer(fahrerProfil);
+				ShowFahrer showFahrer = new ShowFahrer();
 				RootPanel.get("Details").clear();
-				RootPanel.get("Details").add(showFahrer);	
+				RootPanel.get("Details").add(showFahrer);
 			}
 		});
 		
@@ -112,8 +113,18 @@ public class Navigator extends HorizontalPanel {
 		 * Hinzufügen der Menübar zum RootPanel
 		 */
 		RootPanel.get("Header").add(menu);
-		
-		
+	
 	}
+	
+	
+	
+	public void openFahrerProfil(Fahrer fahrerProfil){
+		RootPanel.get("Details").clear();
+		ShowFahrer showFahrer= new ShowFahrer(fahrerProfil);
+		RootPanel.get("Details").add(showFahrer);
+	}
+	
 }
+
+
 	

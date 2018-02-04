@@ -1,4 +1,4 @@
-package com.janhabersetzer.fahrtenbuch.client.gui;
+package com.janhabersetzer.fahrtenbuch.client.gui2;
 
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;

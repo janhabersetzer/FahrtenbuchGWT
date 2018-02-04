@@ -1,6 +1,5 @@
 package com.janhabersetzer.fahrtenbuch.shared.report;
 
-import org.apache.tools.ant.taskdefs.email.EmailAddress;
 
 import com.janhabersetzer.fahrtenbuch.server.FahrtenbuchAdministrationImpl;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;

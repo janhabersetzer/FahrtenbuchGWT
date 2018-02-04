@@ -1,4 +1,4 @@
-package com.janhabersetzer.fahrtenbuch.client.gui;
+package com.janhabersetzer.fahrtenbuch.client.gui2;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;

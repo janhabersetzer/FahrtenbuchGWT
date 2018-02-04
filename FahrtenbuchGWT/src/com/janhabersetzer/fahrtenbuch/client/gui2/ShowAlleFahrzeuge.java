@@ -1,4 +1,4 @@
-package com.janhabersetzer.fahrtenbuch.client.gui;
+package com.janhabersetzer.fahrtenbuch.client.gui2;
 
 import java.util.Vector;
 

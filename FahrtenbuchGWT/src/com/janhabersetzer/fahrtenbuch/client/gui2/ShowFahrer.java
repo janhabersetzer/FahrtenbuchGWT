@@ -1,4 +1,4 @@
-package com.janhabersetzer.fahrtenbuch.client.gui;
+package com.janhabersetzer.fahrtenbuch.client.gui2;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -11,13 +11,17 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.ClientSideSettings;
+import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchGWT;
+import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 
 
 
 
 public class ShowFahrer extends VerticalPanel {
+	
+	private FahrtenbuchClientImpl serviceClientImpl;
 	
 	/**
 	 * Variable für angemeldeten Fahrer
@@ -139,20 +143,7 @@ public class ShowFahrer extends VerticalPanel {
 	//***************Frage wie kann man das Feedback zurückgeben, wenn deleteFahrer() das Löschen verweigert?********
 	
 	public void loescheDiesenFahrer(){
-		if (Window.confirm("Möchten Sie Ihr Profil und sich als Fahrer wirklich löschen?")) {
-			ClientSideSettings.getFahrtenbuchVerwaltung().deleteFahrer(fahrerProfil, new AsyncCallback<Void>() {
-				@Override
-				public void onSuccess(Void result) {
-					Window.alert("Fahrer gelöscht");
-					RootPanel.get("Details").clear();
-					RootPanel.get("Navigator").add(new Navigator());
-					
-				}@Override
-				public void onFailure(Throwable caught) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
+
 		}
 	}
 

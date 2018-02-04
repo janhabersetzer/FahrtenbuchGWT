@@ -12,7 +12,7 @@ import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 
-@RemoteServiceRelativePath("fahrtenbuch")
+@RemoteServiceRelativePath("fahrtenbuchservice")
 public interface FahrtenbuchAdministration extends RemoteService {
 	
 	

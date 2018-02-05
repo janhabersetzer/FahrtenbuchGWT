@@ -339,7 +339,7 @@ public class FahrtMapper {
 	 * @param t zu löschendes Fahrt-Objekt
 	 */
 	
-	public void delete(Fahrt t){
+	public void delete(int id){
 		
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -351,7 +351,7 @@ public class FahrtMapper {
 			con = DBConnection.connection();
 			
 			stmt = con.prepareStatement(deleteSQL);
-			stmt.setInt(1, t.getId());
+			stmt.setInt(1, id);
 			
 			stmt.executeUpdate();	
 		}
@@ -365,7 +365,7 @@ public class FahrtMapper {
 	 * @param t das Fahrzeugobjekt, dessen Fahrten gelöscht werden
 	 */
 	
-	public void deleteAlleFahrtenOfFahrzeug(Fahrzeug v){
+	public void deleteAlleFahrtenOfFahrzeug(int id){
 		Connection con = null;
 		PreparedStatement stmt = null;
 		
@@ -376,7 +376,7 @@ public class FahrtMapper {
 			con = DBConnection.connection();
 			
 			stmt = con.prepareStatement(deleteSQL);
-			stmt.setInt(1, v.getId());
+			stmt.setInt(1, id);
 			
 			stmt.executeUpdate();	
 		}

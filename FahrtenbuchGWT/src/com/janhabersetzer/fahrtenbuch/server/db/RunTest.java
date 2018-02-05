@@ -228,7 +228,7 @@ public static  void testUpdateFahrzeug() throws Exception{
 		v.setId(3);
 		
 		
-		vm.delete(v);
+		vm.delete(v.getId());
 		System.out.println("Erfolgreich gelöscht");
 	}
 	
@@ -240,7 +240,7 @@ public static  void testDeleteAlleFahrtenOfFahrzeug() throws Exception{
 		v.setId(2);
 		
 		
-		tm.deleteAlleFahrtenOfFahrzeug(v);
+		tm.deleteAlleFahrtenOfFahrzeug(v.getId());
 		System.out.println("Erfolgreich gelöscht");
 	}
 	

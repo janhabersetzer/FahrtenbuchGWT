@@ -2,16 +2,28 @@ package com.janhabersetzer.fahrtenbuch.client.gui;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
 
 public class MainView extends Composite {
+	
+	//Attribute fuer Aufrufe
+	
+	FahrtenbuchClientImpl serviceImpl;
+	
+	
+	//Panels
+	
 	private VerticalPanel vPanel= new VerticalPanel();
 	private VerticalPanel contentPanel;
 	
 	
-	public MainView(){
+	
+	public MainView(FahrtenbuchClientImpl serviceImpl){
 		initWidget(this.vPanel);
 		
-		MenuView menuView= new MenuView(this);
+		this.serviceImpl= serviceImpl;
+		
+		MenuView menuView = new MenuView(this);
 		this.vPanel.add(menuView);
 	
 		contentPanel= new VerticalPanel();
@@ -19,28 +31,24 @@ public class MainView extends Composite {
 	}
 	
 	
+	//**************Methoden**********************************
 	
-	
-	public void openFahrtenbuchMenuCont(){
+	public void openAlleFhrzCont(){
 		this.contentPanel.clear();
-		ContAlleFahrzeuge contAlleFahrzeuge = new ContAlleFahrzeuge();
+		ContAlleFahrzeuge contAlleFahrzeuge = new ContAlleFahrzeuge(this, serviceImpl);
 		this.contentPanel.add(contAlleFahrzeuge);
 	}
 	
-	public void openFahrerMenuCont(){
+	public void openAlleFahrerCont(){
 		this.contentPanel.clear();
 		ContAlleFahrer contAlleFahrer = new ContAlleFahrer();
-		this.contentPanel.add(contAlleFahrer);
-		
+		this.contentPanel.add(contAlleFahrer);	
 	}
 	
-
-	
-	public void openReportMenuCont(){
+	public void openAlleReportsCont(){
 		this.contentPanel.clear();
 		ContAlleReports contAlleReports = new ContAlleReports();
-		this.contentPanel.add(contAlleReports);
-		
+		this.contentPanel.add(contAlleReports);	
 	}
 
 }

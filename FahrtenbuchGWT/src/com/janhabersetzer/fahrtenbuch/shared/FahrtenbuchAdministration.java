@@ -57,6 +57,15 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	public Fahrt createFahrt(Date tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist,
 			int workingDist, int companyDist,String comment,int vehicleId, int driverId) 
 			throws IllegalArgumentException;	
+
+	/**
+	 * Einen Fahrer zu einer bestimmten Fahrt finden.
+	 * @param t Fahrt-Objekt, zu dem ein Fahrer gefunden werden soll
+	 * @return zugehöriges Fahrer-Object
+	 * @throws IllegalArgumentException
+	 */
+	public Fahrer getFahrer(int id) throws IllegalArgumentException;
+	
 	
 	/**
 	 * Einen Fahrer zu einer bestimmten Fahrt finden.
@@ -107,7 +116,16 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	 * @throws IllegalArgumentException
 	 */
 	
-	public void deleteFahrer(Fahrer d) throws IllegalArgumentException;
+	public void deleteFahrer(int id) throws IllegalArgumentException;
+	
+
+	/**
+	 * Ein Fahrzeug zu einer bestimmten id finden.
+	 * @param id  zu dem ein Fahrzeug gefunden werden soll
+	 * @return zugehöriges Fahrzeug-Object
+	 * @throws IllegalArgumentException
+	 */
+	public Fahrzeug getFahrzeug(int id) throws IllegalArgumentException;
 	
 	
 	/**
@@ -140,7 +158,7 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	 * @throws IllegalArgumentException
 	 */
 	
-	public void deleteFahrzeug(Fahrzeug v) throws IllegalArgumentException;
+	public void deleteFahrzeug(int id) throws IllegalArgumentException;
 	
 	/**
 	 * Alle Fahrten eines Fahrers finden
@@ -148,7 +166,7 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	 * @return Vector mit allen Fahrten dieses Fahrers
 	 * @throws IllegalArgumentException
 	 */
-	public Vector<Fahrt> getAlleFahrtenVonFahrer(Fahrer d) throws IllegalArgumentException;
+	public Vector<Fahrt> getAlleFahrtenVonFahrer(int id) throws IllegalArgumentException;
 	
 	/**
 	 * Alle Fahrten eines Fahrzeugs finden
@@ -156,7 +174,7 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	 * @return Vector mit allen Fahrten dieses Fahrzeugs
 	 * @throws IllegalArgumentException
 	 */
-	public Vector<Fahrt> getAlleFahrtenVonFahrzeug(Fahrzeug v) throws IllegalArgumentException;
+	public Vector<Fahrt> getAlleFahrtenVonFahrzeug(int id) throws IllegalArgumentException;
 	
 	/**
 	 * Speichern einer Fahrt in der Datenbank
@@ -172,14 +190,14 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	 * @throws IllegalArgumentException
 	 */
 	
-	public void deleteFahrt(Fahrt t) throws IllegalArgumentException;
+	public void deleteFahrt(int id) throws IllegalArgumentException;
 	
 	/**
 	 * Alle Fahrten eines Fahrzeugs aus der Datenbank löschen
 	 * @param v Fahrzeug dessen Fahrten gelöscht werden sollen
 	 * @throws IllegalArgumentException
 	 */
-	public void deleteAlleFahrtenVonFahrzeug(Fahrzeug v) throws IllegalArgumentException;
+	public void deleteAlleFahrtenVonFahrzeug(int id) throws IllegalArgumentException;
 	
 	/**
 	 * Einen AlleFahrtenVonFahrerReport anlegen

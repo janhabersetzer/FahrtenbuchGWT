@@ -17,8 +17,6 @@ public class Test {
 		
 		FahrtenbuchAdministrationImpl fbadmin = new FahrtenbuchAdministrationImpl();
 		
-		fbadmin.init();
-		
 		String emailAdress = "jh200@hdm-stuttgart.de";
 		Fahrer d = fbadmin.getFahrerByEmail(emailAdress);
 		System.out.println(d);

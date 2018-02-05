@@ -35,7 +35,6 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	 * @throws IllegalArgumentException
 	 */
 	public FahrtenbuchAdministrationImpl() throws IllegalArgumentException {
-	    
 	  }
 
 	@Override
@@ -128,6 +127,14 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		 //....und updaten die Datenbank, indem wir das Objekt mit dem neuen Kilometerstand in die DB schreiben
 		return this.vMapper.update(v);
 	}
+	
+	@Override
+	public Fahrer getFahrer(int id) throws IllegalArgumentException {
+		
+		//Den Fahrer anhand der FahrerId aus der Datenbank auslesen
+		
+		return dMapper.findByKey(id);
+	}
 
 	@Override
 	public Fahrer getFahrer(Fahrt t) throws IllegalArgumentException {
@@ -164,16 +171,24 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	}
 
 	@Override
-	public void deleteFahrer(Fahrer d) throws IllegalArgumentException {
+	public void deleteFahrer(int id) throws IllegalArgumentException {
 		
 		//Prüfen ob der zu löschende Fahrer noch Fahrten in der DB hat
-		if(tMapper.findByFahrer(d).isEmpty()){
+		if(tMapper.findByFahrerId(id).isEmpty()){
 			//Dann löschen
-			dMapper.delete(d);
+			dMapper.delete(id);
 		}
 		//elese{
 			//Benachrichtigung??
 		//}
+	}
+	
+	@Override
+	public Fahrzeug getFahrzeug(int id) throws IllegalArgumentException {
+				
+		//Den Fahrer anhand der FahrerId aus der Datenbank auslesen
+				
+		return vMapper.findByKey(id);
 	}
 
 	@Override
@@ -196,24 +211,24 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	}
 
 	@Override
-	public void deleteFahrzeug(Fahrzeug v) throws IllegalArgumentException {
+	public void deleteFahrzeug(int id) throws IllegalArgumentException {
 		//Alle Fahrten dieses Fahrzeugs löschen
-		this.deleteAlleFahrtenVonFahrzeug(v);
+		tMapper.deleteAlleFahrtenOfFahrzeug(id);
 		//Fahrzeug löschen
-		vMapper.delete(v);
+		vMapper.delete(id);
 
 	}
 
 	@Override
-	public Vector<Fahrt> getAlleFahrtenVonFahrer(Fahrer d) throws IllegalArgumentException {
+	public Vector<Fahrt> getAlleFahrtenVonFahrer(int id) throws IllegalArgumentException {
 		//Abfrage über Datenbank realisiert
-		return tMapper.findByFahrer(d);
+		return tMapper.findByFahrerId(id);
 	}
 
 	@Override
-	public Vector<Fahrt> getAlleFahrtenVonFahrzeug(Fahrzeug v) throws IllegalArgumentException {
+	public Vector<Fahrt> getAlleFahrtenVonFahrzeug(int id) throws IllegalArgumentException {
 		//Abfrage über Datenbank realisiert
-		return tMapper.findByFahrzeug(v);
+		return tMapper.findByFahrzeugId(id);
 	}
 
 	@Override
@@ -223,14 +238,14 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	}
 
 	@Override
-	public void deleteFahrt(Fahrt t) throws IllegalArgumentException {
-		tMapper.delete(t);
+	public void deleteFahrt(int id) throws IllegalArgumentException {
+		tMapper.delete(id);
 
 	}
 
 	@Override
-	public void deleteAlleFahrtenVonFahrzeug(Fahrzeug v) throws IllegalArgumentException {
-		tMapper.deleteAlleFahrtenOfFahrzeug(v);
+	public void deleteAlleFahrtenVonFahrzeug(int id) throws IllegalArgumentException {
+		tMapper.deleteAlleFahrtenOfFahrzeug(id);
 	}
 	
 	//*********************REPORT-TEIL*************************************************

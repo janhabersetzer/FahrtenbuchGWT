@@ -198,7 +198,7 @@ public class FahrzeugMapper {
 	}
 	
 	
-	public void delete(Fahrzeug v){
+	public void delete(int id){
 		
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -210,7 +210,7 @@ public class FahrzeugMapper {
 			con = DBConnection.connection();
 			
 			stmt = con.prepareStatement(deleteSQL);
-			stmt.setInt(1, v.getId());
+			stmt.setInt(1, id);
 			
 			stmt.executeUpdate();	
 		}

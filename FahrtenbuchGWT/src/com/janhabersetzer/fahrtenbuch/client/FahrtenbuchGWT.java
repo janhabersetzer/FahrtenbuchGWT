@@ -35,12 +35,8 @@ public class FahrtenbuchGWT implements EntryPoint {
 	
 	
 	public void onModuleLoad() {
-		//FahrtenbuchClientImpl clientImpl = new FahrtenbuchClientImpl(GWT.getModuleBaseURL() + "fahrtenbuchservice");
-		//RootPanel.get().add(clientImpl.getNavigator());
-		
-		MainView mainView = new MainView();
-		RootPanel.get().add(mainView);
-
+		FahrtenbuchClientImpl clientImpl = new FahrtenbuchClientImpl(GWT.getModuleBaseURL() + "fahrtenbuchservice");
+		RootPanel.get().add(clientImpl.getMainView());
 		
 	}
 	

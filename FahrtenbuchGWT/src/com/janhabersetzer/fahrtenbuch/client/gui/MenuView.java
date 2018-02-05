@@ -9,8 +9,10 @@ import com.google.gwt.user.client.ui.Image;
 
 public class MenuView extends Composite{
 	
+	// Attribute fuer Aufrufe
 	private MainView mainView;
 	
+	//Panels
 	private HorizontalPanel hPanel = new HorizontalPanel();
 	
 	public MenuView(MainView mainView){
@@ -41,7 +43,7 @@ public class MenuView extends Composite{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			mainView.openFahrtenbuchMenuCont();
+			mainView.openAlleFhrzCont();
 			
 		}		
 	}
@@ -50,7 +52,7 @@ public class MenuView extends Composite{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			mainView.openFahrerMenuCont();
+			mainView.openAlleFahrerCont();
 			
 		}		
 	}
@@ -59,7 +61,7 @@ public class MenuView extends Composite{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			mainView.openReportMenuCont();
+			mainView.openAlleReportsCont();
 			
 		}		
 	}

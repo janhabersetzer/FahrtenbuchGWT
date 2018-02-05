@@ -21,6 +21,8 @@ public interface FahrtenbuchAdministrationAsync {
 	
 	void createFahrt(Date tripDate, String destDescr, int firstMilage, int secondMilage, int privateDist,
 			int workingDist,int companyDist,String comment,int vehicleId, int driverId, AsyncCallback<Fahrt> callback);
+
+	void getFahrer(int id, AsyncCallback<Fahrer> callback);
 	
 	void getFahrer(Fahrt t, AsyncCallback<Fahrer> callback);
 	
@@ -32,25 +34,27 @@ public interface FahrtenbuchAdministrationAsync {
 	
 	void saveFahrer(Fahrer d, AsyncCallback<Void> callback);
 	
-	void deleteFahrer(Fahrer d, AsyncCallback<Void> callback);
+	void deleteFahrer(int id, AsyncCallback<Void> callback);
 	
 	void getFahrzeug(Fahrt t, AsyncCallback<Fahrzeug> callback);
 	
-	void  getAlleFahrzeug(AsyncCallback<Vector<Fahrzeug>> callback);
+	void getFahrzeug(int id, AsyncCallback<Fahrzeug> callback);
+	
+	void getAlleFahrzeug(AsyncCallback<Vector<Fahrzeug>> callback);
 	
 	void saveFahrzeug(Fahrzeug v, AsyncCallback<Void> callback);
 	
-	void deleteFahrzeug(Fahrzeug v, AsyncCallback<Void> callback);
+	void deleteFahrzeug(int id, AsyncCallback<Void> callback);
 	
-	void getAlleFahrtenVonFahrer(Fahrer d, AsyncCallback<Vector<Fahrt>> callback);
+	void getAlleFahrtenVonFahrer(int id, AsyncCallback<Vector<Fahrt>> callback);
 	
-	void getAlleFahrtenVonFahrzeug(Fahrzeug v, AsyncCallback<Vector<Fahrt>> callback);
+	void getAlleFahrtenVonFahrzeug(int id, AsyncCallback<Vector<Fahrt>> callback);
 	
 	void saveFahrt(Fahrt t, AsyncCallback<Void> callback);
 	
-	void deleteFahrt(Fahrt t, AsyncCallback<Void> callback);
+	void deleteFahrt(int id, AsyncCallback<Void> callback);
 	
-	void deleteAlleFahrtenVonFahrzeug(Fahrzeug v, AsyncCallback<Void> callback);
+	void deleteAlleFahrtenVonFahrzeug(int id, AsyncCallback<Void> callback);
 	
 	void createAlleFahrtenVonFahrerReport(Fahrer d, AsyncCallback<AlleFahrtenVonFahrerReport> callback);
 	

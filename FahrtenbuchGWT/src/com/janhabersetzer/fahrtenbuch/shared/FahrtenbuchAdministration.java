@@ -19,6 +19,8 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	public void init() throws IllegalArgumentException;
 	
 	
+	public Vector<Fahrzeug> test() throws IllegalArgumentException;
+	
 	/**
 	   * Einen Fahrer anlegen.
 	   * 
@@ -27,6 +29,7 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	   * @param eMail 
 	   * @return Ein fertiges Fahrer-Objekt.
 	   * @throws IllegalArgumentException
+	   * 
 	   */
 	public Fahrer createFahrer(String first, String last, String eMail) throws IllegalArgumentException;
 	

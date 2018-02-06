@@ -15,6 +15,8 @@ public interface FahrtenbuchAdministrationAsync {
 	
 	void init(AsyncCallback<Void> callback);
 	
+	void test(AsyncCallback<Vector<Fahrzeug>> callback);
+	
 	void createFahrer(String first, String last, String eMail, AsyncCallback<Fahrer> callback);
 	
 	void createFahrzeug(String regNo, int milage, String description, String color, AsyncCallback<Fahrzeug> callback);

@@ -15,6 +15,7 @@ import com.janhabersetzer.fahrtenbuch.shared.report.Column;
 import com.janhabersetzer.fahrtenbuch.shared.report.CompositeParagraph;
 import com.janhabersetzer.fahrtenbuch.shared.report.Row;
 import com.janhabersetzer.fahrtenbuch.shared.report.SimpleParagraph;
+import com.janhabersetzer.fahrtenbuch.shared.report.Test;
 import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministration;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
@@ -49,6 +50,38 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	/*
 	 * ****************ENDE INITIALISIERUNG********************************
 	 */
+	
+	@Override
+	public Vector<Fahrzeug> test(){
+		
+		Vector<Fahrzeug> result = new Vector<>();
+		
+		Fahrzeug aFahrzeug = new Fahrzeug();
+		aFahrzeug.setId(1);
+		aFahrzeug.setFarbe("schwarz");
+		aFahrzeug.setKennzeichen("S-JH 200");
+		aFahrzeug.setKm(100);
+		aFahrzeug.setModellBeschreibung("Polo");
+		result.add(aFahrzeug);
+		
+		Fahrzeug bFahrzeug = new Fahrzeug();
+		aFahrzeug.setId(2);
+		aFahrzeug.setFarbe("weiss");
+		aFahrzeug.setKennzeichen("S-JG 900");
+		aFahrzeug.setKm(200);
+		aFahrzeug.setModellBeschreibung("Golf");
+		result.add(bFahrzeug);
+		
+		Fahrzeug cFahrzeug = new Fahrzeug();
+		aFahrzeug.setId(3);
+		aFahrzeug.setFarbe("gelb");
+		aFahrzeug.setKennzeichen("S-XY 1900");
+		aFahrzeug.setKm(300);
+		aFahrzeug.setModellBeschreibung("Passat");
+		result.add(cFahrzeug);
+		
+		return result;
+	}
 
 	@Override
 	public Fahrer createFahrer(String first, String last, String eMail) throws IllegalArgumentException {

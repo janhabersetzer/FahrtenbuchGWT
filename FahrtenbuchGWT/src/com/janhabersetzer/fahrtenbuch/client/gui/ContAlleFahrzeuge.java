@@ -73,13 +73,13 @@ public class ContAlleFahrzeuge extends Composite{
 		 *  des <code>GetAllFahrzeugCallback</code> die Mehtode <code>befuelleFhzTabelle(Vector<Fahrzeug> vec)</code> auf.
 		 *  So wird die <code>showFhrzFlexTable</code> aufgebaut, jedoch noch nicht dem vPanel hinzugefügt.
 		 */
-		serviceImpl.getAlleFahrzeug();
+		serviceImpl.test();
 		
 		
 		//Füge das vPanel zusammen.
 		vPanel.add(ueberschriftLabel);
 		//Fuege die vollstaendige FlexTable dem vPanel hinzu
-		vPanel.add(showFhrzFlexTable);
+		//vPanel.add(showFhrzFlexTable);
 	}
 	
 
@@ -113,9 +113,10 @@ public class ContAlleFahrzeuge extends Composite{
 			//LoeschenButton erzeugen, zur Tabelle hinzufügen und Clickhandler zuweisen
 			loeschenButton = new Button("Fahrzeug löschen");
 			loeschenButton.addClickHandler(new LoeschenClickHandler());
-			showFhrzFlexTable.setWidget((i+1), 5, loeschenButton);
-				
+			showFhrzFlexTable.setWidget((i+1), 5, loeschenButton);		
 		}
+		//Fuege die vollstaendige FlexTable dem vPanel hinzu
+				vPanel.add(showFhrzFlexTable);
 	}
 	
 	

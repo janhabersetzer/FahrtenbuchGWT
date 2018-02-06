@@ -10,6 +10,7 @@ import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrzeuge;
 import com.janhabersetzer.fahrtenbuch.client.gui.MainView;
 import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
+import com.janhabersetzer.fahrtenbuch.shared.report.Test;
 
 
 public class FahrtenbuchClientImpl implements FahrtenbuchClient {
@@ -30,7 +31,7 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 	
 	private MainView mainView;
 	
-	
+	//Konstruktor
 	
 	public FahrtenbuchClientImpl(String url){
 		this.fbService = ClientSideSettings.getFahrtenbuchVerwaltung();
@@ -56,6 +57,10 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 	public void init() {
 		this.fbService.init(new InitCallback());
 		
+	}
+	
+	public void test(){
+		this.fbService.test(new TestCallback());
 	}
 
 
@@ -222,6 +227,25 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 			
 		}	
 	}
+	
+	
+	private class TestCallback implements AsyncCallback<Vector<Fahrzeug>>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Der Fehler ist beim übertragen des TestCallback");
+			
+		}
+		@Override
+		public void onSuccess(Vector<Fahrzeug> result) {
+			Vector<Fahrzeug> fahrzeuge= (Vector<Fahrzeug>)result;
+			ContAlleFahrzeuge contAlleFahrzeuge = new ContAlleFahrzeuge(mainView, FahrtenbuchClientImpl.this);
+			contAlleFahrzeuge.befuelleFhzTabelle(fahrzeuge);
+			
+		}
+		
+	}
+	
 	
 	private class GetAllFahrzeugCallback implements AsyncCallback<Vector<Fahrzeug>>{
 

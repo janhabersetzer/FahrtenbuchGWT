@@ -29,6 +29,7 @@ public class ContAlleFahrzeuge extends Composite{
 	 * Widgets erzeugen.
 	 */
 	private Label ueberschriftLabel = new Label("Alle Fahrzeuge:");
+	String text ="Hier hat sich was geändert"; 
 	private FlexTable showFhrzFlexTable = new FlexTable();
 	private Button loeschenButton;
 	private Button anzeigenButton;
@@ -69,14 +70,13 @@ public class ContAlleFahrzeuge extends Composite{
 		showFhrzFlexTable.setText(0, 5, "Löschen");
 		
 		
-		
-		
+	
 		/**
 		 *  Die Klasse <code>FahrtenbuchClientImpl</code> ruft alle Fahrzeuge ab und ruft bei <code>onSuccess</code> 
 		 *  des <code>GetAllFahrzeugCallback</code> die Mehtode <code>befuelleFhzTabelle(Vector<Fahrzeug> vec)</code> auf.
 		 *  So wird die <code>showFhrzFlexTable</code> aufgebaut, jedoch noch nicht dem vPanel hinzugefügt.
 		 */
-		serviceImpl.test();
+		serviceImpl.getAlleFahrzeug();
 		
 		
 		//Füge das vPanel zusammen.
@@ -84,8 +84,6 @@ public class ContAlleFahrzeuge extends Composite{
 		//Fuege die vollstaendige FlexTable dem vPanel hinzu
 		vPanel.add(showFhrzFlexTable);
 	}
-	
-
 	
 	
 	public void befuelleFhzTabelle(Vector<Fahrzeug> vec){
@@ -118,8 +116,7 @@ public class ContAlleFahrzeuge extends Composite{
 			loeschenButton.addClickHandler(new LoeschenClickHandler());
 			showFhrzFlexTable.setWidget((i+1), 5, loeschenButton);		
 		}
-		//Fuege die vollstaendige FlexTable dem vPanel hinzu
-				vPanel.add(showFhrzFlexTable);
+		
 	}
 	
 	

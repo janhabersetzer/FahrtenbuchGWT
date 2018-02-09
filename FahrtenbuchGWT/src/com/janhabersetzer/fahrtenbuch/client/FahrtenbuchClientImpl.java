@@ -1,14 +1,17 @@
 package com.janhabersetzer.fahrtenbuch.client;
 
 
+import java.util.Enumeration;
 import java.util.Vector;
 
+import com.fasterxml.jackson.databind.type.HierarchicType;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrzeuge;
 import com.janhabersetzer.fahrtenbuch.client.gui.MainView;
 import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
+import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 import com.janhabersetzer.fahrtenbuch.shared.report.Test;
 
@@ -239,13 +242,11 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		@Override
 		public void onSuccess(Vector<Fahrzeug> result) {
 			Vector<Fahrzeug> fahrzeuge= (Vector<Fahrzeug>)result;
-			ContAlleFahrzeuge contAlleFahrzeuge = new ContAlleFahrzeuge(mainView, FahrtenbuchClientImpl.this);
-			contAlleFahrzeuge.befuelleFhzTabelle(fahrzeuge);
+			mainView.getContAlleFahrzeuge().befuelleFhzTabelle(fahrzeuge);
+			}
 			
 		}
 		
-	}
-	
 	
 	private class GetAllFahrzeugCallback implements AsyncCallback<Vector<Fahrzeug>>{
 
@@ -257,8 +258,7 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		@Override
 		public void onSuccess(Vector<Fahrzeug> result) {
 			Vector<Fahrzeug> fahrzeuge= (Vector<Fahrzeug>)result;
-			ContAlleFahrzeuge contAlleFahrzeuge = new ContAlleFahrzeuge(mainView, FahrtenbuchClientImpl.this);
-			contAlleFahrzeuge.befuelleFhzTabelle(fahrzeuge);
+			mainView.getContAlleFahrzeuge().befuelleFhzTabelle(fahrzeuge);
 			
 		}
 		

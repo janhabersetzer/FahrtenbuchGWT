@@ -4,17 +4,26 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
 
+
 public class MainView extends Composite {
 	
 	//Attribute fuer Aufrufe
 	
-	FahrtenbuchClientImpl serviceImpl;
+	private FahrtenbuchClientImpl serviceImpl;
 	
+	private ContAlleFahrzeuge contAlleFahrzeuge;
+	
+	private ContAlleFahrer contAlleFahrer;
+	
+	private ContAlleReports contAlleReports;
 	
 	//Panels
 	
 	private VerticalPanel vPanel= new VerticalPanel();
+	
 	private VerticalPanel contentPanel;
+
+	
 	
 	
 	
@@ -35,7 +44,7 @@ public class MainView extends Composite {
 	
 	public void openAlleFhrzCont(){
 		this.contentPanel.clear();
-		ContAlleFahrzeuge contAlleFahrzeuge = new ContAlleFahrzeuge(this, serviceImpl);
+		this.contAlleFahrzeuge = new ContAlleFahrzeuge(this, serviceImpl);
 		this.contentPanel.add(contAlleFahrzeuge);
 	}
 	
@@ -49,6 +58,20 @@ public class MainView extends Composite {
 		this.contentPanel.clear();
 		ContAlleReports contAlleReports = new ContAlleReports(this, serviceImpl);
 		this.contentPanel.add(contAlleReports);	
+	}
+	
+	//**************Getter/Setter***********************
+	
+	public  ContAlleFahrzeuge getContAlleFahrzeuge(){
+		return this.contAlleFahrzeuge;
+	}
+	
+	public ContAlleFahrer getContAlleFahrer(){
+		return this.contAlleFahrer;
+	}
+	
+	public ContAlleReports getContAlleReprots(){
+		return this.contAlleReports;
 	}
 
 }

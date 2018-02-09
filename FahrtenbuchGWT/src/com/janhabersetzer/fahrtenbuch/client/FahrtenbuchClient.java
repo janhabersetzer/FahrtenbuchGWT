@@ -41,8 +41,8 @@ public interface FahrtenbuchClient {
 //	void deleteFahrer(int id);
 	
 //	void getFahrzeug(Fahrt t);
-//	
-//	void getFahrzeug(int id);
+	
+	void getFahrzeug(int id);
 	
 	void getAlleFahrzeug();
 	

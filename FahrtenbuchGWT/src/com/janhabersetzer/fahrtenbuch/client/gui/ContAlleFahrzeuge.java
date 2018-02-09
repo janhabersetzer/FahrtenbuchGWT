@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
@@ -25,9 +24,8 @@ public class ContAlleFahrzeuge extends Composite{
 	
 	private VerticalPanel vPanel= new VerticalPanel();
 	
-	/*
-	 * Widgets erzeugen.
-	 */
+	// Widgets
+	 
 	private Label ueberschriftLabel = new Label("Alle Fahrzeuge:");
 	String text ="Hier hat sich was geändert"; 
 	private FlexTable showFhrzFlexTable = new FlexTable();
@@ -38,11 +36,18 @@ public class ContAlleFahrzeuge extends Composite{
 	 * Um den Index Fahrzeugen in der FlexTable ermitteln zu können brauchen wir diese ArrayList
 	 *  --> siehe StockWatcher Bsp.
 	 */
-	private ArrayList<Integer> fahrzeugIDs =  new ArrayList<Integer>();
+	private ArrayList<Integer> fahrzeugIDs;
 	
 	private int arrayListIndex;
 	
-
+	int count;
+	
+	
+	/**
+	 * Constructor
+	 * @param mainView Referenz zum aufrufenden MainView-Objekt
+	 * @param serviceImplReferenz zum FahrtenbuchClientImpl-Objekt, das alle Serveraufrufe buendelt
+	 */
 	
 	public ContAlleFahrzeuge(MainView mainView, FahrtenbuchClientImpl serviceImpl){
 		initWidget(this.vPanel);
@@ -81,41 +86,45 @@ public class ContAlleFahrzeuge extends Composite{
 		
 		//Füge das vPanel zusammen.
 		vPanel.add(ueberschriftLabel);
-		//Fuege die vollstaendige FlexTable dem vPanel hinzu
 		vPanel.add(showFhrzFlexTable);
 	}
 	
 	
 	public void befuelleFhzTabelle(Vector<Fahrzeug> vec){
 		
+		fahrzeugIDs = new ArrayList<Integer>();
+		
+		this.count = 0;
+
 		for (int i = 0; i < vec.size(); i++){
 			
-			final int id = vec.get(i).getId();
-			
-			fahrzeugIDs.add(id);
-			
-			arrayListIndex = fahrzeugIDs.indexOf(id);
+			fahrzeugIDs.add(vec.get(i).getId());
 			
 			//Füge Fahrzeug + Buttons für jedes Fhrz in die Tabelle ein
 			
 			showFhrzFlexTable.setText((i+1), 0, vec.get(i).getKennzeichen());
 			showFhrzFlexTable.setText((i+1), 1,  Integer.toString(vec.get(i).getKm()));
 			showFhrzFlexTable.setText((i+1), 2,  vec.get(i).getModellBeschreibung());
-			showFhrzFlexTable.setText((i+1), 3, vec.get(i).getFarbe());
+			showFhrzFlexTable.setText((i+1), 3, vec.get(i).getFarbe());	
+		}	
+
+		
+		for(int j = 0; j < fahrzeugIDs.size(); j++){
+			
 			
 			
 			//anzeigenButton erzeugen, zur Tabelle hinzufügen und Clickhandler zuweisen
 			anzeigenButton = new Button("Fahrzeug anzeigen");
 			anzeigenButton.addClickHandler(new AnzeigenClickHandler()); 
-			showFhrzFlexTable.setWidget( (i+1), 4, anzeigenButton);
-			
+			showFhrzFlexTable.setWidget( (j+1), 4, anzeigenButton);
 				
 			
 			//LoeschenButton erzeugen, zur Tabelle hinzufügen und Clickhandler zuweisen
 			loeschenButton = new Button("Fahrzeug löschen");
 			loeschenButton.addClickHandler(new LoeschenClickHandler());
-			showFhrzFlexTable.setWidget((i+1), 5, loeschenButton);		
+			showFhrzFlexTable.setWidget((j+1), 5, loeschenButton);		
 		}
+		
 		
 	}
 	
@@ -124,10 +133,9 @@ public class ContAlleFahrzeuge extends Composite{
 
 		@Override
 		public void onClick(ClickEvent event) {
+			count++;
 			int fahrzeugId = fahrzeugIDs.get(arrayListIndex);
-			ContFahrzeug contFahrzeug = new ContFahrzeug(fahrzeugId);
-			RootPanel.get("Details").clear();
-			RootPanel.get("Details").add(contFahrzeug);		
+			mainView.openFahrzeugCont(fahrzeugId);		
 		}
 		
 	}
@@ -136,7 +144,7 @@ public class ContAlleFahrzeuge extends Composite{
 		@Override
 		public void onClick(ClickEvent event) {
 			if (Window.confirm("Möchten Sie dieses Fahrzeug wirklich löschen?")){
-				int fahrzeugId = fahrzeugIDs.get(arrayListIndex);
+				int fahrzeugId = fahrzeugIDs.get(count);
 				fahrzeugIDs.remove(arrayListIndex);
 				serviceImpl.deleteFahrzeug(fahrzeugId);
 				

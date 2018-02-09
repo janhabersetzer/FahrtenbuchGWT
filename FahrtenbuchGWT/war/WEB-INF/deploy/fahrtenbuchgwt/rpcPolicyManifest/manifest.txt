@@ -1,4 +1,3 @@
 # Module fahrtenbuchgwt
 # RPC service class, partial path of RPC policy file
-com.janhabersetzer.fahrtenbuch.shared.LoginService, DB77B1CDA6C68FC7B72C507CA7C6535D.gwt.rpc
 com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministration, 58338314618EA825C136640356FF0FE1.gwt.rpc

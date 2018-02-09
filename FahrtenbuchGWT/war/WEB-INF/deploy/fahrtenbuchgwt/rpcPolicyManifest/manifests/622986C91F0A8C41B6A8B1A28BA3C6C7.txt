@@ -1,2 +1,0 @@
-serviceClass: com.janhabersetzer.fahrtenbuch.shared.LoginService
-path: DB77B1CDA6C68FC7B72C507CA7C6535D.gwt.rpc

@@ -68,6 +68,9 @@ public class ContAlleFahrzeuge extends Composite{
 		showFhrzFlexTable.setText(0, 4, "Anzeigen");
 		showFhrzFlexTable.setText(0, 5, "Löschen");
 		
+		
+		
+		
 		/**
 		 *  Die Klasse <code>FahrtenbuchClientImpl</code> ruft alle Fahrzeuge ab und ruft bei <code>onSuccess</code> 
 		 *  des <code>GetAllFahrzeugCallback</code> die Mehtode <code>befuelleFhzTabelle(Vector<Fahrzeug> vec)</code> auf.
@@ -79,7 +82,7 @@ public class ContAlleFahrzeuge extends Composite{
 		//Füge das vPanel zusammen.
 		vPanel.add(ueberschriftLabel);
 		//Fuege die vollstaendige FlexTable dem vPanel hinzu
-		//vPanel.add(showFhrzFlexTable);
+		vPanel.add(showFhrzFlexTable);
 	}
 	
 

@@ -47,7 +47,7 @@ public class MainView extends Composite {
 	
 	public void openAlleReportsCont(){
 		this.contentPanel.clear();
-		ContAlleReports contAlleReports = new ContAlleReports();
+		ContAlleReports contAlleReports = new ContAlleReports(this, serviceImpl);
 		this.contentPanel.add(contAlleReports);	
 	}
 

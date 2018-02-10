@@ -258,11 +258,12 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		@Override
 		public void onSuccess(Fahrzeug result) {
 			Fahrzeug v = (Fahrzeug) result;
-			mainView.getContFahrzeug().schreibeFahrzeug(v);
+				mainView.getContFahrzeug().schreibeFahrzeug(v);
+			}
 			
-		}
-		
 	}
+		
+	
 		
 	
 	private class GetAllFahrzeugCallback implements AsyncCallback<Vector<Fahrzeug>>{
@@ -290,9 +291,7 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		}
 		@Override
 		public void onSuccess(Void result) {
-			mainView.openAlleFhrzCont();
-			
-			
+			mainView.openAlleFhrzCont();	
 		}
 	}
 	

@@ -20,7 +20,7 @@ public class RunTest {
 		// TODO Auto-generated method stub
 		
 		
-		testFindFahrerByEmail();
+		testInsertFahrzeug();
 		
 	}
 	

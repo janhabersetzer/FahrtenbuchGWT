@@ -21,6 +21,9 @@ public class MainView extends Composite {
 	
 	private ContFahrzeug contFahrzeug;
 	
+	//Gibt anhand der Zahle Aussage, welcher Content Grad angezeigt wird.
+	// private int currentContIndex;
+	
 	//Panels
 	
 	private VerticalPanel vPanel= new VerticalPanel();
@@ -49,18 +52,21 @@ public class MainView extends Composite {
 	public void openAlleFhrzCont(){
 		this.contentPanel.clear();
 		contAlleFahrzeuge = new ContAlleFahrzeuge(this, serviceImpl);
+//		this.setCurrentContIndex(contAlleFahrzeuge);
 		this.contentPanel.add(contAlleFahrzeuge);
 	}
 	
 	public void openAlleFahrerCont(){
 		this.contentPanel.clear();
 		contAlleFahrer = new ContAlleFahrer();
+//		this.setCurrentContIndex(contAlleFahrer);
 		this.contentPanel.add(contAlleFahrer);	
 	}
 	
 	public void openAlleReportsCont(){
 		this.contentPanel.clear();
 		contAlleReports = new ContAlleReports(this, serviceImpl);
+//		this.setCurrentContIndex(contAlleReports);
 		this.contentPanel.add(contAlleReports);	
 	}
 	
@@ -69,10 +75,27 @@ public class MainView extends Composite {
 	public void openFahrzeugCont(int id){
 		this.contentPanel.clear();
 		this.contFahrzeug = new ContFahrzeug(id, this, serviceImpl);
+//		this.setCurrentContIndex(contFahrzeug);
 		this.contentPanel.add(contFahrzeug);
 	}
 	
 	//**************Getter/Setter***********************
+	
+//	public void setCurrentContIndex(Object o){
+//		if(o instanceof ContAlleFahrer){
+//			this.currentContIndex= 0;
+//		}else if(o instanceof ContAlleFahrzeuge){
+//			this.currentContIndex= 1;
+//		}else if(o instanceof ContAlleReports){
+//			this.currentContIndex= 2;
+//		}else if(o instanceof ContFahrzeug){
+//			this.currentContIndex= 3;
+//		}
+//	}
+	
+//	public int getCurrentCont(){
+//		return this.currentContIndex;
+//	}
 	
 	public  ContAlleFahrzeuge getContAlleFahrzeuge(){
 		return this.contAlleFahrzeuge;

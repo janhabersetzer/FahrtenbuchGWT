@@ -29,18 +29,14 @@ public class ContAlleFahrzeuge extends Composite{
 	private Label ueberschriftLabel = new Label("Alle Fahrzeuge:");
 	String text ="Hier hat sich was geändert"; 
 	private FlexTable showFhrzFlexTable = new FlexTable();
-	private Button loeschenButton;
-	private Button anzeigenButton;
+	private Button loeschenBtn;
+	private Button anzeigenBtn;
 	
 	/*
 	 * Um den Index Fahrzeugen in der FlexTable ermitteln zu können brauchen wir diese ArrayList
 	 *  --> siehe StockWatcher Bsp.
 	 */
 	private ArrayList<Integer> fahrzeugIDs;
-	
-	private int arrayListIndex;
-	
-	int count;
 	
 	
 	/**
@@ -93,12 +89,12 @@ public class ContAlleFahrzeuge extends Composite{
 	public void befuelleFhzTabelle(Vector<Fahrzeug> vec){
 		
 		fahrzeugIDs = new ArrayList<Integer>();
-		
-		this.count = 0;
 
 		for (int i = 0; i < vec.size(); i++){
 			
-			fahrzeugIDs.add(vec.get(i).getId());
+			final int id = vec.get(i).getId();
+			
+			fahrzeugIDs.add(id);
 			
 			//Füge Fahrzeug + Buttons für jedes Fhrz in die Tabelle ein
 			
@@ -106,50 +102,61 @@ public class ContAlleFahrzeuge extends Composite{
 			showFhrzFlexTable.setText((i+1), 1,  Integer.toString(vec.get(i).getKm()));
 			showFhrzFlexTable.setText((i+1), 2,  vec.get(i).getModellBeschreibung());
 			showFhrzFlexTable.setText((i+1), 3, vec.get(i).getFarbe());	
-		}	
-
-		
-		for(int j = 0; j < fahrzeugIDs.size(); j++){
-			
 			
 			
 			//anzeigenButton erzeugen, zur Tabelle hinzufügen und Clickhandler zuweisen
-			anzeigenButton = new Button("Fahrzeug anzeigen");
-			anzeigenButton.addClickHandler(new AnzeigenClickHandler()); 
-			showFhrzFlexTable.setWidget( (j+1), 4, anzeigenButton);
+			anzeigenBtn = new Button("Fahrzeug anzeigen");
+			anzeigenBtn.addClickHandler(new ClickHandler() {
+				
+				@Override
+				public void onClick(ClickEvent event) {
+					mainView.openFahrzeugCont(id);
+					
+				}
+			}); 
+			showFhrzFlexTable.setWidget( (i+1), 4, anzeigenBtn);
 				
 			
 			//LoeschenButton erzeugen, zur Tabelle hinzufügen und Clickhandler zuweisen
-			loeschenButton = new Button("Fahrzeug löschen");
-			loeschenButton.addClickHandler(new LoeschenClickHandler());
-			showFhrzFlexTable.setWidget((j+1), 5, loeschenButton);		
-		}
-		
-		
-	}
-	
-	
-	private class AnzeigenClickHandler implements ClickHandler{
-
-		@Override
-		public void onClick(ClickEvent event) {
-			count++;
-			int fahrzeugId = fahrzeugIDs.get(arrayListIndex);
-			mainView.openFahrzeugCont(fahrzeugId);		
-		}
-		
-	}
-	
-	private class LoeschenClickHandler implements ClickHandler{
-		@Override
-		public void onClick(ClickEvent event) {
-			if (Window.confirm("Möchten Sie dieses Fahrzeug wirklich löschen?")){
-				int fahrzeugId = fahrzeugIDs.get(count);
-				fahrzeugIDs.remove(arrayListIndex);
-				serviceImpl.deleteFahrzeug(fahrzeugId);
+			loeschenBtn = new Button("Fahrzeug löschen");
+			loeschenBtn.addClickHandler(new ClickHandler() {
 				
-			}
-		}
+				@Override
+				public void onClick(ClickEvent event) {
+					if (Window.confirm("Wollen Sie das Fahrzeug wirklich löschen? ")){
+					int removeIndex = fahrzeugIDs.indexOf(id);
+					fahrzeugIDs.remove(removeIndex);
+					serviceImpl.deleteFahrzeug(id);
+					}
+					
+				}
+			});
+			showFhrzFlexTable.setWidget((i+1), 5, loeschenBtn);		
+		}	
 	}
+	
+	
+//	private class AnzeigenClickHandler implements ClickHandler{
+//
+//		@Override
+//		public void onClick(ClickEvent event) {
+//			count++;
+//			int fahrzeugId = fahrzeugIDs.get(arrayListIndex);
+//			mainView.openFahrzeugCont(fahrzeugId);		
+//		}
+//		
+//	}
+//	
+//	private class LoeschenClickHandler implements ClickHandler{
+//		@Override
+//		public void onClick(ClickEvent event) {
+//			if (Window.confirm("Möchten Sie dieses Fahrzeug wirklich löschen?")){
+//				int fahrzeugId = fahrzeugIDs.get(count);
+//				fahrzeugIDs.remove(arrayListIndex);
+//				serviceImpl.deleteFahrzeug(fahrzeugId);
+//				
+//			}
+//		}
+//	}
 
 }

@@ -114,6 +114,14 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	public void saveFahrer(Fahrer d) throws IllegalArgumentException;
 	
 	/**
+	 * Aktualisieren eines Fahrers in der Datenbank
+	 * @param d zu aktualisierendes Fahrer-Objekt
+	 * @throws IllegalArgumentException
+	 */
+	
+	public void updateFahrer(Fahrer d) throws IllegalArgumentException;
+	
+	/**
 	 * Löschen eines Fahrers aus der Datenbank
 	 * @param d zu löschendes Fahrer-Object
 	 * @throws IllegalArgumentException
@@ -156,6 +164,14 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	public void saveFahrzeug(Fahrzeug v) throws IllegalArgumentException;
 	
 	/**
+	 * Aktualisieren eines Fahrzeugs in der Datenbank
+	 * @param v zu aktualisierendes Fahrzeug-Objekt
+	 * @throws IllegalArgumentException
+	 */
+	
+	public void updateFahrzeug(Fahrzeug v) throws IllegalArgumentException;
+	
+	/**
 	 * Löschen eines Fahrzeugs aus der Datenbank
 	 * @param v zu löschendes Fahrzeug-Object
 	 * @throws IllegalArgumentException
@@ -180,12 +196,29 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	public Vector<Fahrt> getAlleFahrtenVonFahrzeug(int id) throws IllegalArgumentException;
 	
 	/**
+	 * Eine Fahrt anhand ihrer id finden
+	 * @param id Fahrt id
+	 * @return das gesuchte Fahrt-Objekt
+	 * @throws IllegalArgumentException
+	 */
+	
+	public Fahrt getFahrt(int id) throws IllegalArgumentException;
+	
+	/**
 	 * Speichern einer Fahrt in der Datenbank
 	 * @param t zu speicherndes Fahrzeug-Objekt
 	 * @throws IllegalArgumentException
 	 */
 	
 	public void saveFahrt(Fahrt t) throws IllegalArgumentException;
+	
+	/**
+	 * Aktualisieren einer Fahrt in der Datenbank
+	 * @param t zu aktualisierendes Fahrzeug-Objekt
+	 * @throws IllegalArgumentException
+	 */
+	
+	public void updateFahrt(Fahrt t) throws IllegalArgumentException;
 	
 	/**
 	 * Löschen einer Fahrt aus der Datenbank

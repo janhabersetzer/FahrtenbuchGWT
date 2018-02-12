@@ -21,6 +21,8 @@ public class MainView extends Composite {
 	
 	private ContFahrzeug contFahrzeug;
 	
+	private ContEditFahrt contEditFahrt;
+	
 	//Gibt anhand der Zahle Aussage, welcher Content Grad angezeigt wird.
 	// private int currentContIndex;
 	
@@ -79,6 +81,13 @@ public class MainView extends Composite {
 		this.contentPanel.add(contFahrzeug);
 	}
 	
+	public void openEditFahrt(int id){
+		this.contentPanel.clear();
+		this.contEditFahrt = new ContEditFahrt(id, this, serviceImpl);
+//		this.setCurrentContIndex(contFahrzeug);
+		this.contentPanel.add(contEditFahrt);
+	}
+	
 	//**************Getter/Setter***********************
 	
 //	public void setCurrentContIndex(Object o){
@@ -111,6 +120,10 @@ public class MainView extends Composite {
 	
 	public  ContFahrzeug getContFahrzeug(){
 		return this.contFahrzeug;
+	}
+	
+	public ContEditFahrt getContEditFahrt(){
+		return this.contEditFahrt;
 	}
 
 }

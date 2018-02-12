@@ -17,8 +17,8 @@ import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 public class ContAlleFahrzeuge extends Composite{
 	
 	// Attribute fuer Aufrufe
-	MainView mainView;
-	FahrtenbuchClientImpl serviceImpl;
+	private MainView mainView;
+	private FahrtenbuchClientImpl serviceImpl;
 	
 	//Panels
 	
@@ -64,7 +64,7 @@ public class ContAlleFahrzeuge extends Composite{
 		 * Erste Spalte der Tabelle festlegen.
 		 */
 		showFhrzFlexTable.setText(0, 0, "Kennzeichen");
-		showFhrzFlexTable.setText(0, 1, "Aktueller Kilometerstand");
+		showFhrzFlexTable.setText(0, 1, "Kilometerstand");
 		showFhrzFlexTable.setText(0, 2, "Modellbeschreibung");
 		showFhrzFlexTable.setText(0, 3, "Farbe");
 		showFhrzFlexTable.setText(0, 4, "Anzeigen");

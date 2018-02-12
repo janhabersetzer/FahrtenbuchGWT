@@ -25,13 +25,13 @@ public class ContFahrzeug extends Composite{
 		
 	// Attribute fuer Aufrufe
 		
-	FahrtenbuchClientImpl serviceImpl;
+	private FahrtenbuchClientImpl serviceImpl;
 		
-	MainView mainView;
+	private MainView mainView;
 		
-	int fahrzeugid;
+	private int fahrzeugid;
 		
-	Fahrzeug fahrzeugProfil;
+	private Fahrzeug fahrzeugProfil;
 		
 		
 	//Panels
@@ -49,16 +49,7 @@ public class ContFahrzeug extends Composite{
 	Button fahrtHinzuBtn;
 	Button fahrtBearbeitenBtn;
 	Button fahrtLoeschenBtn;
-	private ArrayList<Integer> fahrtenIDs;
-	
-	//Widgets die durch oeffneBearbeiten() dazukommen
-	TextBox kennzeichenTBox;
-	TextBox kmTBox;
-	TextBox beschrTBox;
-	TextBox farbeTBox;
-	Button speichernBtn;
-	Button abbrechenBtn;
-		
+	private ArrayList<Integer> fahrtenIDs;		
 		
 	/**
 	 * Constructor
@@ -68,6 +59,7 @@ public class ContFahrzeug extends Composite{
 	 */
 	ContFahrzeug(int id, MainView mainView, FahrtenbuchClientImpl serviceImpl){
 		initWidget(vPanel);
+		
 		this.fahrzeugid= id;
 		this.mainView = mainView;
 		this.serviceImpl = serviceImpl;
@@ -90,7 +82,7 @@ public class ContFahrzeug extends Composite{
 			 * Erste Spalte der Fhrz.-Tabelle festlegen.
 			 */
 			showFhrzFlexTable.setText(0, 0, "Fahrtdatum");
-			showFhrzFlexTable.setText(0, 1, "Aktueller Kilometerstand");
+			showFhrzFlexTable.setText(0, 1, "Kilometerstand");
 			showFhrzFlexTable.setText(0, 2, "Modellbeschreibung");
 			showFhrzFlexTable.setText(0, 3, "Farbe");
 			showFhrzFlexTable.setText(0, 4, "Löschen");
@@ -102,9 +94,6 @@ public class ContFahrzeug extends Composite{
 			//Füge das vPanel zusammen.
 			vPanel.add(ueberschriftLabel);
 			vPanel.add(showFhrzFlexTable);
-			
-
-			
 			
 			/**
 			 * Erste Spalte der Fahrten-Tabelle festlegen.
@@ -127,6 +116,7 @@ public class ContFahrzeug extends Composite{
 			serviceImpl.getAlleFahrtenVonFahrzeug(id);
 			
 			//Füge das hPanel zusammen.
+			
 			hPanel.add(ueberschriftLabel2);
 			//Erstelle den Button für das Hinzufuegen der Fahrten und fuege ihn den hPanel hinzu
 			fahrtHinzuBtn = new Button(" + Fahrt hinzufügen");
@@ -221,7 +211,7 @@ public class ContFahrzeug extends Composite{
 				
 				@Override
 				public void onClick(ClickEvent event) {
-					ContFahrzeug.this.oeffneBearbeiten(id);	
+					mainView.openEditFahrt(id);	
 				}
 			});
 			showFahrtenFlexTable.setWidget((i+1), 12, fahrtBearbeitenBtn);
@@ -231,60 +221,6 @@ public class ContFahrzeug extends Composite{
 		}
 	}	
 	
-	
-	
-	public void oeffneBearbeiten(int fahrId){
-		
-		//Setzte bearbeitenBtn auf disabled
-		fahrtBearbeitenBtn.setEnabled(true);
-		
-		
-		//Fuege eine Spalte mit den Textboxen und Buttons hinzu
-		kennzeichenTBox.setText(fahrzeugProfil.getKennzeichen());
-		showFahrtenFlexTable.setWidget(2, 0, kennzeichenTBox);
-		
-		kmTBox.setText(Integer.toString(fahrzeugProfil.getKm()));
-		showFahrtenFlexTable.setWidget(2, 1, kmTBox);
-	
-		beschrTBox.setText(fahrzeugProfil.getModellBeschreibung());
-		showFhrzFlexTable.setWidget(2, 2, beschrTBox);
-		
-		farbeTBox.setText(fahrzeugProfil.getFarbe());
-		showFhrzFlexTable.setWidget(2, 3, farbeTBox);
-		
-		speichernBtn = new Button("Speichern");
-		speichernBtn.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				
-				
-				//Eingabe der Texfelder prüfen
-				
-				
-				//Fahrzeug an server zum speichern uebergeben
-				
-				//
-				
-				
-				
-			}
-		});
-		showFhrzFlexTable.setWidget(2, 4, speichernBtn);
-		
-		
-		abbrechenBtn = new Button("Abbrechen");
-		abbrechenBtn.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				ContFahrzeug.this.schreibeFahrzeug(ContFahrzeug.this.fahrzeugProfil);
-				
-			}
-		});
-		showFhrzFlexTable.setWidget(2, 5, abbrechenBtn);
-	}
 		
 		
 }

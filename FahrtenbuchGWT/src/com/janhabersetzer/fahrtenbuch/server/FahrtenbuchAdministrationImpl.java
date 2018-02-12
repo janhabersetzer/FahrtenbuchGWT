@@ -200,6 +200,11 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 
 	@Override
 	public void saveFahrer(Fahrer d) throws IllegalArgumentException {
+		dMapper.insert(d);
+	}
+	
+	@Override
+	public void updateFahrer(Fahrer d) throws IllegalArgumentException {
 		dMapper.update(d);
 	}
 
@@ -242,6 +247,11 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	public void saveFahrzeug(Fahrzeug v) throws IllegalArgumentException {
 		vMapper.insert(v);
 	}
+	
+	@Override
+	public void updateFahrzeug(Fahrzeug v) throws IllegalArgumentException {
+		vMapper.update(v);
+	}
 
 	@Override
 	public void deleteFahrzeug(int id) throws IllegalArgumentException {
@@ -263,10 +273,22 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 		//Abfrage über Datenbank realisiert
 		return tMapper.findByFahrzeugId(id);
 	}
+	
+	@Override
+	public Fahrt getFahrt(int id) throws IllegalArgumentException {
+		return tMapper.findByKey(id);
+
+	}
 
 	@Override
 	public void saveFahrt(Fahrt t) throws IllegalArgumentException {
 		tMapper.insert(t);
+
+	}
+	
+	@Override
+	public void updateFahrt(Fahrt t) throws IllegalArgumentException {
+		tMapper.update(t);
 
 	}
 

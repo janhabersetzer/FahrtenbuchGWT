@@ -36,6 +36,8 @@ public interface FahrtenbuchAdministrationAsync {
 	
 	void saveFahrer(Fahrer d, AsyncCallback<Void> callback);
 	
+	void updateFahrer(Fahrer d, AsyncCallback<Void> callback);
+	
 	void deleteFahrer(int id, AsyncCallback<Void> callback);
 	
 	void getFahrzeug(Fahrt t, AsyncCallback<Fahrzeug> callback);
@@ -44,7 +46,11 @@ public interface FahrtenbuchAdministrationAsync {
 	
 	void getAlleFahrzeug(AsyncCallback<Vector<Fahrzeug>> callback);
 	
+	void getFahrt(int id, AsyncCallback<Fahrt> callback);
+	
 	void saveFahrzeug(Fahrzeug v, AsyncCallback<Void> callback);
+	
+	void updateFahrzeug(Fahrzeug v, AsyncCallback<Void> callback);
 	
 	void deleteFahrzeug(int id, AsyncCallback<Void> callback);
 	
@@ -53,6 +59,8 @@ public interface FahrtenbuchAdministrationAsync {
 	void getAlleFahrtenVonFahrzeug(int id, AsyncCallback<Vector<Fahrt>> callback);
 	
 	void saveFahrt(Fahrt t, AsyncCallback<Void> callback);
+	
+	void updateFahrt(Fahrt t, AsyncCallback<Void> callback);
 	
 	void deleteFahrt(int id, AsyncCallback<Void> callback);
 	

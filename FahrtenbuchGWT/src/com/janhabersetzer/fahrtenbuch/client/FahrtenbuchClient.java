@@ -28,7 +28,7 @@ public interface FahrtenbuchClient {
 //
 //	void getFahrer(int id);
 //	
-//	void getFahrer(Fahrt t);
+	void getFahrer(Fahrt t);
 //	
 //	void getFahrerByEmail(String email);
 //	
@@ -38,23 +38,31 @@ public interface FahrtenbuchClient {
 //	
 //	void saveFahrer(Fahrer d);
 	
+//	void updateFahrer(Fahrer d);
+	
 //	void deleteFahrer(int id);
 	
-//	void getFahrzeug(Fahrt t);
+	void getFahrzeug(Fahrt t);
 	
 	void getFahrzeug(int id);
 	
 	void getAlleFahrzeug();
 	
 //	void saveFahrzeug(Fahrzeug v);
-//	
+	
+//	void updateFahrzeug(Fahrzeug v);
+	
 	void deleteFahrzeug(int id);
 //	
 //	void getAlleFahrtenVonFahrer(int id);
 	
 	void getAlleFahrtenVonFahrzeug(int id);
 	
+	void getFahrt(int id);
+	
 //	void saveFahrt(Fahrt t);
+	
+	void updateFahrt(Fahrt t);
 //	
 //	void deleteFahrt(int id);
 //	

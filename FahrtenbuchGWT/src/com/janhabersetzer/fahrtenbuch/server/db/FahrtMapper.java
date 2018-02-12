@@ -243,7 +243,7 @@ public class FahrtMapper {
 			
 			//2.Bearbeitungsdatum von konvertieren
 			
-			Date bearbeitungsDatumUntil = t.getFahrtDatum();
+			Date bearbeitungsDatumUntil = t.getBearbeitungsdatum();
 			
 			SimpleDateFormat formatterSDF2 = new SimpleDateFormat("yyyy-MM-dd");
 			

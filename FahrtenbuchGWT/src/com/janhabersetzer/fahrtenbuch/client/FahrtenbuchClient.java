@@ -51,9 +51,9 @@ public interface FahrtenbuchClient {
 	void deleteFahrzeug(int id);
 //	
 //	void getAlleFahrtenVonFahrer(int id);
-//	
-//	void getAlleFahrtenVonFahrzeug(int id);
-//	
+	
+	void getAlleFahrtenVonFahrzeug(int id);
+	
 //	void saveFahrt(Fahrt t);
 //	
 //	void deleteFahrt(int id);

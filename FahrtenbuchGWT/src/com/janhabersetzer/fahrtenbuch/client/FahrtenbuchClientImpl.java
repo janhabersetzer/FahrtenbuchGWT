@@ -165,13 +165,13 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 //		// TODO Auto-generated method stub
 //		
 //	}
-//
-//	@Override
-//	public void getAlleFahrtenVonFahrzeug(int id) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
+
+	@Override
+	public void getAlleFahrtenVonFahrzeug(int id) {
+		this.fbService.getAlleFahrtenVonFahrzeug(id, new GetAlleFahrtenFhrzCallback());
+		
+	}
+
 //	@Override
 //	public void saveFahrt(Fahrt t) {
 //		// TODO Auto-generated method stub
@@ -263,7 +263,22 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 			
 	}
 		
-	
+	private class GetAlleFahrtenFhrzCallback implements AsyncCallback<Vector<Fahrt>>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			System.out.print("Der Fehler ist beim übertragen des Fahrzeugs von Server (GetAlleFahrtenFhrzCallback)");
+			
+		}
+
+		@Override
+		public void onSuccess(Vector<Fahrt> result) {
+			Vector<Fahrt> fahrten = (Vector<Fahrt>) result;
+			mainView.getContFahrzeug().oeffneFahrten(fahrten);
+			
+		}
+		
+	}
 		
 	
 	private class GetAllFahrzeugCallback implements AsyncCallback<Vector<Fahrzeug>>{

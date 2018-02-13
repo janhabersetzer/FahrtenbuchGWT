@@ -107,11 +107,11 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 //		
 //	}
 //
-//	@Override
-//	public void getAlleFahrer() {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	@Override
+	public void getAlleFahrer() {
+		this.fbService.getAlleFahrer(new GetAlleFahrerCallback());
+		
+	}
 //
 //	@Override
 //	public void saveFahrer(Fahrer d) {
@@ -175,11 +175,11 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		
 	}
 
-//	@Override
-//	public void saveFahrt(Fahrt t) {
-//		this.fbService.saveFahrt(t, new SaveFahrtCallback());
-//		
-//	}
+	@Override
+	public void saveFahrt(Fahrt t) {
+		this.fbService.saveFahrt(t, new SaveFahrtCallback());
+		
+	}
 	
 	@Override
 	public void updateFahrt(Fahrt t) {
@@ -251,11 +251,29 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		@Override
 		public void onSuccess(Fahrer result) {
 			Fahrer fahrer = (Fahrer) result;
-			mainView.getContEditFahrt().setFahrerProfil(fahrer);
+			mainView.getContEditFahrt().schreibeFahrer(fahrer);
 			
 		}
 		
 	}
+	
+	private class GetAlleFahrerCallback implements AsyncCallback<Vector<Fahrer>>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onSuccess(Vector<Fahrer> result) {
+			Vector<Fahrer>  vecfahrer = (Vector<Fahrer>)  result;
+			mainView.getContCreateFahrt().schreibeAlleFahrer(vecfahrer);	
+		}
+		
+	}
+	
+	
 	
 	
 	private class GetFahrzeugCallback implements AsyncCallback<Fahrzeug>{
@@ -285,7 +303,7 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		@Override
 		public void onSuccess(Fahrzeug result) {
 			Fahrzeug fahrzeug = (Fahrzeug) result;
-				mainView.getContEditFahrt().setFahrzeugProfil(fahrzeug);
+				mainView.getContEditFahrt().schreibeFahrzeug(fahrzeug);
 			}
 			
 	}
@@ -353,6 +371,23 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		@Override
 		public void onSuccess(Void result) {
 			Window.alert("Fahrt wurde gespeichert");
+			int fahrzeugId = mainView.getContEditFahrt().getFahrzeugId();
+			mainView.openFahrzeugCont(fahrzeugId);	
+		}
+		
+	}
+	
+	private class SaveFahrtCallback implements AsyncCallback<Void>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			System.out.print("Der Fehler ist beim Übertragen des SaveFahrtCallback");
+			
+		}
+
+		@Override
+		public void onSuccess(Void result) {
+			Window.alert("Fahrt wurde erstellt");
 			int fahrzeugId = mainView.getContEditFahrt().getFahrzeugId();
 			mainView.openFahrzeugCont(fahrzeugId);	
 		}

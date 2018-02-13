@@ -33,9 +33,9 @@ public interface FahrtenbuchClient {
 //	void getFahrerByEmail(String email);
 //	
 //	void pruefeObFahrerNeu(String email);
-//	
-//	void getAlleFahrer();
-//	
+	
+	void getAlleFahrer();
+	
 //	void saveFahrer(Fahrer d);
 	
 //	void updateFahrer(Fahrer d);
@@ -60,7 +60,7 @@ public interface FahrtenbuchClient {
 	
 	void getFahrt(int id);
 	
-//	void saveFahrt(Fahrt t);
+	void saveFahrt(Fahrt t);
 	
 	void updateFahrt(Fahrt t);
 //	

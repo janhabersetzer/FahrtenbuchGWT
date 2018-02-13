@@ -108,9 +108,7 @@ public class ContFahrzeug extends Composite{
 			showFahrtenFlexTable.setText(0, 7, "Km Betriebsfahrt");
 			showFahrtenFlexTable.setText(0, 8, "Kommentar");
 			showFahrtenFlexTable.setText(0, 9, "Bearbeitungsdatum");
-			showFahrtenFlexTable.setText(0, 10, "Fahrzeug (Kennzeichen)");
-			showFahrtenFlexTable.setText(0, 11, "EMail(Fahrer)");
-			showFahrtenFlexTable.setText(0, 12, "Bearbeiten");
+			showFahrtenFlexTable.setText(0, 10, "Bearbeiten");
 			
 			
 			serviceImpl.getAlleFahrtenVonFahrzeug(id);
@@ -118,17 +116,6 @@ public class ContFahrzeug extends Composite{
 			//Füge das hPanel zusammen.
 			
 			hPanel.add(ueberschriftLabel2);
-			//Erstelle den Button für das Hinzufuegen der Fahrten und fuege ihn den hPanel hinzu
-			fahrtHinzuBtn = new Button(" + Fahrt hinzufügen");
-			fahrtHinzuBtn.addClickHandler(new ClickHandler() {
-				
-				@Override
-				public void onClick(ClickEvent event) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
-			hPanel.add(fahrtHinzuBtn);
 			
 			//Füge das vPanel zusammen.
 			vPanel.add(hPanel);
@@ -138,7 +125,22 @@ public class ContFahrzeug extends Composite{
 		
 		
 		public void schreibeFahrzeug(Fahrzeug v){
+			
 			//Füge Fahrzeug + Button in die Tabelle ein
+			
+			this.fahrzeugProfil = v;
+			
+			//Erstelle den Button für das Hinzufuegen der Fahrten und fuege ihn den hPanel hinzu
+			fahrtHinzuBtn = new Button(" + Fahrt hinzufügen");
+			fahrtHinzuBtn.addClickHandler(new ClickHandler() {
+				
+				@Override
+				public void onClick(ClickEvent event) {
+					mainView.openCreateFahrt(fahrzeugProfil);
+					
+				}
+			});
+			hPanel.add(fahrtHinzuBtn);
 			
 			showFhrzFlexTable.setText(1, 0, v.getKennzeichen());
 			showFhrzFlexTable.setText(1, 1, Integer.toString(v.getKm()));
@@ -211,10 +213,10 @@ public class ContFahrzeug extends Composite{
 				
 				@Override
 				public void onClick(ClickEvent event) {
-					mainView.openEditFahrt(id);	
+					mainView.openEditFahrt(id, fahrzeugProfil);	
 				}
 			});
-			showFahrtenFlexTable.setWidget((i+1), 12, fahrtBearbeitenBtn);
+			showFahrtenFlexTable.setWidget((i+1), 10, fahrtBearbeitenBtn);
 			
 			
 			

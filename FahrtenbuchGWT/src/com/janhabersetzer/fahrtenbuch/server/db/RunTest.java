@@ -20,7 +20,7 @@ public class RunTest {
 		// TODO Auto-generated method stub
 		
 		
-		testInsertFahrzeug();
+		testInsertFahrt();
 		
 	}
 	
@@ -144,7 +144,8 @@ public static  void testFindAll() throws Exception{
 				t.setArbeitswegKm(0);
 				t.setBetriebsfahrtKm(0);
 				t.setZielBeschreibung("Oma");
-				t.setSourceFahrzeugId(2);
+				t.setKommentar("Datum Test");
+				t.setSourceFahrzeugId(4);
 				t.setSourceFahrerId(1);
 				t.setBearbeitungsdatum(bdate);
 		try{

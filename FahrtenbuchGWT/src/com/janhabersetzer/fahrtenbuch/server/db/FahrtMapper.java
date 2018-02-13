@@ -243,11 +243,9 @@ public class FahrtMapper {
 			
 			//2.Bearbeitungsdatum von konvertieren
 			
-			Date bearbeitungsDatumUntil = t.getBearbeitungsdatum();
+			Date bearbeitungsDatumUntil = new Date();
 			
-			SimpleDateFormat formatterSDF2 = new SimpleDateFormat("yyyy-MM-dd");
-			
-			String mysqlBDatumString = formatterSDF2.format(bearbeitungsDatumUntil);
+			String mysqlBDatumString = formatterSDF.format(bearbeitungsDatumUntil);
 			
 			
 			//Query vorbereiten
@@ -302,11 +300,9 @@ public class FahrtMapper {
 			
 			//2.Bearbeitungsdatum von konvertieren
 			
-			Date bearbeitungsDatumUntil = t.getFahrtDatum();
+			Date bearbeitungsDatumUntil = new Date();	
 			
-			SimpleDateFormat formatterSDF2 = new SimpleDateFormat("yyyy-MM-dd");
-			
-			String mysqlBDatumString = formatterSDF2.format(bearbeitungsDatumUntil);
+			String mysqlBDatumString = formatterSDF.format(bearbeitungsDatumUntil);
 			
 
 			//Query vorbereiten

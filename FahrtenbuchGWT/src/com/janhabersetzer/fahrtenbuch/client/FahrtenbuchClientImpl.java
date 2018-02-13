@@ -11,6 +11,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrzeuge;
 import com.janhabersetzer.fahrtenbuch.client.gui.MainView;
 import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
+import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 import com.janhabersetzer.fahrtenbuch.shared.report.Test;
@@ -90,7 +91,7 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 //
 	@Override
 	public void getFahrer(Fahrt t) {
-		// TODO Auto-generated method stub
+		this.fbService.getFahrer(t, new GetFahrerSimpleCallback());
 		
 	}
 
@@ -128,7 +129,7 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 //
 	@Override
 	public void getFahrzeug(Fahrt t) {
-		this.fbService.getFahrzeug(t, new GetFahrzeugCallback2());
+		this.fbService.getFahrzeug(t, new GetFahrzeugSimpleCallback());
 		
 	}
 
@@ -239,6 +240,23 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		}	
 	}
 	
+	private class GetFahrerSimpleCallback implements AsyncCallback<Fahrer>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onSuccess(Fahrer result) {
+			Fahrer fahrer = (Fahrer) result;
+			mainView.getContEditFahrt().setFahrerProfil(fahrer);
+			
+		}
+		
+	}
+	
 	
 	private class GetFahrzeugCallback implements AsyncCallback<Fahrzeug>{
 
@@ -256,7 +274,7 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 			
 	}
 	
-	private class GetFahrzeugCallback2 implements AsyncCallback<Fahrzeug>{
+	private class GetFahrzeugSimpleCallback implements AsyncCallback<Fahrzeug>{
 
 		@Override
 		public void onFailure(Throwable caught) {
@@ -266,8 +284,8 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 
 		@Override
 		public void onSuccess(Fahrzeug result) {
-			Fahrzeug v = (Fahrzeug) result;
-				//mainView.getContEditFahrt().;
+			Fahrzeug fahrzeug = (Fahrzeug) result;
+				mainView.getContEditFahrt().setFahrzeugProfil(fahrzeug);
 			}
 			
 	}

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.type.HierarchicType;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrer;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrzeuge;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContCreateFahrt;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContEditFahrt;
@@ -121,14 +122,11 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 //		
 //	}
 	
-//	@Override
-//	public void deleteFahrer(int id) {
-//		if (Window.confirm("Möchten Sie Ihr Profil und sich als Fahrer wirklich löschen?")) {
-//		this.fbService.deleteFahrer(id, new DeleteFahrerCallback());
-//		}
-//		
-//	}
-//
+	@Override
+	public void deleteFahrer(int id) {	
+		this.fbService.deleteFahrer(id, new DeleteFahrerCallback());	
+	}
+
 	@Override
 	public void getFahrzeug(Fahrt t) {
 		this.fbService.getFahrzeug(t, new GetFahrzeugSimpleCallback());
@@ -269,8 +267,15 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 
 		@Override
 		public void onSuccess(Vector<Fahrer> result) {
-			Vector<Fahrer>  vecfahrer = (Vector<Fahrer>)  result;
-			mainView.getContCreateFahrt().schreibeAlleFahrer(vecfahrer);	
+			
+			Vector<Fahrer>  vecFahrer = (Vector<Fahrer>)  result;
+			
+			if (mainView.getCurrentCont() instanceof ContCreateFahrt){	
+				mainView.getContCreateFahrt().schreibeAlleFahrer(vecFahrer);
+			}
+			else if(mainView.getCurrentCont() instanceof ContAlleFahrer){
+				mainView.getContAlleFahrer().befuelleFhrTabelle(vecFahrer);	
+			}
 		}
 		
 	}
@@ -419,15 +424,18 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 	
 	
 	private class DeleteFahrerCallback implements AsyncCallback<Void>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fahrzeug konnte nicht gelöscht werden");
 			
-				public void onSuccess(Void result) {
-					
-					
-				}@Override
-				public void onFailure(Throwable caught) {
-					// TODO Auto-generated method stub
-					
-				}
+		}
+
+		@Override
+		public void onSuccess(Void result) {
+			mainView.openAlleFahrerCont();
+		}
+
 	}
 
 

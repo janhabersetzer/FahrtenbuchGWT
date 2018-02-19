@@ -381,6 +381,26 @@ public class FahrtMapper {
 		}
 	}
 	
+	public void deleteAlleFahrtenOfFahrer(int id){
+		Connection con = null;
+		PreparedStatement stmt = null;
+		
+		
+		String deleteSQL = "DELETE FROM Fahrt WHERE Fahrer_idFahrer=?";
+		
+		try{
+			con = DBConnection.connection();
+			
+			stmt = con.prepareStatement(deleteSQL);
+			stmt.setInt(1, id);
+			
+			stmt.executeUpdate();	
+		}
+		catch(SQLException e2){
+			e2.printStackTrace();
+		}
+	}
+	
 	
 	/**
 	 * Methode um ein Element des ResultSet's in ein Fahrt-Objekt zu verwandeln.

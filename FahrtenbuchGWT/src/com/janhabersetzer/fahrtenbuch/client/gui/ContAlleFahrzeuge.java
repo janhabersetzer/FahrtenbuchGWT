@@ -53,7 +53,6 @@ public class ContAlleFahrzeuge extends Composite{
 		
 		/*
 		 * CSS anwenden und die Tabelle formatieren.
-	
 		 */
 		ueberschriftLabel.addStyleName("fahrtenbuch-label");
 		showFhrzFlexTable.addStyleName("FlexTable");
@@ -136,27 +135,6 @@ public class ContAlleFahrzeuge extends Composite{
 	}
 	
 	
-//	private class AnzeigenClickHandler implements ClickHandler{
-//
-//		@Override
-//		public void onClick(ClickEvent event) {
-//			count++;
-//			int fahrzeugId = fahrzeugIDs.get(arrayListIndex);
-//			mainView.openFahrzeugCont(fahrzeugId);		
-//		}
-//		
-//	}
-//	
-//	private class LoeschenClickHandler implements ClickHandler{
-//		@Override
-//		public void onClick(ClickEvent event) {
-//			if (Window.confirm("Möchten Sie dieses Fahrzeug wirklich löschen?")){
-//				int fahrzeugId = fahrzeugIDs.get(count);
-//				fahrzeugIDs.remove(arrayListIndex);
-//				serviceImpl.deleteFahrzeug(fahrzeugId);
-//				
-//			}
-//		}
-//	}
+
 
 }

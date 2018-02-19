@@ -211,14 +211,10 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	@Override
 	public void deleteFahrer(int id) throws IllegalArgumentException {
 		
-		//Prüfen ob der zu löschende Fahrer noch Fahrten in der DB hat
-		if(tMapper.findByFahrerId(id).isEmpty()){
-			//Dann löschen
-			dMapper.delete(id);
-		}
-		//elese{
-			//Benachrichtigung??
-		//}
+		//Alle Fahrten dieses Fahrers löschen
+		tMapper.deleteAlleFahrtenOfFahrer(id);
+		//Fahrer löschen
+		dMapper.delete(id);
 	}
 	
 	@Override

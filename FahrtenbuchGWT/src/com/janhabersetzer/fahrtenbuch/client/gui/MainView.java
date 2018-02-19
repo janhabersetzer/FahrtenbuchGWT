@@ -5,6 +5,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 
+import io.swagger.annotations.Contact;
+
 
 public class MainView extends Composite {
 	
@@ -25,6 +27,8 @@ public class MainView extends Composite {
 	private ContEditFahrt contEditFahrt;
 	
 	private ContCreateFahrt contCreateFahrt;
+	
+	private ContEditFahrer contEditFahrer;
 	
 	//Gibt anhand der Zahle Aussage, welcher Content Grad angezeigt wird.
 	 private Object currentCont;
@@ -63,7 +67,7 @@ public class MainView extends Composite {
 	
 	public void openAlleFahrerCont(){
 		this.contentPanel.clear();
-		contAlleFahrer = new ContAlleFahrer();
+		contAlleFahrer = new ContAlleFahrer(this, this.serviceImpl);
 		this.setCurrentCont(contAlleFahrer);
 		this.contentPanel.add(contAlleFahrer);	
 	}
@@ -98,23 +102,17 @@ public class MainView extends Composite {
 		this.contentPanel.add(contCreateFahrt);
 	}
 	
+	public void openEditFahrer(int id){
+		this.contentPanel.clear();
+		ContEditFahrer contEditFahrer = new ContEditFahrer(id, this, serviceImpl);
+		this.setCurrentCont(contEditFahrer);
+		this.contentPanel.add(contEditFahrer);
+	}
+	
 	//**************Getter/Setter***********************
 	
 	public void setCurrentCont(Object o){
 		this.currentCont = o;
-//		if(o instanceof ContAlleFahrer){
-//			this.currentContIndex= 0;
-//		}else if(o instanceof ContAlleFahrzeuge){
-//			this.currentContIndex= 1;
-//		}else if(o instanceof ContAlleReports){
-//			this.currentContIndex= 2;
-//		}else if(o instanceof ContFahrzeug){
-//			this.currentContIndex= 3;
-//		}else if(o instanceof ContEditFahrt){
-//			this.currentContIndex= 4;
-//		}else if(o instanceof ContCreateFahrt){
-//			this.currentContIndex= 5;
-//		}
 	}
 	
 	public Object getCurrentCont(){

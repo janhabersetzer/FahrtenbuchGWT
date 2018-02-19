@@ -20,7 +20,7 @@ public class RunTest {
 		// TODO Auto-generated method stub
 		
 		
-		testInsertFahrt();
+		testInsertFahrzeug();
 		
 	}
 	
@@ -230,6 +230,19 @@ public static  void testUpdateFahrzeug() throws Exception{
 		
 		
 		vm.delete(v.getId());
+		System.out.println("Erfolgreich gelöscht");
+	}
+	
+	public static  void testDeleteFahrer() throws Exception{
+		
+		FahrerMapper dm = FahrerMapper.fahrerMapper();
+		
+		
+		Fahrer d = new Fahrer();
+		d.setId(2);
+		
+		
+		dm.delete(d.getId());
 		System.out.println("Erfolgreich gelöscht");
 	}
 	

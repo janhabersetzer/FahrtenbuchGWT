@@ -9,6 +9,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrzeuge;
+import com.janhabersetzer.fahrtenbuch.client.gui.ContCreateFahrt;
+import com.janhabersetzer.fahrtenbuch.client.gui.ContEditFahrt;
 import com.janhabersetzer.fahrtenbuch.client.gui.MainView;
 import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
@@ -353,9 +355,10 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 
 		@Override
 		public void onSuccess(Fahrt result) {
+			if(mainView.getCurrentCont() instanceof ContEditFahrt){
 			Fahrt fahrt = (Fahrt) result;
 			mainView.getContEditFahrt().oeffneBearbeiten(fahrt);
-			
+			}
 		}
 		
 	}
@@ -387,9 +390,15 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 
 		@Override
 		public void onSuccess(Void result) {
+			if(mainView.getCurrentCont() instanceof ContEditFahrt){
 			Window.alert("Fahrt wurde erstellt");
 			int fahrzeugId = mainView.getContEditFahrt().getFahrzeugId();
-			mainView.openFahrzeugCont(fahrzeugId);	
+			mainView.openFahrzeugCont(fahrzeugId);
+			}	
+			else if(mainView.getCurrentCont() instanceof ContCreateFahrt){
+				int fahrzeugId = mainView.getContCreateFahrt().getFahrzeugId();
+				mainView.openFahrzeugCont(fahrzeugId);
+			}
 		}
 		
 	}

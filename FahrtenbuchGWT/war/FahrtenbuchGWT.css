@@ -156,7 +156,7 @@ div#Trailer {
 	font-size: 100%;
 	/*font-weight: bold;/*
 	/* font-style: italic; */
-	color: red;
+	color: #1524db;
 	padding-bottom: 0.5em;
 }
 
@@ -271,6 +271,12 @@ div#Trailer {
 
 .red_label {
     color: red;
+    font-size: 8pt;
+    overflow: hidden;
+}
+
+.grey_label {
+    color: grey;
     font-size: 8pt;
     overflow: hidden;
 }

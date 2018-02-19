@@ -145,7 +145,7 @@ public static  void testFindAll() throws Exception{
 				t.setBetriebsfahrtKm(0);
 				t.setZielBeschreibung("Oma");
 				t.setKommentar("Datum Test");
-				t.setSourceFahrzeugId(4);
+				t.setSourceFahrzeugId(1);
 				t.setSourceFahrerId(1);
 				t.setBearbeitungsdatum(bdate);
 		try{

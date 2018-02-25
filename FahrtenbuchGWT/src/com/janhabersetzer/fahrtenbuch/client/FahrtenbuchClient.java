@@ -36,7 +36,9 @@ public interface FahrtenbuchClient {
 	
 	void getAlleFahrer();
 	
-//	void saveFahrer(Fahrer d);
+	void updateFahrer(Fahrer d);
+	
+	void saveFahrer(Fahrer d);
 	
 //	void updateFahrer(Fahrer d);
 	

@@ -10,6 +10,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
@@ -27,14 +28,19 @@ public class ContAlleFahrer extends Composite{
 	
 	private Fahrer fahrerProfil;
 	
+	private ArrayList<Integer> fahrerIDs;
+	
 	//Panels
 	private VerticalPanel vPanel= new VerticalPanel();
+	
+	private HorizontalPanel hPanel = new HorizontalPanel();
 	
 	// Widgets
 	 
 	private Label ueberschriftLabel = new Label("Alle Fahrer:");
 	String text ="Hier hat sich was geändert"; 
 	private FlexTable showFhrFlexTable = new FlexTable();
+	Button fahrerHinzuBtn;
 	private Button loeschenBtn;
 	private Button bearbeitenBtn;
 	
@@ -66,8 +72,24 @@ public class ContAlleFahrer extends Composite{
 		
 		serviceImpl.getAlleFahrer();
 		
+		//horizontalPanel zusammenfuegen
+		hPanel.add(ueberschriftLabel);
+		
+		//Erstelle den Button für das Hinzufuegen der Fahrten und fuege ihn den hPanel hinzu
+		fahrerHinzuBtn = new Button(" + Fahrer hinzufügen");
+		fahrerHinzuBtn.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				//mainView.openCreateFahrer();	
+			}
+		});
+		hPanel.add(fahrerHinzuBtn);
+	
+		
+		
 		//Füge das vPanel zusammen.
-		vPanel.add(ueberschriftLabel);
+		vPanel.add(hPanel);
 		vPanel.add(showFhrFlexTable);
 	}
 	
@@ -75,9 +97,13 @@ public class ContAlleFahrer extends Composite{
 	public void befuelleFhrTabelle(Vector<Fahrer> vec){
 		this.alleFahrer = vec;
 		
+		this.fahrerIDs = new ArrayList<Integer>();
+		
 		for(int i = 0; i< alleFahrer.size(); i++){
 			
 			final int id = vec.get(i).getId();
+			
+			this.fahrerIDs.add(id);
 				
 			//Füge Fahrer + Buttons für jeden Fhr in die Tabelle ein
 			
@@ -92,7 +118,8 @@ public class ContAlleFahrer extends Composite{
 				
 				@Override
 				public void onClick(ClickEvent event) {
-					mainView.openEditFahrer(id);
+					ContAlleFahrer.this.fahrerProfil = alleFahrer.get(ContAlleFahrer.this.fahrerIDs.indexOf(id));
+					mainView.openEditFahrer(ContAlleFahrer.this.fahrerProfil);
 					
 				}
 			}); 

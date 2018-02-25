@@ -11,6 +11,7 @@ import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrer;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrzeuge;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContCreateFahrt;
+import com.janhabersetzer.fahrtenbuch.client.gui.ContEditFahrer;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContEditFahrt;
 import com.janhabersetzer.fahrtenbuch.client.gui.MainView;
 import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
@@ -115,13 +116,20 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		this.fbService.getAlleFahrer(new GetAlleFahrerCallback());
 		
 	}
-//
-//	@Override
-//	public void saveFahrer(Fahrer d) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
+	@Override
+	public void saveFahrer(Fahrer d) {
+		this.fbService.saveFahrer(d, new SaveFahrerCallback());
+		
+	}
 	
+	@Override
+	public void updateFahrer(Fahrer d) {
+		this.fbService.updateFahrer(d, new UpdateFahrerCallback());
+		
+	}
+	
+		
 	@Override
 	public void deleteFahrer(int id) {	
 		this.fbService.deleteFahrer(id, new DeleteFahrerCallback());	
@@ -278,6 +286,40 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 			}
 		}
 		
+	}
+	
+	private class SaveFahrerCallback implements AsyncCallback<Void>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onSuccess(Void result) {	
+			
+//			if (mainView.getCurrentCont() instanceof ContCreateFahrer){	
+//				mainView.openAlleFahrerCont();
+//			}		
+		}	
+	}
+	
+	private class UpdateFahrerCallback implements AsyncCallback<Void>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onSuccess(Void result) {	
+			
+			if (mainView.getCurrentCont() instanceof ContEditFahrer){	
+				mainView.openAlleFahrerCont();
+			}		
+		}	
 	}
 	
 	

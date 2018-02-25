@@ -3,6 +3,7 @@ package com.janhabersetzer.fahrtenbuch.client.gui;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
+import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 
 import io.swagger.annotations.Contact;
@@ -102,9 +103,9 @@ public class MainView extends Composite {
 		this.contentPanel.add(contCreateFahrt);
 	}
 	
-	public void openEditFahrer(int id){
+	public void openEditFahrer(Fahrer fahrer){
 		this.contentPanel.clear();
-		ContEditFahrer contEditFahrer = new ContEditFahrer(id, this, serviceImpl);
+		contEditFahrer = new ContEditFahrer(fahrer, this, serviceImpl);
 		this.setCurrentCont(contEditFahrer);
 		this.contentPanel.add(contEditFahrer);
 	}

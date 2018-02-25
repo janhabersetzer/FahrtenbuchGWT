@@ -9,6 +9,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
@@ -23,6 +24,7 @@ public class ContAlleFahrzeuge extends Composite{
 	//Panels
 	
 	private VerticalPanel vPanel= new VerticalPanel();
+	private HorizontalPanel hPanel = new HorizontalPanel();
 	
 	// Widgets
 	 
@@ -31,6 +33,7 @@ public class ContAlleFahrzeuge extends Composite{
 	private FlexTable showFhrzFlexTable = new FlexTable();
 	private Button loeschenBtn;
 	private Button anzeigenBtn;
+	private Button fahrzeugHinzuBtn;
 	
 	/*
 	 * Um den Index Fahrzeugen in der FlexTable ermitteln zu können brauchen wir diese ArrayList
@@ -78,9 +81,22 @@ public class ContAlleFahrzeuge extends Composite{
 		 */
 		serviceImpl.getAlleFahrzeug();
 		
+		//horizontalPanel zusammenfuegen
+		hPanel.add(ueberschriftLabel);
+		
+		//Erstelle den Button für das Hinzufuegen der Fahrten und fuege ihn den hPanel hinzu
+		fahrzeugHinzuBtn = new Button(" + Fahrzeug hinzufügen");
+		fahrzeugHinzuBtn.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				mainView.openCreateFahrzeug();	
+			}
+		});
+		hPanel.add(fahrzeugHinzuBtn);
 		
 		//Füge das vPanel zusammen.
-		vPanel.add(ueberschriftLabel);
+		vPanel.add(hPanel);
 		vPanel.add(showFhrzFlexTable);
 	}
 	

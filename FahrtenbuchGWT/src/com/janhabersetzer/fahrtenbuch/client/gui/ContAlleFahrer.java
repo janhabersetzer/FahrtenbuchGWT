@@ -40,7 +40,7 @@ public class ContAlleFahrer extends Composite{
 	private Label ueberschriftLabel = new Label("Alle Fahrer:");
 	String text ="Hier hat sich was geändert"; 
 	private FlexTable showFhrFlexTable = new FlexTable();
-	Button fahrerHinzuBtn;
+	private Button fahrerHinzuBtn;
 	private Button loeschenBtn;
 	private Button bearbeitenBtn;
 	
@@ -81,7 +81,7 @@ public class ContAlleFahrer extends Composite{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				//mainView.openCreateFahrer();	
+				mainView.openCreateFahrer();	
 			}
 		});
 		hPanel.add(fahrerHinzuBtn);

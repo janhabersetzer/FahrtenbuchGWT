@@ -40,8 +40,6 @@ public interface FahrtenbuchClient {
 	
 	void saveFahrer(Fahrer d);
 	
-//	void updateFahrer(Fahrer d);
-	
 	void deleteFahrer(int id);
 	
 	void getFahrzeug(Fahrt t);
@@ -50,7 +48,7 @@ public interface FahrtenbuchClient {
 	
 	void getAlleFahrzeug();
 	
-//	void saveFahrzeug(Fahrzeug v);
+	void saveFahrzeug(Fahrzeug v);
 	
 //	void updateFahrzeug(Fahrzeug v);
 	

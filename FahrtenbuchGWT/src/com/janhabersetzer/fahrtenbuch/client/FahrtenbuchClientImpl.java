@@ -10,7 +10,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrer;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrzeuge;
+import com.janhabersetzer.fahrtenbuch.client.gui.ContCreateFahrer;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContCreateFahrt;
+import com.janhabersetzer.fahrtenbuch.client.gui.ContCreateFahrzeug;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContEditFahrer;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContEditFahrt;
 import com.janhabersetzer.fahrtenbuch.client.gui.MainView;
@@ -152,12 +154,11 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		this.fbService.getAlleFahrzeug(new GetAllFahrzeugCallback());
 		
 	}
-//
-//	@Override
-//	public void saveFahrzeug(Fahrzeug v) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
+	@Override
+	public void saveFahrzeug(Fahrzeug v) {
+		this.fbService.saveFahrzeug(v, new SaveFahrzeugCallback());	
+	}
 
 	@Override
 	public void deleteFahrzeug(int id) {
@@ -299,9 +300,9 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		@Override
 		public void onSuccess(Void result) {	
 			
-//			if (mainView.getCurrentCont() instanceof ContCreateFahrer){	
-//				mainView.openAlleFahrerCont();
-//			}		
+			if (mainView.getCurrentCont() instanceof ContCreateFahrer){	
+				mainView.openAlleFahrerCont();
+			}		
 		}	
 	}
 	
@@ -318,6 +319,8 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 			
 			if (mainView.getCurrentCont() instanceof ContEditFahrer){	
 				mainView.openAlleFahrerCont();
+			}else{
+				Window.alert("Hier gehts nicht weiter");
 			}		
 		}	
 	}
@@ -354,7 +357,22 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 			Fahrzeug fahrzeug = (Fahrzeug) result;
 				mainView.getContEditFahrt().schreibeFahrzeug(fahrzeug);
 			}
-			
+		
+	}
+	
+	private class SaveFahrzeugCallback implements AsyncCallback<Void>{
+
+			@Override
+			public void onFailure(Throwable caught) {
+				System.out.print("Der Fehler ist beim Übertragen des Fahrzeugs von Server (SaveFahrzeugCallback)");
+				
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				if(mainView.getCurrentCont() instanceof ContCreateFahrzeug)
+					mainView.openAlleFhrzCont();
+				}		
 	}
 		
 	private class GetAlleFahrtenFhrzCallback implements AsyncCallback<Vector<Fahrt>>{

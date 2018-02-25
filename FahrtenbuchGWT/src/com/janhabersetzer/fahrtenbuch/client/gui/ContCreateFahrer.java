@@ -12,8 +12,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 
-public class ContEditFahrer extends Composite{
-	
+public class ContCreateFahrer extends Composite{
 	// Attribute fuer Aufrufe
 	private MainView mainView;
 	
@@ -32,14 +31,14 @@ public class ContEditFahrer extends Composite{
 	Button speichernBtn;
 	Button abbrechenBtn;
 	
-	private Label ueberschriftLabel = new Label("Fahrer bearbeiten: ");
+	private Label ueberschriftLabel = new Label("Neuen Fahrer anlegen: ");
 	private Label warnungLabel = new Label();
 	
 	
-	ContEditFahrer(Fahrer fahrer, MainView mainView, FahrtenbuchClientImpl serviceImpl){
+	ContCreateFahrer(MainView mainView, FahrtenbuchClientImpl serviceImpl){
 		initWidget(this.vPanel);
 		
-		this.fahrerProfil = fahrer;
+		this.fahrerProfil = new Fahrer();
 		
 		this.mainView = mainView;
 		
@@ -64,14 +63,14 @@ public class ContEditFahrer extends Composite{
 		showFahrerFlexTable.setText(0, 3, "Speichern");
 		showFahrerFlexTable.setText(0, 4, "Abbrechen");
 		
-		//Da hier das fahrerobjekt bereits bekannt ist, kann man die Textfelder direkt(ohne AsyncCall) befüllen und anzeigen
-		vorNameTBox.setText(fahrerProfil.getVorname());
+		
+		
 		showFahrerFlexTable.setWidget(1, 0, vorNameTBox);
 		
-		nachNameTBox.setText(fahrerProfil.getNachname());
+		
 		showFahrerFlexTable.setWidget(1, 1, nachNameTBox);
 		
-		eMailTBox.setText(fahrerProfil.getEMail());
+		
 		showFahrerFlexTable.setWidget(1, 2, eMailTBox);
 		
 		//SpeichernButton
@@ -99,7 +98,7 @@ public class ContEditFahrer extends Composite{
 						
 						}
 					//Fahrzeug an server zum speichern uebergeben
-					ContEditFahrer.this.serviceImpl.updateFahrer(fahrerProfil);
+					ContCreateFahrer.this.serviceImpl.saveFahrer(fahrerProfil);
 				}
 			}
 		});
@@ -112,7 +111,7 @@ public class ContEditFahrer extends Composite{
 			@Override
 			public void onClick(ClickEvent event) {
 				if(Window.confirm("Wollen Sie das Bearbeiten abbrechen?")){
-				ContEditFahrer.this.mainView.openAlleFahrerCont();
+				ContCreateFahrer.this.mainView.openAlleFahrerCont();
 				}	
 			}
 		});
@@ -123,8 +122,7 @@ public class ContEditFahrer extends Composite{
 		vPanel.add(showFahrerFlexTable);
 		
 	}
-	
-	
+		
 	
 	public Boolean pruefeEingabe(){
 		//Prüfen, ob die Felder leer sind
@@ -146,5 +144,6 @@ public class ContEditFahrer extends Composite{
 		return false;
 		
 	}
+
 
 }

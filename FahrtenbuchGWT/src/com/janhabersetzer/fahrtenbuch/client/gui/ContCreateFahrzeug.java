@@ -10,36 +10,37 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
-import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
+import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
 
-public class ContEditFahrer extends Composite{
-	
+public class ContCreateFahrzeug extends Composite{
 	// Attribute fuer Aufrufe
+	
 	private MainView mainView;
 	
 	private FahrtenbuchClientImpl serviceImpl;
 	
-	private Fahrer fahrerProfil;
+	private Fahrzeug fahrzeugProfil;
 	
 	//Panels
 	private VerticalPanel vPanel= new VerticalPanel();
-	private FlexTable showFahrerFlexTable = new FlexTable();
+	private FlexTable showFhrzFlexTable = new FlexTable();
 	
 	//Widgets oeffneBearbeiten(Fahrer fahrer) hinzugefügt werden
-	TextBox vorNameTBox = new TextBox();
-	TextBox nachNameTBox = new TextBox();
-	TextBox eMailTBox = new TextBox();
+	TextBox kennzeichenTBox = new TextBox();
+	TextBox modellTBox = new TextBox();
+	TextBox kmTBox = new TextBox();
+	TextBox farbeTBox = new TextBox();
 	Button speichernBtn;
 	Button abbrechenBtn;
 	
-	private Label ueberschriftLabel = new Label("Fahrer bearbeiten: ");
+	private Label ueberschriftLabel = new Label("Neues Fahrzeug anlegen: ");
 	private Label warnungLabel = new Label();
 	
 	
-	ContEditFahrer(Fahrer fahrer, MainView mainView, FahrtenbuchClientImpl serviceImpl){
+	ContCreateFahrzeug(MainView mainView, FahrtenbuchClientImpl serviceImpl){
 		initWidget(this.vPanel);
 		
-		this.fahrerProfil = fahrer;
+		this.fahrzeugProfil = new Fahrzeug();
 		
 		this.mainView = mainView;
 		
@@ -51,28 +52,32 @@ public class ContEditFahrer extends Composite{
 		 */
 		ueberschriftLabel.addStyleName("fahrtenbuch-label");
 		warnungLabel.setStyleName("red_label");
-		showFahrerFlexTable.addStyleName("FlexTable");
-		showFahrerFlexTable.setCellPadding(6);
-		showFahrerFlexTable.getColumnFormatter().addStyleName(0, "TableHeader");
+		showFhrzFlexTable.addStyleName("FlexTable");
+		showFhrzFlexTable.setCellPadding(6);
+		showFhrzFlexTable.getColumnFormatter().addStyleName(0, "TableHeader");
 		
 		/**
 		 * Erste Spalte der Fahrten-Tabelle festlegen.
 		 */
-		showFahrerFlexTable.setText(0, 0, "Vorname");
-		showFahrerFlexTable.setText(0, 1, "Nachname");
-		showFahrerFlexTable.setText(0, 2, "E-Mail");
-		showFahrerFlexTable.setText(0, 3, "Speichern");
-		showFahrerFlexTable.setText(0, 4, "Abbrechen");
+		showFhrzFlexTable.setText(0, 0, "Kennzeichen");
+		showFhrzFlexTable.setText(0, 1, "Kilometerstand");
+		showFhrzFlexTable.setText(0, 2, "Modellbeschreibung");
+		showFhrzFlexTable.setText(0, 3, "Farbe");
+		showFhrzFlexTable.setText(0, 4, "Speichern");
+		showFhrzFlexTable.setText(0, 5, "Abbrechen");
 		
-		//Da hier das fahrerobjekt bereits bekannt ist, kann man die Textfelder direkt(ohne AsyncCall) befüllen und anzeigen
-		vorNameTBox.setText(fahrerProfil.getVorname());
-		showFahrerFlexTable.setWidget(1, 0, vorNameTBox);
 		
-		nachNameTBox.setText(fahrerProfil.getNachname());
-		showFahrerFlexTable.setWidget(1, 1, nachNameTBox);
 		
-		eMailTBox.setText(fahrerProfil.getEMail());
-		showFahrerFlexTable.setWidget(1, 2, eMailTBox);
+		showFhrzFlexTable.setWidget(1, 0, kennzeichenTBox);
+		
+		
+		showFhrzFlexTable.setWidget(1, 1, kmTBox);
+		
+		
+		showFhrzFlexTable.setWidget(1, 2, modellTBox);
+		
+		
+		showFhrzFlexTable.setWidget(1, 3, farbeTBox);
 		
 		//SpeichernButton
 		speichernBtn = new Button("Speichern");
@@ -89,21 +94,23 @@ public class ContEditFahrer extends Composite{
 					try{
 						//fahrerProfil mit den Texfeldern überschreibe
 					
-						fahrerProfil.setVorname(vorNameTBox.getText());
+						fahrzeugProfil.setKennzeichen(kennzeichenTBox.getText());
 						
-						fahrerProfil.setNachname(nachNameTBox.getText());
+						fahrzeugProfil.setModellBeschreibung(modellTBox.getText());
 						
-						fahrerProfil.setEMail(eMailTBox.getText());
+						fahrzeugProfil.setKm(Integer.parseInt(kmTBox.getText()));
+						
+						fahrzeugProfil.setFarbe(farbeTBox.getText());
 				
 						}catch(RuntimeException e){
 						
 						}
 					//Fahrzeug an server zum speichern uebergeben
-					ContEditFahrer.this.serviceImpl.updateFahrer(fahrerProfil);
+					ContCreateFahrzeug.this.serviceImpl.saveFahrzeug(fahrzeugProfil);
 				}
 			}
 		});
-		showFahrerFlexTable.setWidget(1, 3, speichernBtn);
+		showFhrzFlexTable.setWidget(1, 4, speichernBtn);
 		
 		
 		abbrechenBtn = new Button("Abbrechen");
@@ -112,33 +119,36 @@ public class ContEditFahrer extends Composite{
 			@Override
 			public void onClick(ClickEvent event) {
 				if(Window.confirm("Wollen Sie das Bearbeiten abbrechen?")){
-				ContEditFahrer.this.mainView.openAlleFahrerCont();
+				ContCreateFahrzeug.this.mainView.openAlleFhrzCont();
 				}	
 			}
 		});
-		showFahrerFlexTable.setWidget(1, 4, abbrechenBtn);
+		showFhrzFlexTable.setWidget(1, 5, abbrechenBtn);
 		
 		
 		vPanel.add(ueberschriftLabel);
-		vPanel.add(showFahrerFlexTable);
+		vPanel.add(showFhrzFlexTable);
 		
 	}
-	
-	
+		
 	
 	public Boolean pruefeEingabe(){
 		//Prüfen, ob die Felder leer sind
-		if (vorNameTBox.getText().length() == 0) {
+		if (kennzeichenTBox.getText().length() == 0) {
 			warnungLabel.setText("Dieses Feld darf nicht leer sein");
-			showFahrerFlexTable.setWidget(2, 0, warnungLabel);
+			showFhrzFlexTable.setWidget(2, 0, warnungLabel);
 		} 
-		else if (nachNameTBox.getText().length() == 0) {
+		else if (modellTBox.getText().length() == 0) {
 			warnungLabel.setText("Dieses Feld darf nicht leer sein");
-			showFahrerFlexTable.setWidget(2, 1, warnungLabel);
+			showFhrzFlexTable.setWidget(2, 1, warnungLabel);
 		}
-		else if (eMailTBox.getText().length() == 0){
+		else if (kmTBox.getText().length() == 0){
 			warnungLabel.setText("Dieses Feld darf nicht leer sein");
-			showFahrerFlexTable.setWidget(2, 2, warnungLabel);
+			showFhrzFlexTable.setWidget(2, 2, warnungLabel);
+		}
+		else if (farbeTBox.getText().length() == 0){
+			warnungLabel.setText("Dieses Feld darf nicht leer sein");
+			showFhrzFlexTable.setWidget(2, 3, warnungLabel);
 		}
 		else{
 			return true;
@@ -147,4 +157,8 @@ public class ContEditFahrer extends Composite{
 		
 	}
 
+
+
+	
+	
 }

@@ -2,6 +2,7 @@ package com.janhabersetzer.fahrtenbuch.client;
 
 import java.util.Date;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
@@ -50,7 +51,7 @@ public interface FahrtenbuchClient {
 	
 	void saveFahrzeug(Fahrzeug v);
 	
-//	void updateFahrzeug(Fahrzeug v);
+	void updateFahrzeug(Fahrzeug v);
 	
 	void deleteFahrzeug(int id);
 //	
@@ -67,6 +68,10 @@ public interface FahrtenbuchClient {
 //	void deleteFahrt(int id);
 //	
 //	void deleteAlleFahrtenVonFahrzeug(int id);
+
+	void schreibeFahrerReportHTML(Fahrer d);
+	
+	void schreibeFahrzeugReportHTML(Fahrzeug v);
 //	
 //	void createAlleFahrtenVonFahrerReport(Fahrer d);
 //	

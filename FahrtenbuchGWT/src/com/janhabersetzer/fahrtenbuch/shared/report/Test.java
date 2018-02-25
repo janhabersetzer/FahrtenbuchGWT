@@ -9,13 +9,14 @@ public class Test {
 
 	public static void main(String[] args) {
 	
-		testGetFahrerByEmail();
+		testReport();
 	}
 	
 	
 	public static void  testGetFahrerByEmail(){
 		
 		FahrtenbuchAdministrationImpl fbadmin = new FahrtenbuchAdministrationImpl();
+		fbadmin.init();
 		
 		String emailAdress = "jh200@hdm-stuttgart.de";
 		Fahrer d = fbadmin.getFahrerByEmail(emailAdress);
@@ -29,6 +30,7 @@ public class Test {
 		v.setId(1);
 		
 		FahrtenbuchAdministrationImpl fbadmin = new FahrtenbuchAdministrationImpl();
+		fbadmin.init();
 		
 		AlleFahrtenVonFahrzeugReport report = fbadmin.createAlleFahrtenVonFahrzeugReport(v);
 		

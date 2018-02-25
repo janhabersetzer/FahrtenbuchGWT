@@ -236,6 +236,22 @@ public interface FahrtenbuchAdministration extends RemoteService {
 	public void deleteAlleFahrtenVonFahrzeug(int id) throws IllegalArgumentException;
 	
 	/**
+	 * Einen AlleFahrtenVonFahrerReport als HTML-String zurückgeben
+	 * @param d Fahrer-Objekt zu dem der Report angelegt wird
+	 * @return String in HTML Format.
+	 */
+	
+	public String schreibeFahrerReportHTML(Fahrer d) throws IllegalArgumentException;
+	
+	/**
+	 * Einen AlleFahrtenVonFahrzeugReport als HTML-String zurückgeben
+	 * @param d Fahrer-Objekt zu dem der Report angelegt wird
+	 * @return String in HTML Format.
+	 */
+	
+	public String schreibeFahrzeugReportHTML(Fahrzeug v) throws IllegalArgumentException;
+	
+	/**
 	 * Einen AlleFahrtenVonFahrerReport anlegen
 	 * @param d Fahrer-Objekt zu dem der Report angelegt wird
 	 * @return AlleFahrtenVonFahrerReport-Objekt (String), dass mittels HTMLWriter in HTML übertragbar ist.

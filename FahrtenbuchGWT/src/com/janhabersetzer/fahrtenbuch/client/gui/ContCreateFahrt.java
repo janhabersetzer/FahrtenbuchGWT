@@ -184,7 +184,7 @@ public class ContCreateFahrt extends Composite{
 		//Kennzeichen
 		showFahrtFlexTable.setText(1, 10, fahrzeugProfil.getKennzeichen());
 		
-		//eMail wird in eigener Methode gesetzt wenn Callback wieder da ist
+		//eMail wird in eigener Methode gesetzt wenn "Callback wieder da ist" siehe schreibeAlleFahrer(Vector<Fahrer>)
 		
 
 		
@@ -205,6 +205,7 @@ public class ContCreateFahrt extends Composite{
 						}
 					//Fahrzeug an server zum speichern uebergeben
 					serviceImpl.saveFahrt(fahrtProfil);
+					
 				}
 			}
 		});
@@ -297,7 +298,7 @@ public class ContCreateFahrt extends Composite{
 		fahrtProfil.setBetriebsfahrtKm(Integer.valueOf(betriebsTBox.getText()));
 		fahrtProfil.setKommentar(kommentarTBox.getText());
 		//Fahrer muss  übernommen werden
-		int index=eMailLBox.getSelectedIndex();
+		int index = eMailLBox.getSelectedIndex();
 		fahrtProfil.setSourceFahrerId(alleFahrer.elementAt(index).getId());
 		//Fahrzeug muss nicht übernommen werden, da nicht veränderbar und bereits im Konstruktor gesetzt
 		

@@ -66,6 +66,10 @@ public interface FahrtenbuchAdministrationAsync {
 	
 	void deleteAlleFahrtenVonFahrzeug(int id, AsyncCallback<Void> callback);
 	
+	void schreibeFahrerReportHTML(Fahrer d, AsyncCallback<String> callback);
+	
+	void schreibeFahrzeugReportHTML(Fahrzeug v, AsyncCallback<String> callback);
+	
 	void createAlleFahrtenVonFahrerReport(Fahrer d, AsyncCallback<AlleFahrtenVonFahrerReport> callback);
 	
 	void createAlleFahrtenVonFahrzeugReport(Fahrzeug v, AsyncCallback<AlleFahrtenVonFahrzeugReport> callback);

@@ -13,6 +13,7 @@ import com.janhabersetzer.fahrtenbuch.shared.report.AlleFahrtenVonFahrerReport;
 import com.janhabersetzer.fahrtenbuch.shared.report.AlleFahrtenVonFahrzeugReport;
 import com.janhabersetzer.fahrtenbuch.shared.report.Column;
 import com.janhabersetzer.fahrtenbuch.shared.report.CompositeParagraph;
+import com.janhabersetzer.fahrtenbuch.shared.report.HTMLReportWriter;
 import com.janhabersetzer.fahrtenbuch.shared.report.Row;
 import com.janhabersetzer.fahrtenbuch.shared.report.SimpleParagraph;
 import com.janhabersetzer.fahrtenbuch.shared.report.Test;
@@ -30,6 +31,8 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	private FahrzeugMapper vMapper = null;
 	
 	private FahrtMapper tMapper = null;
+	
+	private HTMLReportWriter writer = null;
 	
 	/**
 	 * No-Argument-Konstruktor muss vorhanden sein
@@ -278,13 +281,36 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 
 	@Override
 	public void saveFahrt(Fahrt t) throws IllegalArgumentException {
+		/*
+		 * Es muss sichergestellt werden, dass der Kilometerendstand der Fahrt den aktuellen Kilometerstand des Fahrzeugs updatet.
+		 * Dazu muss zunächst das entsprechende Fahrzeug anhand des Fremdschlüsses der bekannten Fahrt abgerufen werden
+		 */
+		Fahrzeug fahrzeug = vMapper.findByKey(t.getSourceFahrzeugId());
+		
+		// dann wird der Kilometerstand um den Endstand der Fahrt aktualisert.
+		fahrzeug.setKm(t.getKmEnd());
+		
+		//dann werden die Fahrt und das Fahrzeug in die Db gescheiben
 		tMapper.insert(t);
+		vMapper.update(fahrzeug);
 
 	}
 	
 	@Override
 	public void updateFahrt(Fahrt t) throws IllegalArgumentException {
+		/*
+		 * Es muss sichergestellt werden, dass der Kilometerendstand der Fahrt den aktuellen Kilometerstand des Fahrzeugs updatet.
+		 * Dazu muss zunächst das entsprechende Fahrzeug anhand des Fremdschlüsses der bekannten Fahrt abgerufen werden
+		 */
+		Fahrzeug fahrzeug = vMapper.findByKey(t.getSourceFahrzeugId());
+		
+		// dann wird der Kilometerstand um den Endstand der Fahrt aktualisert.
+		fahrzeug.setKm(t.getKmEnd());
+		
+		//dann werden die Fahrt und das Fahrzeug in die Db gescheiben
 		tMapper.update(t);
+		vMapper.update(fahrzeug);
+		
 
 	}
 
@@ -301,7 +327,25 @@ public class FahrtenbuchAdministrationImpl extends RemoteServiceServlet implemen
 	
 	//*********************REPORT-TEIL*************************************************
 	
+	public String schreibeFahrerReportHTML(Fahrer d){
+		
+		
+		AlleFahrtenVonFahrerReport report = this.createAlleFahrtenVonFahrerReport(d);
+		
+		this.writer = new HTMLReportWriter();
+		writer.process(report);
+		return writer.getReportText();
+	}
 	
+	
+	public String schreibeFahrzeugReportHTML(Fahrzeug v){
+				
+		AlleFahrtenVonFahrzeugReport report = this.createAlleFahrtenVonFahrzeugReport(v);
+		
+		this.writer = new HTMLReportWriter();
+		writer.process(report);
+		return writer.getReportText();
+	}
 	
 	public AlleFahrtenVonFahrerReport createAlleFahrtenVonFahrerReport(Fahrer d) 
 			throws IllegalArgumentException {

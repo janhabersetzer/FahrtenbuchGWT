@@ -146,7 +146,7 @@ public class MainView extends Composite {
 		return this.contAlleFahrer;
 	}
 	
-	public ContAlleReports getContAlleReprots(){
+	public ContAlleReports getContAlleReports(){
 		return this.contAlleReports;
 	}
 	

@@ -51,6 +51,15 @@ public class ContEditFahrt extends Composite{
 	
 	private Label ueberschriftLabel = new Label("Fahrt bearbeiten: ");
 	private Label warnungLabel = new Label();
+	private Label reqLabel1= new Label("* Pflichtfeld / Format yyyy.MM.dd");
+	private Label reqLabel2= new Label("* Pflichtfeld");
+	private Label reqLabel3= new Label("* Pflichtfeld");
+	private Label reqLabel4= new Label("* Pflichtfeld");
+	private Label reqLabel5= new Label("* Pflichtfeld");
+	private Label reqLabel6= new Label("* Pflichtfeld");
+	private Label reqLabel7= new Label("* Pflichtfeld");
+	private Label infoLabel1 = new Label("* Automatisch gesetzt");
+	private Label infoLabel2 = new Label("* Automatisch gesetzt");
 	
 	
 	
@@ -86,6 +95,16 @@ public class ContEditFahrt extends Composite{
 		showFahrtFlexTable.addStyleName("FlexTable");
 		showFahrtFlexTable.setCellPadding(6);
 		showFahrtFlexTable.getColumnFormatter().addStyleName(0, "TableHeader");
+		infoLabel1.setStyleName("grey_label");
+		infoLabel2.setStyleName("grey_label");
+		reqLabel1.setStyleName("grey_label");
+		reqLabel2.setStyleName("grey_label");
+		reqLabel3.setStyleName("grey_label");
+		reqLabel4.setStyleName("grey_label");
+		reqLabel5.setStyleName("grey_label");
+		reqLabel5.setStyleName("grey_label");
+		reqLabel6.setStyleName("grey_label");
+		reqLabel7.setStyleName("grey_label");
 		
 		/**
 		 * Erste Spalte der Fahrten-Tabelle festlegen.
@@ -104,6 +123,17 @@ public class ContEditFahrt extends Composite{
 		showFahrtFlexTable.setText(0, 11, "EMail(Fahrer)");
 		showFahrtFlexTable.setText(0, 12, "Speichern");
 		showFahrtFlexTable.setText(0, 13, "Abbrechen");
+		
+		//Hinweis Label
+		showFahrtFlexTable.setWidget(2, 1, reqLabel1);
+		showFahrtFlexTable.setWidget(2, 2, reqLabel2);
+		showFahrtFlexTable.setWidget(2, 3, infoLabel1);
+		showFahrtFlexTable.setWidget(2, 4, reqLabel3);
+		showFahrtFlexTable.setWidget(2, 5, reqLabel4);
+		showFahrtFlexTable.setWidget(2, 6, reqLabel5);
+		showFahrtFlexTable.setWidget(2, 7, reqLabel6);
+		showFahrtFlexTable.setWidget(2, 8, reqLabel7);
+		showFahrtFlexTable.setWidget(2, 9, infoLabel2);
 		
 		serviceImpl.getFahrt(fahrtId);
 
@@ -194,6 +224,7 @@ public class ContEditFahrt extends Composite{
 						}
 					//Fahrzeug an server zum speichern uebergeben
 					serviceImpl.updateFahrt(fahrtProfil);
+					
 				}
 			}
 		});

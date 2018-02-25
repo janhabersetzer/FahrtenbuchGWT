@@ -1,15 +1,16 @@
 package com.janhabersetzer.fahrtenbuch.client;
 
 
-import java.util.Enumeration;
+
 import java.util.Vector;
 
-import com.fasterxml.jackson.databind.type.HierarchicType;
+
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrer;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleFahrzeuge;
+import com.janhabersetzer.fahrtenbuch.client.gui.ContAlleReports;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContCreateFahrer;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContCreateFahrt;
 import com.janhabersetzer.fahrtenbuch.client.gui.ContCreateFahrzeug;
@@ -20,7 +21,7 @@ import com.janhabersetzer.fahrtenbuch.shared.FahrtenbuchAdministrationAsync;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrt;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrzeug;
-import com.janhabersetzer.fahrtenbuch.shared.report.Test;
+
 
 
 public class FahrtenbuchClientImpl implements FahrtenbuchClient {
@@ -159,6 +160,11 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 	public void saveFahrzeug(Fahrzeug v) {
 		this.fbService.saveFahrzeug(v, new SaveFahrzeugCallback());	
 	}
+	
+	@Override
+	public void updateFahrzeug(Fahrzeug v) {
+		this.fbService.updateFahrzeug(v, new UpdateFahrzeugCallback());	
+	}
 
 	@Override
 	public void deleteFahrzeug(int id) {
@@ -207,6 +213,16 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 //		// TODO Auto-generated method stub
 //		
 //	}
+	
+	@Override
+	public void schreibeFahrerReportHTML(Fahrer d){
+		this.fbService.schreibeFahrerReportHTML(d, new FahrerReportCallback());
+	}
+	
+	@Override
+	public void schreibeFahrzeugReportHTML(Fahrzeug v){
+		this.fbService.schreibeFahrzeugReportHTML(v, new FahrzeugReportCallback());
+	}
 //
 //	@Override
 //	public void createAlleFahrtenVonFahrerReport(Fahrer d) {
@@ -284,6 +300,9 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 			}
 			else if(mainView.getCurrentCont() instanceof ContAlleFahrer){
 				mainView.getContAlleFahrer().befuelleFhrTabelle(vecFahrer);	
+			}
+			else if(mainView.getCurrentCont() instanceof ContAlleReports){
+				mainView.getContAlleReports().zeigeWahlTabelleFahrer(result);
 			}
 		}
 		
@@ -370,10 +389,25 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 
 			@Override
 			public void onSuccess(Void result) {
-				if(mainView.getCurrentCont() instanceof ContCreateFahrzeug)
+				if(mainView.getCurrentCont() instanceof ContCreateFahrzeug){
 					mainView.openAlleFhrzCont();
-				}		
+				}	
+			}
 	}
+	
+	private class UpdateFahrzeugCallback implements AsyncCallback<Void>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Der Fehler ist beim Übertragen des Fahrzeugs von Server (UpdateFahrzeugCallback)");
+			
+		}
+
+		@Override
+		public void onSuccess(Void result) {			
+		
+		}
+}
 		
 	private class GetAlleFahrtenFhrzCallback implements AsyncCallback<Vector<Fahrt>>{
 
@@ -403,8 +437,13 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		@Override
 		public void onSuccess(Vector<Fahrzeug> result) {
 			Vector<Fahrzeug> fahrzeuge= (Vector<Fahrzeug>)result;
-			mainView.getContAlleFahrzeuge().befuelleFhzTabelle(fahrzeuge);
 			
+			if(mainView.getCurrentCont() instanceof ContAlleFahrzeuge){
+				mainView.getContAlleFahrzeuge().befuelleFhzTabelle(fahrzeuge);
+			}
+			else if(mainView.getCurrentCont() instanceof ContAlleReports){
+				mainView.getContAlleReports().zeigeWahlTabelleFahrzeug(fahrzeuge);	
+			}
 		}
 		
 	}
@@ -494,6 +533,39 @@ public class FahrtenbuchClientImpl implements FahrtenbuchClient {
 		@Override
 		public void onSuccess(Void result) {
 			mainView.openAlleFahrerCont();
+		}
+
+	}
+	
+	
+	private class FahrerReportCallback implements AsyncCallback<String>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Bericht konnte nicht erzeugt werden");
+			
+		}
+
+		@Override
+		public void onSuccess(String result) {
+			String htmlString = (String) result;
+			mainView.getContAlleReports().zeigeFahrerReport(htmlString);
+		}
+
+	}
+	
+	private class FahrzeugReportCallback implements AsyncCallback<String>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Bericht konnte nicht erzeugt werden");
+			
+		}
+
+		@Override
+		public void onSuccess(String result) {
+			String htmlString = (String) result;
+			mainView.getContAlleReports().zeigeFahrzeugReport(htmlString);
 		}
 
 	}

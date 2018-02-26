@@ -94,7 +94,7 @@ public class ContEditFahrt extends Composite{
 		warnungLabel.setStyleName("red_label");
 		showFahrtFlexTable.addStyleName("FlexTable");
 		showFahrtFlexTable.setCellPadding(6);
-		showFahrtFlexTable.getColumnFormatter().addStyleName(0, "TableHeader");
+		showFahrtFlexTable.getRowFormatter().addStyleName(0, "TableHeader");
 		infoLabel1.setStyleName("grey_label");
 		infoLabel2.setStyleName("grey_label");
 		reqLabel1.setStyleName("grey_label");

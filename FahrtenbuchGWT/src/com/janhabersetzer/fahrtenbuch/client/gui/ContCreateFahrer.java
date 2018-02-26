@@ -52,7 +52,7 @@ public class ContCreateFahrer extends Composite{
 		warnungLabel.setStyleName("red_label");
 		showFahrerFlexTable.addStyleName("FlexTable");
 		showFahrerFlexTable.setCellPadding(6);
-		showFahrerFlexTable.getColumnFormatter().addStyleName(0, "TableHeader");
+		showFahrerFlexTable.getRowFormatter().addStyleName(0, "TableHeader");
 		
 		/**
 		 * Erste Spalte der Fahrten-Tabelle festlegen.

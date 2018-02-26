@@ -12,6 +12,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
@@ -75,8 +77,9 @@ public class ContFahrzeug extends Composite{
 		showFahrtenFlexTable.addStyleName("FlexTable");
 		showFhrzFlexTable.setCellPadding(6);
 		showFahrtenFlexTable.setCellPadding(6);
-		showFhrzFlexTable.getColumnFormatter().addStyleName(0, "TableHeader");
-		showFahrtenFlexTable.getColumnFormatter().addStyleName(0, "TableHeader");
+		showFhrzFlexTable.getRowFormatter().addStyleName(0, "TableHeader");
+		showFahrtenFlexTable.getRowFormatter().addStyleName(0, "TableHeader");
+		hPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_BOTTOM);
 
 			/**
 			 * Erste Spalte der Fhrz.-Tabelle festlegen.
@@ -132,6 +135,7 @@ public class ContFahrzeug extends Composite{
 			
 			//Erstelle den Button für das Hinzufuegen der Fahrten und fuege ihn den hPanel hinzu
 			fahrtHinzuBtn = new Button(" + Fahrt hinzufügen");
+			fahrtHinzuBtn.getElement().getStyle().setProperty("margin", "0.5em");
 			fahrtHinzuBtn.addClickHandler(new ClickHandler() {
 				
 				@Override

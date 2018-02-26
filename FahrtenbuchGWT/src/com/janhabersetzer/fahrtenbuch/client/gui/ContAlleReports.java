@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -49,13 +50,13 @@ public class ContAlleReports extends Composite{
 		private Label ueberschriftLabel = new Label("Wähle einen Bericht:");
 		
 		//Radio-Buttons Bereich
-		private HorizontalPanel radioButtonPanel = new HorizontalPanel();
+		private VerticalPanel radioButtonPanel = new VerticalPanel();
 		
 		
 		// Fahrzeug oder Fahrer Wählen Bereich
 		private FlexTable selectTable = new FlexTable();
-		private Label waehleFahrerLbl = new Label("Wähle die eMailadresse eines Fahrers aus, zu dem ein Bericht erstellt werden soll");
-		private Label waehleFahrzeugLbl = new Label("Wähle das Kennzeichen ein Fahrzeug aus, zu dem ein Bericht erstellt werden soll");
+		private Label waehleFahrerLbl = new Label("Wähle die eMailadresse eines Fahrers aus, zu dem ein Bericht erstellt werden soll...");
+		private Label waehleFahrzeugLbl = new Label("Wähle das Kennzeichen ein Fahrzeug aus, zu dem ein Bericht erstellt werden soll...");
 		private ListBox waehleFahrerLBox;
 		private ListBox waehleFahrzeugLBox;
 		private Button processFhrRpBtn = new Button("Erstelle Bericht für diesen Fahrer");
@@ -73,7 +74,13 @@ public class ContAlleReports extends Composite{
 			 * CSS anwenden und die Tabelle formatieren.
 		
 			 */
+			vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 			ueberschriftLabel.addStyleName("fahrtenbuch-label");
+			waehleFahrerLbl.addStyleName("fahrtenbuch-label");
+			waehleFahrzeugLbl.addStyleName("fahrtenbuch-label");
+			waehleFahrzeugLbl.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+			
+			
 			
 	
 			
@@ -86,8 +93,10 @@ public class ContAlleReports extends Composite{
 			
 			
 			radioButtonPanel.add(rbFhr);
+			radioButtonPanel.setSpacing(15);
 			radioButtonPanel.add(rbFhz);
 			
+			vPanel.add(ueberschriftLabel);
 			vPanel.add(radioButtonPanel);
 
 		}

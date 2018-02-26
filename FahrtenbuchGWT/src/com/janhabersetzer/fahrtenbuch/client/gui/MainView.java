@@ -1,6 +1,7 @@
 package com.janhabersetzer.fahrtenbuch.client.gui;
 
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.janhabersetzer.fahrtenbuch.client.FahrtenbuchClientImpl;
 import com.janhabersetzer.fahrtenbuch.shared.bo.Fahrer;
@@ -48,6 +49,10 @@ public class MainView extends Composite {
 	
 	public MainView(FahrtenbuchClientImpl serviceImpl){
 		initWidget(this.vPanel);
+		
+		//CSS
+		vPanel.setWidth("1300px");
+		vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		
 		this.serviceImpl= serviceImpl;
 		

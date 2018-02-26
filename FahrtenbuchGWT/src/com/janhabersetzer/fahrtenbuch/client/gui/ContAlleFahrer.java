@@ -10,6 +10,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -58,7 +59,8 @@ public class ContAlleFahrer extends Composite{
 		ueberschriftLabel.addStyleName("fahrtenbuch-label");
 		showFhrFlexTable.addStyleName("FlexTable");
 		showFhrFlexTable.setCellPadding(6);
-		showFhrFlexTable.getColumnFormatter().addStyleName(0, "TableHeader");
+		showFhrFlexTable.getRowFormatter().addStyleName(0, "TableHeader");
+		hPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_BOTTOM);
 		
 		/**
 		 * Erste Spalte der Tabelle festlegen.
@@ -77,6 +79,7 @@ public class ContAlleFahrer extends Composite{
 		
 		//Erstelle den Button für das Hinzufuegen der Fahrten und fuege ihn den hPanel hinzu
 		fahrerHinzuBtn = new Button(" + Fahrer hinzufügen");
+		fahrerHinzuBtn.getElement().getStyle().setProperty("margin", "0.5em");
 		fahrerHinzuBtn.addClickHandler(new ClickHandler() {
 			
 			@Override

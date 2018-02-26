@@ -10,6 +10,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -49,7 +50,7 @@ public class ContCreateFahrt extends Composite{
 	private FlexTable showFahrtFlexTable = new FlexTable();
 	
 	
-	private Label ueberschriftLabel = new Label("Fahrt bearbeiten: ");
+	private Label ueberschriftLabel = new Label("Neue Fahrt erstellen: ");
 	private Label warnungLabel = new Label();
 	private Label reqLabel1= new Label("* Pflichtfeld / Format yyyy.MM.dd");
 	private Label reqLabel2= new Label("* Pflichtfeld");
@@ -111,7 +112,8 @@ public class ContCreateFahrt extends Composite{
 		reqLabel7.setStyleName("grey_label");
 		showFahrtFlexTable.addStyleName("FlexTable");
 		showFahrtFlexTable.setCellPadding(6);
-		showFahrtFlexTable.getColumnFormatter().addStyleName(0, "TableHeader");
+		showFahrtFlexTable.getRowFormatter().addStyleName(0, "TableHeader");
+		
 		
 		/**
 		 * Erste Spalte der Fahrten-Tabelle festlegen.

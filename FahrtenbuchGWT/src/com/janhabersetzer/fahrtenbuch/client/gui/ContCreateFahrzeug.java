@@ -35,6 +35,11 @@ public class ContCreateFahrzeug extends Composite{
 	
 	private Label ueberschriftLabel = new Label("Neues Fahrzeug anlegen: ");
 	private Label warnungLabel = new Label();
+	private Label reqLabel1= new Label("* Pflichtfeld");
+	private Label reqLabel2= new Label("* Pflichtfeld");
+	private Label reqLabel3= new Label("* Pflichtfeld");
+	private Label reqLabel4= new Label("* Pflichtfeld");
+
 	
 	
 	ContCreateFahrzeug(MainView mainView, FahrtenbuchClientImpl serviceImpl){
@@ -55,6 +60,11 @@ public class ContCreateFahrzeug extends Composite{
 		showFhrzFlexTable.addStyleName("FlexTable");
 		showFhrzFlexTable.setCellPadding(6);
 		showFhrzFlexTable.getRowFormatter().addStyleName(0, "TableHeader");
+		reqLabel1.setStyleName("grey_label");
+		reqLabel2.setStyleName("grey_label");
+		reqLabel3.setStyleName("grey_label");
+		reqLabel4.setStyleName("grey_label");
+
 		
 		/**
 		 * Erste Spalte der Fahrten-Tabelle festlegen.
@@ -66,18 +76,17 @@ public class ContCreateFahrzeug extends Composite{
 		showFhrzFlexTable.setText(0, 4, "Speichern");
 		showFhrzFlexTable.setText(0, 5, "Abbrechen");
 		
-		
+		//Zweite Zeile 
 		
 		showFhrzFlexTable.setWidget(1, 0, kennzeichenTBox);
 		
-		
 		showFhrzFlexTable.setWidget(1, 1, kmTBox);
-		
 		
 		showFhrzFlexTable.setWidget(1, 2, modellTBox);
 		
-		
 		showFhrzFlexTable.setWidget(1, 3, farbeTBox);
+		
+		
 		
 		//SpeichernButton
 		speichernBtn = new Button("Speichern");
@@ -125,6 +134,11 @@ public class ContCreateFahrzeug extends Composite{
 		});
 		showFhrzFlexTable.setWidget(1, 5, abbrechenBtn);
 		
+		//Hinweislabel in dritter Zeile
+		showFhrzFlexTable.setWidget(2, 0, reqLabel1);
+		showFhrzFlexTable.setWidget(2, 1, reqLabel2);
+		showFhrzFlexTable.setWidget(2, 2, reqLabel3);
+		showFhrzFlexTable.setWidget(2, 3, reqLabel4);
 		
 		vPanel.add(ueberschriftLabel);
 		vPanel.add(showFhrzFlexTable);

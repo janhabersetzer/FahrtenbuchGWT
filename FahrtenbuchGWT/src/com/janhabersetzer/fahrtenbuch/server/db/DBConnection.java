@@ -3,6 +3,8 @@ package com.janhabersetzer.fahrtenbuch.server.db;
 
 import java.sql.*;
 
+import com.google.appengine.api.utils.SystemProperty;
+
 //import com.google.appengine.api.utils.SystemProperty;
 
 
@@ -22,16 +24,16 @@ public class DBConnection {
         if (con == null) {
             String url = null;
             try {
-                //****if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
-                    // Load the class that provides the new
-                    // "jdbc:google:mysql://" prefix.
-                   //*** Class.forName("com.mysql.jdbc.GoogleDriver");
-                    // *****url = googleUrl;
-               //*** } else {
-                    // Local MySQL instance to use during development.
+                if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
+                	// Load the class that provides the new
+                	// "jdbc:google:mysql://" prefix.
+                    Class.forName("com.mysql.jdbc.GoogleDriver");
+                     url = googleUrl;
+               } else {
+            	   	// Local MySQL instance to use during development.
                     Class.forName("com.mysql.jdbc.Driver");
                     url = localUrl;
-                //****}
+                }
                 /*
                  * Dann erst kann uns der DriverManager eine Verbindung mit den
                  * oben in der Variable url angegebenen Verbindungsinformationen

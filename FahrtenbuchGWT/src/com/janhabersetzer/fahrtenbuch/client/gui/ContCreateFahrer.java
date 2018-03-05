@@ -33,6 +33,10 @@ public class ContCreateFahrer extends Composite{
 	
 	private Label ueberschriftLabel = new Label("Neuen Fahrer anlegen: ");
 	private Label warnungLabel = new Label();
+	private Label reqLabel1= new Label("* Pflichtfeld");
+	private Label reqLabel2= new Label("* Pflichtfeld");
+	private Label reqLabel3= new Label("* Pflichtfeld");
+	
 	
 	
 	ContCreateFahrer(MainView mainView, FahrtenbuchClientImpl serviceImpl){
@@ -53,9 +57,12 @@ public class ContCreateFahrer extends Composite{
 		showFahrerFlexTable.addStyleName("FlexTable");
 		showFahrerFlexTable.setCellPadding(6);
 		showFahrerFlexTable.getRowFormatter().addStyleName(0, "TableHeader");
+		reqLabel1.setStyleName("grey_label");
+		reqLabel2.setStyleName("grey_label");
+		reqLabel3.setStyleName("grey_label");
 		
 		/**
-		 * Erste Spalte der Fahrten-Tabelle festlegen.
+		 * Erste Zeile der Fahrten-Tabelle festlegen.
 		 */
 		showFahrerFlexTable.setText(0, 0, "Vorname");
 		showFahrerFlexTable.setText(0, 1, "Nachname");
@@ -64,12 +71,10 @@ public class ContCreateFahrer extends Composite{
 		showFahrerFlexTable.setText(0, 4, "Abbrechen");
 		
 		
-		
+		//Zweite Zeile
 		showFahrerFlexTable.setWidget(1, 0, vorNameTBox);
 		
-		
 		showFahrerFlexTable.setWidget(1, 1, nachNameTBox);
-		
 		
 		showFahrerFlexTable.setWidget(1, 2, eMailTBox);
 		
@@ -116,6 +121,11 @@ public class ContCreateFahrer extends Composite{
 			}
 		});
 		showFahrerFlexTable.setWidget(1, 4, abbrechenBtn);
+		
+		//Hinweislabel in dritter Zeile
+		showFahrerFlexTable.setWidget(2, 0, reqLabel1);
+		showFahrerFlexTable.setWidget(2, 1, reqLabel2);
+		showFahrerFlexTable.setWidget(2, 2, reqLabel3);
 		
 		
 		vPanel.add(ueberschriftLabel);
